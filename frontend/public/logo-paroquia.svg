@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title">
+  <title id="title">Logo da par�quia</title>
+  <circle cx="40" cy="40" r="36" fill="#214739" stroke="#b79a57" stroke-width="2"/>
+  <path fill="#f0d89f" d="M38 18h4v18h14v4H42v22h-4V40H24v-4h14z"/>
+</svg>
