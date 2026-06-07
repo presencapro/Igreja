@@ -47,6 +47,29 @@ export const parishData = {
     "Acompanhe as celebrações e comunicados pela página oficial.",
     "Horários de missas podem sofrer ajustes em datas especiais.",
   ],
+  announcements: [
+    {
+      id: "an1",
+      title: "Missa em honra a São Sebastião",
+      message: "Celebração especial hoje às 19h30 na Matriz. Participe conosco desta importante festa do padroeiro.",
+      type: "info",
+      date: "",
+    },
+    {
+      id: "an2",
+      title: "Atenção: horário especial de Natal",
+      message: "Missa do Natal: 24/12 às 19h30 e 25/12 às 07h30 e 19h30. Confirme sua presença.",
+      type: "warning",
+      date: "",
+    },
+    {
+      id: "an3",
+      title: "URGENTE: Tríduo Pascal",
+      message: "Programação especial de quinta a sábado. Confissões a partir das 18h. Não perca!",
+      type: "urgent",
+      date: "",
+    },
+  ],
   specialEvents: [
     // Para adicionar o link do Google Maps de cada festa, preencha o campo mapLink: "URL_AQUI"
     { startMonth: 0, startDay: 22, endMonth: 0, endDay: 25, title: 'Festa em honra a São Sebastião "Soldado de Cristo, defensor da unidade"', mapLink: "" },

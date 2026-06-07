@@ -13,7 +13,10 @@ export default function AdminPanel({
   handleEditorChange,
   setEditor,
   saveEditor,
-  resetEditor
+  resetEditor,
+  addAnnouncement,
+  updateAnnouncement,
+  removeAnnouncement
 }) {
   const updateMassTime = (index, field, value) => {
     const newMassTimes = [...(editor.massTimes || [])];
@@ -109,6 +112,13 @@ export default function AdminPanel({
                   onClick={() => setAdminTab("links")}
                 >
                   Links
+                </button>
+                <button
+                  type="button"
+                  className={`admin-tab ${adminTab === "comunicados" ? "active" : ""}`}
+                  onClick={() => setAdminTab("comunicados")}
+                >
+                  Comunicados
                 </button>
                 <button
                   type="button"
@@ -268,6 +278,100 @@ export default function AdminPanel({
                     rows="2"
                   />
                 </>
+              )}
+
+              {adminTab === "comunicados" && (
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.9rem" }}>
+                  <p style={{ fontSize: "0.85rem", color: "var(--muted)", margin: 0 }}>
+                    Cards exibidos <strong>acima do calendário</strong>. Defina título, mensagem, tipo e (opcionalmente) uma data. Deixe título e mensagem vazios para ocultar um card.
+                  </p>
+
+                  {(editor.announcements || []).map((a, index) => (
+                    <div
+                      key={a.id}
+                      style={{
+                        background: "rgba(255,255,255,0.05)",
+                        border: "1px solid var(--border)",
+                        borderRadius: "10px",
+                        padding: "0.9rem",
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "0.55rem",
+                      }}
+                    >
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                        <strong style={{ fontSize: "0.85rem", color: "var(--primary)" }}>
+                          Comunicado #{index + 1}
+                        </strong>
+                        <button
+                          type="button"
+                          onClick={() => removeAnnouncement(a.id)}
+                          style={{
+                            background: "#d24747",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "6px",
+                            padding: "0.3rem 0.7rem",
+                            cursor: "pointer",
+                            fontSize: "0.8rem",
+                            fontWeight: "700",
+                          }}
+                        >
+                          Remover
+                        </button>
+                      </div>
+
+                      <input
+                        value={a.title}
+                        onChange={(e) => updateAnnouncement(a.id, "title", e.target.value)}
+                        placeholder="Título (ex: Missa em honra a São Sebastião)"
+                      />
+
+                      <textarea
+                        value={a.message}
+                        onChange={(e) => updateAnnouncement(a.id, "message", e.target.value)}
+                        placeholder="Mensagem do comunicado"
+                        rows="3"
+                        style={{ resize: "vertical" }}
+                      />
+
+                      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                        <select
+                          value={a.type}
+                          onChange={(e) => updateAnnouncement(a.id, "type", e.target.value)}
+                          style={{
+                            width: "100%",
+                            border: "1px solid var(--border)",
+                            borderRadius: "10px",
+                            padding: "0.7rem 0.75rem",
+                            font: "inherit",
+                            color: "var(--text)",
+                            background: "var(--surface)",
+                          }}
+                        >
+                          <option value="info">Informativo (azul)</option>
+                          <option value="warning">Atenção (amarelo)</option>
+                          <option value="urgent">Urgente (vermelho)</option>
+                        </select>
+
+                        <input
+                          type="date"
+                          value={a.date || ""}
+                          onChange={(e) => updateAnnouncement(a.id, "date", e.target.value)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+
+                  <button
+                    type="button"
+                    onClick={addAnnouncement}
+                    className="btn-secondary"
+                    style={{ padding: "0.5rem 1rem", fontSize: "0.88rem", alignSelf: "flex-start" }}
+                  >
+                    + Adicionar comunicado
+                  </button>
+                </div>
               )}
 
               {adminTab === "avisos" && (

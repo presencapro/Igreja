@@ -23,6 +23,7 @@ function toEditorState(data) {
     clergyText: Array.isArray(data.clergy) ? data.clergy.join("\n") : "",
     communitiesShort: data.communitiesShort || "",
     noticesText: data.notices?.join("\n") || "",
+    announcements: data.announcements || [],
     diocesePage: data.links?.diocesePage || "",
     instagramProfile: data.links?.instagramProfile || "",
     instagramPost: data.links?.instagramPost || "",
@@ -206,6 +207,7 @@ export function SiteProvider({ children }) {
       clergy: clergy.length ? clergy : siteData.clergy,
       communitiesShort: editor.communitiesShort,
       notices: notices.length ? notices : siteData.notices,
+      announcements: editor.announcements || [],
       links,
     };
 
@@ -217,6 +219,36 @@ export function SiteProvider({ children }) {
     setSiteData(initialParishData);
     setEditor(toEditorState(initialParishData));
     localStorage.removeItem(STORAGE_KEY);
+  }
+
+  function addAnnouncement() {
+    const newAnnouncement = {
+      id: `an${Date.now()}`,
+      title: "",
+      message: "",
+      type: "info",
+      date: "",
+    };
+    setEditor((prev) => ({
+      ...prev,
+      announcements: [...(prev.announcements || []), newAnnouncement],
+    }));
+  }
+
+  function updateAnnouncement(id, field, value) {
+    setEditor((prev) => ({
+      ...prev,
+      announcements: (prev.announcements || []).map((a) =>
+        a.id === id ? { ...a, [field]: value } : a
+      ),
+    }));
+  }
+
+  function removeAnnouncement(id) {
+    setEditor((prev) => ({
+      ...prev,
+      announcements: (prev.announcements || []).filter((a) => a.id !== id),
+    }));
   }
 
   const contextValue = {
@@ -239,6 +271,9 @@ export function SiteProvider({ children }) {
     handleLogout,
     saveEditor,
     resetEditor,
+    addAnnouncement,
+    updateAnnouncement,
+    removeAnnouncement,
   };
 
   return (

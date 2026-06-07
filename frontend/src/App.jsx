@@ -65,6 +65,9 @@ function AdminRoute() {
              setEditor={ctx.setEditor}
              saveEditor={ctx.saveEditor}
              resetEditor={ctx.resetEditor}
+             addAnnouncement={ctx.addAnnouncement}
+             updateAnnouncement={ctx.updateAnnouncement}
+             removeAnnouncement={ctx.removeAnnouncement}
           />
        </main>
        <Footer siteData={ctx.siteData} />

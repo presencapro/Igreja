@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { Clock, Calendar as CalendarIcon, MapPin, ChevronLeft, ChevronRight, Info } from "lucide-react";
 import styles from "./Celebracoes.module.css";
+import Announcements from "./Announcements";
 
 export default function Celebracoes({ siteData }) {
   const { massTimes } = siteData;
@@ -127,18 +128,21 @@ export default function Celebracoes({ siteData }) {
     <section id="celebracoes" className="card full reveal">
       <div className={styles.sectionHeader}>
         <h2>Calendário de Celebrações</h2>
-        <p className={styles.subtitle}>Selecione um dia para ver os horários das missas.</p>
-      </div>
 
-      {siteData.calendarNotice && (
-        <div className={styles.calendarNotice}>
-          <span className={styles.calendarNoticeIcon}>📢</span>
-          <div className={styles.calendarNoticeContent}>
-            <span className={styles.calendarNoticeTitle}>Avisos</span>
-            <p>{siteData.calendarNotice}</p>
+        <Announcements announcements={siteData.announcements} />
+
+        <p className={styles.subtitle}>Selecione um dia para ver os horários das missas.</p>
+
+        {siteData.calendarNotice && (
+          <div className={styles.calendarNotice}>
+            <span className={styles.calendarNoticeIcon}>📢</span>
+            <div className={styles.calendarNoticeContent}>
+              <span className={styles.calendarNoticeTitle}>Aviso geral</span>
+              <p>{siteData.calendarNotice}</p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className={styles.calendarLayout}>
         {/* Calendário */}
