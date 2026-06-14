@@ -28,7 +28,7 @@ export class AuthService {
     });
   }
 
-  private getAuthEmail(payload: LoginDto) {
+  private getAuthEmail(payload: Partial<LoginDto>) {
     const email = payload.email?.trim().toLowerCase();
     if (!email) {
       return null;

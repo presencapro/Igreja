@@ -3,6 +3,10 @@ import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
+  // Diagnostic logs to help debug env loading during deploy/start
+  console.log('Starting app - CWD=', process.cwd());
+  console.log('SUPABASE_URL=', process.env.SUPABASE_URL);
+
   const app = await NestFactory.create(AppModule);
 
   app.use(cookieParser());
