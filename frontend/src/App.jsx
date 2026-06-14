@@ -14,6 +14,7 @@ import Secretaria from "./components/home/Secretaria";
 import Mapa from "./components/home/Mapa";
 import Instagram from "./components/home/Instagram";
 import Destaques from "./components/home/Destaques";
+import Avisos from "./components/home/Avisos";
 import AdminPanel from "./components/admin/AdminPanel";
 import SEOMeta from "./components/layout/SEOMeta";
 
@@ -34,6 +35,7 @@ function PublicSite() {
         <Mapa siteData={siteData} />
         <Instagram siteData={siteData} />
         <Destaques siteData={siteData} phoneLinks={phoneLinks} />
+        <Avisos siteData={siteData} />
       </main>
 
       <Footer siteData={siteData} />
@@ -65,6 +67,8 @@ function AdminRoute() {
              setEditor={ctx.setEditor}
              saveEditor={ctx.saveEditor}
              resetEditor={ctx.resetEditor}
+             saveStatus={ctx.saveStatus}
+             saveMessage={ctx.saveMessage}
           />
        </main>
        <Footer siteData={ctx.siteData} />

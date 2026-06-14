@@ -452,6 +452,18 @@ h2 {
   font-weight: 700;
 }
 
+.save-success {
+  margin-top: 0.75rem;
+  color: #1f7a45;
+  font-weight: 600;
+}
+
+.save-warning {
+  margin-top: 0.75rem;
+  color: #b7791f;
+  font-weight: 600;
+}
+
 .full {
   flex: 1 1 100% !important;
 }

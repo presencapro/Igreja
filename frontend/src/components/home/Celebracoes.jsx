@@ -127,7 +127,9 @@ export default function Celebracoes({ siteData }) {
     <section id="celebracoes" className="card full reveal">
       <div className={styles.sectionHeader}>
         <h2>Calendário de Celebrações</h2>
-        <p className={styles.subtitle}>Selecione um dia para ver os horários das missas.</p>
+        <p className={styles.subtitle}>
+          {siteData.celebrationsNote || "Selecione um dia para ver os horários das missas."}
+        </p>
       </div>
 
       <div className={styles.calendarLayout}>

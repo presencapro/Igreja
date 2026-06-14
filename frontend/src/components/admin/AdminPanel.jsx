@@ -13,7 +13,9 @@ export default function AdminPanel({
   handleEditorChange,
   setEditor,
   saveEditor,
-  resetEditor
+  resetEditor,
+  saveStatus,
+  saveMessage,
 }) {
   const updateMassTime = (index, field, value) => {
     const newMassTimes = [...(editor.massTimes || [])];
@@ -170,6 +172,12 @@ export default function AdminPanel({
                     placeholder="Endereço"
                   />
                   <input
+                    name="zipCode"
+                    value={editor.zipCode}
+                    onChange={handleEditorChange}
+                    placeholder="CEP"
+                  />
+                  <input
                     name="secretary"
                     value={editor.secretary}
                     onChange={handleEditorChange}
@@ -280,6 +288,15 @@ export default function AdminPanel({
                   Restaurar padrão
                 </button>
               </div>
+
+              {saveMessage && (
+                <p
+                  className={saveStatus === "success" ? "save-success" : "save-warning"}
+                  role="status"
+                >
+                  {saveMessage}
+                </p>
+              )}
             </div>
           )}
         </>
