@@ -7,11 +7,21 @@ import { LoginDto } from './dto/login.dto';
 export class AuthService {
   private supabase: SupabaseClient;
   private emailDomain: string;
+  private allowedDomains: string[];
 
   constructor(private config: ConfigService) {
     const url = this.config.getOrThrow<string>('SUPABASE_URL');
     const serviceKey = this.config.getOrThrow<string>('SUPABASE_SERVICE_ROLE_KEY');
     this.emailDomain = this.config.get<string>('EMAIL_DOMAIN') ?? 'paroquia.internal';
+    this.allowedDomains = this.config
+      .get<string>('ALLOWED_DOMAINS')
+      ?.split(',')
+      .map((domain) => domain.trim().toLowerCase())
+      .filter(Boolean) ?? [this.emailDomain];
+
+    if (!this.allowedDomains.includes(this.emailDomain)) {
+      this.allowedDomains.unshift(this.emailDomain);
+    }
 
     this.supabase = createClient(url, serviceKey, {
       auth: { autoRefreshToken: false, persistSession: false },
@@ -19,29 +29,20 @@ export class AuthService {
   }
 
   private getAuthEmail(payload: LoginDto) {
-    if (payload.email) {
-      return payload.email.trim().toLowerCase();
+    const email = payload.email?.trim().toLowerCase();
+    if (!email) {
+      return null;
     }
 
-    if (payload.username) {
-      return `${payload.username.trim().toLowerCase()}@${this.emailDomain}`;
-    }
-
-    return null;
+    return this.isAllowedDomain(email) ? email : null;
   }
 
-  private async isAdminEmail(email: string) {
-    const { data, error } = await this.supabase
-      .from('admin_users')
-      .select('auth_id')
-      .eq('email', email.toLowerCase())
-      .maybeSingle();
-
-    return !error && !!data;
+  private isAllowedDomain(email: string) {
+    return this.allowedDomains.some((domain) => email.endsWith(`@${domain}`));
   }
 
-  async login({ email, username, password }: LoginDto) {
-    const authEmail = this.getAuthEmail({ email, username, password });
+  async login({ email, password }: LoginDto) {
+    const authEmail = this.getAuthEmail({ email });
 
     if (!authEmail || !password?.trim()) {
       throw new UnauthorizedException('Usuário ou senha inválidos.');
@@ -57,9 +58,9 @@ export class AuthService {
       throw new UnauthorizedException('Usuário ou senha inválidos.');
     }
 
-    const isAdmin = await this.isAdminEmail(data.user.email);
-    if (!isAdmin) {
-      throw new UnauthorizedException('Acesso não autorizado.');
+    const userEmail = data.user.email.toLowerCase();
+    if (!this.isAllowedDomain(userEmail)) {
+      throw new UnauthorizedException('Acesso permitido apenas para o domínio autorizado.');
     }
 
     return {
@@ -79,9 +80,9 @@ export class AuthService {
       throw new UnauthorizedException('Sessão inválida ou expirada.');
     }
 
-    const isAdmin = await this.isAdminEmail(data.user.email);
-    if (!isAdmin) {
-      throw new UnauthorizedException('Acesso não autorizado.');
+    const userEmail = data.user.email.toLowerCase();
+    if (!this.isAllowedDomain(userEmail)) {
+      throw new UnauthorizedException('Acesso permitido apenas para o domínio autorizado.');
     }
 
     return {

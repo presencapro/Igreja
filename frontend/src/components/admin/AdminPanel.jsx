@@ -36,10 +36,10 @@ export default function AdminPanel({
       {!isAuthenticated ? (
         <form className="admin-grid" onSubmit={handleLogin}>
           <input
-            name="user"
-            value={loginForm.user}
+            name="email"
+            value={loginForm.email}
             onChange={handleLoginChange}
-            placeholder="Usuário"
+            placeholder="Email"
           />
           <input
             name="password"

@@ -53,7 +53,7 @@ export function SiteProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authLoading, setAuthLoading] = useState(true); // true até checar sessão existente
 
-  const [loginForm, setLoginForm] = useState({ user: "", password: "" });
+  const [loginForm, setLoginForm] = useState({ email: "", password: "" });
   const [authError, setAuthError] = useState("");
 
   const STORAGE_KEY = "paroquia-site-data-v1";
@@ -123,9 +123,9 @@ export function SiteProvider({ children }) {
     event.preventDefault();
     setAuthError("");
 
-    const username = loginForm.user.trim().toLowerCase();
-    if (!username || !loginForm.password) {
-      setAuthError("Preencha o usuário e a senha.");
+    const email = loginForm.email.trim().toLowerCase();
+    if (!email || !loginForm.password) {
+      setAuthError("Preencha o email e a senha.");
       return;
     }
 
@@ -133,7 +133,7 @@ export function SiteProvider({ children }) {
       const response = await fetch(`${BACKEND_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password: loginForm.password }),
+        body: JSON.stringify({ email, password: loginForm.password }),
         credentials: "include", // Permite receber e enviar o cookie HttpOnly
       });
 
@@ -146,7 +146,7 @@ export function SiteProvider({ children }) {
       setIsAuthenticated(true);
       setShowAdmin(true);
       setAuthError("");
-      setLoginForm({ user: "", password: "" });
+      setLoginForm({ email: "", password: "" });
     } catch {
       setAuthError("Erro ao conectar com o servidor.");
     }
