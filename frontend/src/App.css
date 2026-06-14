@@ -44,8 +44,10 @@ body[data-theme="dark"] {
 }
 
 .container {
-  width: min(1120px, 92%);
+  width: min(1120px, 96%);
+  max-width: 1120px;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
 
 .topbar {
@@ -318,6 +320,7 @@ h1 {
   padding: 1.35rem 1.25rem;
   box-shadow: 0 10px 26px rgba(15, 29, 23, 0.1);
   transition: transform 0.24s ease, box-shadow 0.24s ease;
+  min-width: 0;
 }
 
 .card:hover {
@@ -363,8 +366,9 @@ h1 {
 
 .admin-grid {
   display: grid;
-  gap: 0.7rem;
+  gap: 0.85rem;
   margin-top: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .admin-tabs {
@@ -372,6 +376,8 @@ h1 {
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
 }
 
 .admin-tab {
@@ -393,9 +399,10 @@ h1 {
 .admin-grid input,
 .admin-grid textarea {
   width: 100%;
+  min-width: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 0.7rem 0.75rem;
+  padding: 0.75rem 0.85rem;
   font: inherit;
   color: var(--text);
   background: var(--surface);
@@ -475,8 +482,10 @@ h1 {
   border: 1px solid rgb(219, 219, 219);
   display: block;
   width: 100%;
-  min-width: 326px;
-  height: 620px;
+  min-width: auto;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
   margin: 0 auto 12px;
 }
 
@@ -642,6 +651,12 @@ h1 {
 @media (max-width: 680px) {
   .topbar-content {
     padding: 0.65rem 0;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .main-nav {
+    width: 100%;
   }
 
   .theme-toggle {
@@ -656,29 +671,46 @@ h1 {
 
   .btn-primary,
   .btn-secondary {
-    padding: 0.88rem 1.3rem;
+    padding: 0.88rem 1rem;
     font-size: 0.98rem;
+    width: 100%;
+  }
+
+  .admin-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .admin-actions button {
+    width: 100%;
+  }
+
+  .admin-grid {
+    gap: 0.85rem;
+  }
+
+  .hero {
+    background-attachment: scroll !important;
+    min-height: 380px;
   }
 
   .insta-embed-frame {
     min-width: 100%;
-    height: 560px;
-  }
-
-  .back-to-top {
-    left: 12px;
-    bottom: 82px;
-    width: 40px;
-    height: 40px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .main-grid {
-    margin-bottom: 150px; /* Espaço extra para botões fixos (WhatsApp, StickyCard, etc) */
+    margin-bottom: 100px;
   }
 
-  /* Correção para o fundo fixo no iOS e dispositivos móveis */
-  .hero {
-    background-attachment: scroll !important;
-    min-height: 400px;
+  .card {
+    padding: 1rem 1rem;
+    border-radius: 14px;
+  }
+
+  .hero-content {
+    padding: 3rem 0 2rem;
   }
 }
