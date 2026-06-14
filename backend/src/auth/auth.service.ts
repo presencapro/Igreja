@@ -18,21 +18,47 @@ export class AuthService {
     });
   }
 
-  async login({ username, password }: LoginDto) {
-    const email = `${username.trim().toLowerCase()}@${this.emailDomain}`;
+  private getAuthEmail(payload: LoginDto) {
+    if (payload.email) {
+      return payload.email.trim().toLowerCase();
+    }
+
+    if (payload.username) {
+      return `${payload.username.trim().toLowerCase()}@${this.emailDomain}`;
+    }
+
+    return null;
+  }
+
+  private async isAdminEmail(email: string) {
+    const { data, error } = await this.supabase
+      .from('admin_users')
+      .select('auth_id')
+      .eq('email', email.toLowerCase())
+      .maybeSingle();
+
+    return !error && !!data;
+  }
+
+  async login({ email, username, password }: LoginDto) {
+    const authEmail = this.getAuthEmail({ email, username, password });
+
+    if (!authEmail || !password?.trim()) {
+      throw new UnauthorizedException('Usuário ou senha inválidos.');
+    }
 
     const { data, error } = await this.supabase.auth.signInWithPassword({
-      email,
+      email: authEmail,
       password,
     });
 
-    if (error || !data.session) {
+    if (error || !data.session || !data.user?.email) {
       console.error('Erro detalhado do Supabase:', error?.message);
       throw new UnauthorizedException('Usuário ou senha inválidos.');
     }
 
-    const role = data.user?.user_metadata?.role;
-    if (role !== 'admin') {
+    const isAdmin = await this.isAdminEmail(data.user.email);
+    if (!isAdmin) {
       throw new UnauthorizedException('Acesso não autorizado.');
     }
 
@@ -40,7 +66,8 @@ export class AuthService {
       accessToken: data.session.access_token,
       user: {
         id: data.user.id,
-        role,
+        email: data.user.email,
+        role: 'admin',
       },
     };
   }
@@ -48,18 +75,19 @@ export class AuthService {
   async me(token: string) {
     const { data, error } = await this.supabase.auth.getUser(token);
 
-    if (error || !data.user) {
+    if (error || !data.user?.email) {
       throw new UnauthorizedException('Sessão inválida ou expirada.');
     }
 
-    const role = data.user.user_metadata?.role;
-    if (role !== 'admin') {
+    const isAdmin = await this.isAdminEmail(data.user.email);
+    if (!isAdmin) {
       throw new UnauthorizedException('Acesso não autorizado.');
     }
 
     return {
       id: data.user.id,
-      role,
+      email: data.user.email,
+      role: 'admin',
     };
   }
 }

@@ -1,5 +1,6 @@
 // login.dto.ts
 export class LoginDto {
-  username: string;
+  email?: string;
+  username?: string;
   password: string;
 }
