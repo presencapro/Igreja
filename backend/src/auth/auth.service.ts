@@ -33,8 +33,13 @@ export class AuthService {
     if (!email) {
       return null;
     }
+    if (!this.isAllowedDomain(email)) {
+      throw new UnauthorizedException(
+        `Email não pertence a um domínio permitido. Use um email de: ${this.allowedDomains.join(', ')}`,
+      );
+    }
 
-    return this.isAllowedDomain(email) ? email : null;
+    return email;
   }
 
   private isAllowedDomain(email: string) {
@@ -54,8 +59,8 @@ export class AuthService {
     });
 
     if (error || !data.session || !data.user?.email) {
-      console.error('Erro detalhado do Supabase:', error?.message);
-      throw new UnauthorizedException('Usuário ou senha inválidos.');
+      console.error('Supabase login error:', error);
+      throw new UnauthorizedException(error?.message ?? 'Usuário ou senha inválidos.');
     }
 
     const userEmail = data.user.email.toLowerCase();
