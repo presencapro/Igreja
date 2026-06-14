@@ -47,7 +47,8 @@ body[data-theme="dark"] {
   width: min(1120px, 96%);
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 0.5rem;
+  padding: 0 0.75rem;
+  min-width: 0;
 }
 
 .topbar {
@@ -432,6 +433,7 @@ h1 {
 
 .highlights article {
   flex: 1 1 calc(33.333% - 0.7rem);
+  min-width: 0;
   background: linear-gradient(180deg, rgba(183, 154, 87, 0.08), rgba(183, 154, 87, 0.02));
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -464,6 +466,8 @@ h1 {
 
 .map-frame {
   width: 100%;
+  max-width: 100%;
+  min-width: 0;
   height: 290px;
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -571,6 +575,24 @@ h1 {
   
   .main-grid > * {
     flex: 1 1 100%;
+    min-width: 0;
+  }
+
+  .highlights article {
+    flex: 1 1 100%;
+  }
+
+  .highlights article p {
+    word-break: break-word;
+  }
+
+  .highlights article a {
+    display: inline-block;
+    overflow-wrap: anywhere;
+  }
+
+  .map-frame {
+    height: 240px;
   }
 
   .hero {
