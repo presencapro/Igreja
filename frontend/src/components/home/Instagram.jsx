@@ -7,16 +7,17 @@ export default function Instagram({ siteData }) {
         oficial.
       </p>
       <section className="destaque-instagram">
-        <iframe
-          className="insta-embed-frame"
-          src={siteData.links.instagramPost}
-          allowTransparency={true}
-          allowFullScreen={true}
-          frameBorder="0"
-          height="616"
-          scrolling="no"
-          title="Post do Instagram da paróquia"
-        ></iframe>
+        <div className="insta-embed-wrap">
+          <iframe
+            className="insta-embed-frame"
+            src={siteData.links.instagramPost}
+            allowTransparency={true}
+            allowFullScreen={true}
+            frameBorder="0"
+            scrolling="no"
+            title="Post do Instagram da paróquia"
+          ></iframe>
+        </div>
       </section>
       <a
         className="btn-secondary"

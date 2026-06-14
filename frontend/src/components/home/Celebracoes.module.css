@@ -14,17 +14,20 @@
   flex-wrap: wrap;
   gap: 2rem;
   align-items: flex-start;
+  min-width: 0;
+  max-width: 100%;
 }
 
 /* Calendar Styling */
 .calendarContainer {
-  flex: 1.2 1 450px;
+  flex: 1.2 1 min(100%, 450px);
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 20px;
   padding: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   min-width: 0;
+  max-width: 100%;
 }
 
 .calendarHeader {
@@ -32,13 +35,17 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 1.5rem;
+  gap: 0.5rem;
+  min-width: 0;
 }
 
 .calendarHeader h3 {
   font-family: "Cinzel", serif;
   color: var(--primary);
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3.5vw, 1.2rem);
   margin: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .navBtn {
@@ -106,7 +113,6 @@
 .dayCell.selected {
   background: var(--primary) !important;
   color: var(--accent) !important;
-  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(11, 37, 69, 0.3);
 }
 
@@ -130,7 +136,7 @@
 
 /* Details Panel */
 .detailsContainer {
-  flex: 1 1 350px;
+  flex: 1 1 min(100%, 350px);
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -139,6 +145,7 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  max-width: 100%;
 }
 
 .detailsHeader {
@@ -154,7 +161,8 @@
 .detailsHeader h4 {
   font-family: "Cinzel", serif;
   margin: 0;
-  font-size: 1.1rem;
+  font-size: clamp(0.95rem, 3vw, 1.1rem);
+  overflow-wrap: anywhere;
 }
 
 .eventList {
@@ -176,8 +184,13 @@
 }
 
 .eventItem:hover {
-  transform: translateX(5px);
   border-color: var(--accent);
+}
+
+@media (hover: hover) {
+  .eventItem:hover {
+    transform: translateX(5px);
+  }
 }
 
 .matrizItem {
@@ -197,10 +210,12 @@
 
 .eventLocation {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   color: var(--text);
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .emptyState {
@@ -269,10 +284,33 @@
 
 @media (max-width: 480px) {
   .calendarContainer {
-    padding: 1rem;
+    padding: 0.85rem;
+  }
+
+  .calendarHeader {
+    margin-bottom: 1rem;
+    gap: 0.35rem;
+  }
+
+  .navBtn {
+    flex-shrink: 0;
   }
   
   .dayCell {
-    font-size: 0.9rem;
+    font-size: 0.82rem;
+    border-radius: 8px;
+  }
+
+  .dayCell,
+  .dayCellBlank {
+    min-height: 36px;
+  }
+
+  .dayLabel {
+    font-size: 0.62rem;
+  }
+
+  .eventTime {
+    font-size: 1rem;
   }
 }

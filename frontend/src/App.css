@@ -10,12 +10,9 @@
   --border: #d7dfe6;
 }
 
-html, body {
-  overflow-x: hidden;
-}
-
-.app-shell {
-  overflow-x: hidden;
+html {
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
 
 * {
@@ -29,6 +26,20 @@ body {
   color: var(--text);
   background: radial-gradient(circle at top, #f9faf7 0%, var(--bg) 45%);
   line-height: 1.6;
+  overflow-x: clip;
+  min-height: 100vh;
+}
+
+img,
+iframe,
+video,
+svg {
+  max-width: 100%;
+}
+
+.app-shell {
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body[data-theme="dark"] {
@@ -44,10 +55,10 @@ body[data-theme="dark"] {
 }
 
 .container {
-  width: min(1120px, 96%);
+  width: 100%;
   max-width: 1120px;
   margin: 0 auto;
-  padding: 0 0.75rem;
+  padding-inline: clamp(0.75rem, 4vw, 1.25rem);
   min-width: 0;
 }
 
@@ -250,6 +261,9 @@ body[data-theme="dark"] {
   color: #f9f6ee;
   max-width: 740px;
   padding: 4.5rem 0;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 h1,
@@ -260,8 +274,14 @@ h3 {
 }
 
 h1 {
-  font-size: clamp(2rem, 3vw, 3.05rem);
+  font-size: clamp(1.65rem, 5vw, 3.05rem);
   margin-bottom: 1rem;
+  overflow-wrap: anywhere;
+}
+
+h2 {
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  overflow-wrap: anywhere;
 }
 
 .hero p {
@@ -306,11 +326,20 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   gap: 1.35rem;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .main-grid > * {
-  flex: 1 1 calc(50% - 0.7rem);
-  min-width: 0; /* Prevents flex children from overflowing */
+  flex: 1 1 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (min-width: 901px) {
+  .main-grid > *:not(.full) {
+    flex: 1 1 calc(50% - 0.7rem);
+  }
 }
 
 .card {
@@ -332,6 +361,7 @@ h1 {
 .card h2 {
   margin-bottom: 0.95rem;
   color: var(--primary);
+  overflow-wrap: anywhere;
 }
 
 .card h3 {
@@ -343,6 +373,8 @@ h1 {
 .card p {
   color: var(--muted);
   margin-bottom: 0.4rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .schedule-list {
@@ -480,16 +512,24 @@ h1 {
   text-align: center;
 }
 
+.insta-embed-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
 .insta-embed-frame {
   background-color: #fff;
   border-radius: 6px;
   border: 1px solid rgb(219, 219, 219);
   display: block;
   width: 100%;
-  min-width: auto;
+  min-width: 0;
   max-width: 100%;
   height: auto;
-  aspect-ratio: 16 / 9;
+  min-height: 280px;
+  aspect-ratio: 4 / 5;
   margin: 0 auto 12px;
 }
 
@@ -526,6 +566,7 @@ h1 {
 
 .footer-grid > * {
   flex: 1 1 calc(33.333% - 0.8rem);
+  min-width: 0;
 }
 
 .footer h3 {
@@ -539,6 +580,8 @@ h1 {
   color: #d2dacf;
   text-decoration: none;
   font-size: 0.95rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .footer a:hover {
@@ -576,6 +619,7 @@ h1 {
   .main-grid > * {
     flex: 1 1 100%;
     min-width: 0;
+    max-width: 100%;
   }
 
   .highlights article {
@@ -696,6 +740,8 @@ h1 {
     padding: 0.88rem 1rem;
     font-size: 0.98rem;
     width: 100%;
+    max-width: 100%;
+    text-align: center;
   }
 
   .admin-actions {
@@ -709,30 +755,80 @@ h1 {
 
   .admin-grid {
     gap: 0.85rem;
+    grid-template-columns: 1fr;
   }
 
   .hero {
     background-attachment: scroll !important;
-    min-height: 380px;
+    min-height: 320px;
   }
 
   .insta-embed-frame {
-    min-width: 100%;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: 16 / 9;
+    min-height: 240px;
+    aspect-ratio: 4 / 5;
   }
 
   .main-grid {
-    margin-bottom: 100px;
+    margin-top: 1.5rem;
+    margin-bottom: 7rem;
+    gap: 1rem;
   }
 
   .card {
-    padding: 1rem 1rem;
+    padding: 1rem;
     border-radius: 14px;
   }
 
   .hero-content {
-    padding: 3rem 0 2rem;
+    padding: 2.5rem 0 1.75rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .map-frame {
+    height: 220px;
+  }
+
+  .whatsapp-float {
+    right: 12px;
+    bottom: 12px;
+    padding: 0.72rem 0.9rem;
+    font-size: 0.88rem;
+    max-width: calc(100vw - 80px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .back-to-top {
+    left: 12px;
+    bottom: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .footer {
+    padding: 1.5rem 0 1rem;
+  }
+
+  .footer-copy {
+    font-size: 0.85rem;
+    padding-inline: 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding-inline: 0.65rem;
+  }
+
+  .hero {
+    min-height: 280px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
   }
 }
