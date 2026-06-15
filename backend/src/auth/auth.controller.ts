@@ -18,7 +18,7 @@ const COOKIE_NAME = 'admin_token';
 const cookieOptions = {
   httpOnly: true,                                        // JS não consegue ler
   secure: process.env.NODE_ENV === 'production',         // HTTPS apenas em produção
-  sameSite: 'lax' as const,                             // Proteção CSRF básica
+  sameSite: 'none' as const,                             // necessário para fetch cross-site com credentials
   maxAge: 8 * 60 * 60 * 1000,                          // 8 horas em ms
   path: '/',
 };
