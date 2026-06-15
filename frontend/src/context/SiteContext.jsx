@@ -5,6 +5,7 @@ export const SiteContext = createContext();
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? "http://localhost:3000";
 const STORAGE_KEY = "paroquia-site-data-v1";
+const AUTH_TOKEN_KEY = "paroquia-admin-token-v1";
 
 function toEditorState(data) {
   return {
@@ -94,6 +95,7 @@ export function SiteProvider({ children }) {
   const [saveStatus, setSaveStatus] = useState("");
   const [saveMessage, setSaveMessage] = useState("");
 
+  const [accessToken, setAccessToken] = useState(() => localStorage.getItem(AUTH_TOKEN_KEY));
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [authLoading, setAuthLoading] = useState(true);
@@ -153,8 +155,15 @@ export function SiteProvider({ children }) {
     document.body.setAttribute("data-theme", theme);
   }, [theme]);
 
+  const getAuthHeaders = () => {
+    return accessToken ? { Authorization: `Bearer ${accessToken}` } : {};
+  };
+
   useEffect(() => {
-    fetch(`${BACKEND_URL}/auth/me`, { credentials: "include" })
+    fetch(`${BACKEND_URL}/auth/me`, {
+      credentials: "include",
+      headers: getAuthHeaders(),
+    })
       .then((res) => {
         if (!res.ok) throw new Error("Não autenticado");
         return res.json();
@@ -165,16 +174,20 @@ export function SiteProvider({ children }) {
         } else {
           setIsAuthenticated(false);
           setShowAdmin(false);
+          setAccessToken(null);
+          localStorage.removeItem(AUTH_TOKEN_KEY);
         }
       })
       .catch(() => {
         setIsAuthenticated(false);
         setShowAdmin(false);
+        setAccessToken(null);
+        localStorage.removeItem(AUTH_TOKEN_KEY);
       })
       .finally(() => {
         setAuthLoading(false);
       });
-  }, []);
+  }, [accessToken]);
 
   const phoneLinks = useMemo(
     () => formatPhoneLinks(siteData.phone),
@@ -221,6 +234,12 @@ export function SiteProvider({ children }) {
         return;
       }
 
+      const data = await response.json();
+      if (data.accessToken) {
+        localStorage.setItem(AUTH_TOKEN_KEY, data.accessToken);
+        setAccessToken(data.accessToken);
+      }
+      setUser({ email });
       setIsAuthenticated(true);
       setShowAdmin(true);
       setAuthError("");
@@ -235,6 +254,7 @@ export function SiteProvider({ children }) {
       await fetch(`${BACKEND_URL}/auth/logout`, {
         method: "POST",
         credentials: "include",
+        headers: getAuthHeaders(),
       });
     } catch (e) {
       console.error("Erro ao fazer logout", e);
@@ -244,6 +264,8 @@ export function SiteProvider({ children }) {
     setShowAdmin(false);
     setAdminTab("geral");
     setUser(null);
+    setAccessToken(null);
+    localStorage.removeItem(AUTH_TOKEN_KEY);
   }
 
   async function saveEditor() {
@@ -252,7 +274,10 @@ export function SiteProvider({ children }) {
     try {
       const response = await fetch(`${BACKEND_URL}/site`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          ...getAuthHeaders(),
+        },
         credentials: "include",
         body: JSON.stringify(updated),
       });
@@ -267,12 +292,9 @@ export function SiteProvider({ children }) {
       setSaveStatus("success");
       setSaveMessage("Alterações salvas. A página principal já está atualizada.");
     } catch (error) {
-      applySiteData(updated);
-      setSaveStatus("warning");
+      setSaveStatus("error");
       setSaveMessage(
-        error.message?.includes("fetch")
-          ? "Salvo apenas neste navegador. Inicie o backend para publicar para todos."
-          : error.message || "Salvo apenas neste navegador."
+        error.message || "Não foi possível salvar no servidor. Verifique se está autenticado."
       );
     }
   }
