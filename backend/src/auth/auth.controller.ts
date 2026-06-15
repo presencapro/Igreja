@@ -38,14 +38,22 @@ export class AuthController {
 
     res.cookie(COOKIE_NAME, accessToken, cookieOptions);
 
-    // Retorna apenas dados não-sensíveis ao frontend (sem token no body)
-    return { authenticated: true, role: user.role };
+    // Retorna dados de autenticação e o token para fallback no frontend.
+    return {
+      authenticated: true,
+      role: user.role,
+      accessToken,
+    };
   }
 
-  /** GET /auth/me — verifica se o cookie é válido e retorna o usuário */
+  /** GET /auth/me — verifica se o cookie ou Authorization header é válido */
   @Get('me')
   async me(@Req() req: Request) {
-    const token = req.cookies?.[COOKIE_NAME];
+    const cookieToken = req.cookies?.[COOKIE_NAME];
+    const headerToken = req.headers.authorization?.startsWith('Bearer ')
+      ? req.headers.authorization.slice(7)
+      : undefined;
+    const token = cookieToken || headerToken;
 
     if (!token) {
       throw new UnauthorizedException('Não autenticado.');

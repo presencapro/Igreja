@@ -15,7 +15,11 @@ export class AdminAuthGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest<Request>();
-    const token = request.cookies?.[COOKIE_NAME];
+    const cookieToken = request.cookies?.[COOKIE_NAME];
+    const headerToken = request.headers.authorization?.startsWith('Bearer ')
+      ? request.headers.authorization.slice(7)
+      : undefined;
+    const token = cookieToken || headerToken;
 
     if (!token) {
       throw new UnauthorizedException('Não autenticado.');

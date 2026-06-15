@@ -19,6 +19,7 @@ async function bootstrap() {
       process.env.FRONTEND_URL, // URL de produção (defina no .env)
     ].filter(Boolean),
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
 
