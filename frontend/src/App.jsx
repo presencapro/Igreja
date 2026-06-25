@@ -14,6 +14,7 @@ import Secretaria from "./components/home/Secretaria";
 import Mapa from "./components/home/Mapa";
 import Instagram from "./components/home/Instagram";
 import Destaques from "./components/home/Destaques";
+import PixSection from "./components/home/PixSection";
 
 import AdminPanel from "./components/admin/AdminPanel";
 import SEOMeta from "./components/layout/SEOMeta";
@@ -35,6 +36,7 @@ function PublicSite() {
         <Mapa siteData={siteData} />
         <Instagram siteData={siteData} />
         <Destaques siteData={siteData} phoneLinks={phoneLinks} />
+        <PixSection siteData={siteData} />
 
       </main>
 

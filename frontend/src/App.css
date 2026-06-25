@@ -1282,6 +1282,240 @@ h2 {
   }
 }
 
+.pix-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.6rem;
+  background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(245,247,249,0.96));
+}
+
+.pix-section-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.pix-section-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.pix-section-text {
+  margin: 0;
+  color: var(--muted);
+  max-width: 32rem;
+}
+
+.pix-highlight {
+  padding: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(212, 175, 55, 0.08), rgba(11, 37, 69, 0.04));
+}
+
+.pix-controls {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.pix-button {
+  min-height: 48px;
+}
+
+.pix-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.pix-field span {
+  font-size: 0.95rem;
+}
+
+.pix-field select,
+.pix-field input,
+.pix-copy-area textarea {
+  width: 100%;
+  border: 1px solid rgba(11, 37, 69, 0.15);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  font: inherit;
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.pix-result {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.pix-qr-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 260px;
+  border: 1px solid rgba(11, 37, 69, 0.12);
+  border-radius: 18px;
+  background: linear-gradient(180deg, #ffffff, #f8fbff);
+  padding: 1rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.pix-qr {
+  width: 240px;
+  height: 240px;
+}
+
+.pix-qr-placeholder {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.pix-copy-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.pix-copy-button {
+  align-self: flex-start;
+  width: fit-content;
+  margin-top: 0.2rem;
+  padding: 0.65rem 1rem;
+  font-size: 0.95rem;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(11, 37, 69, 0.14);
+}
+
+.pix-copy-title {
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.pix-copy-description {
+  color: var(--muted);
+  margin: 0;
+}
+
+.pix-status {
+  margin: 0;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.donation-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.donation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.donation-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.donation-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.donation-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.donation-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 999px;
+  background: rgba(11, 37, 69, 0.08);
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.donation-clear-btn:hover:not(:disabled) {
+  background: rgba(11, 37, 69, 0.16);
+  transform: scale(1.04);
+}
+
+.donation-clear-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.donation-value {
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+}
+
+@media (max-width: 780px) {
+  .pix-section-header {
+    flex-direction: column;
+  }
+
+  .pix-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .pix-result {
+    grid-template-columns: 1fr;
+  }
+
+  .pix-copy-button {
+    width: 100%;
+    justify-content: center;
+    align-self: stretch;
+  }
+}
+
 @media (max-width: 380px) {
   .container {
     padding-inline: 0.65rem;

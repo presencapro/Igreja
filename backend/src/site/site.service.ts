@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { promises as fs } from 'fs';
 import { join } from 'path';
+import { resolveSupabaseConfig } from '../config/supabase-env';
 import { defaultSiteData } from './default-site.data';
 
 @Injectable()
@@ -12,14 +13,15 @@ export class SiteService {
   private supabase: SupabaseClient | null = null;
 
   constructor(private config: ConfigService) {
-    const url = this.config.get<string>('SUPABASE_URL');
-    const serviceKey = this.config.get<string>('SUPABASE_SERVICE_ROLE_KEY');
+    const env = this.config.get<Record<string, string | undefined>>('env') ?? {};
+    const { url, serviceKey } = resolveSupabaseConfig({
+      ...process.env,
+      ...env,
+    });
 
-    if (url && serviceKey) {
-      this.supabase = createClient(url, serviceKey, {
-        auth: { autoRefreshToken: false, persistSession: false },
-      });
-    }
+    this.supabase = createClient(url, serviceKey, {
+      auth: { autoRefreshToken: false, persistSession: false },
+    });
   }
 
   async getSiteData() {

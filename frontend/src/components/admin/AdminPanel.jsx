@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Settings,
   Phone,
@@ -11,6 +12,7 @@ import {
   Lock,
   Plus,
   Trash2,
+  HandCoins,
 } from "lucide-react";
 
 export default function AdminPanel({
@@ -32,6 +34,19 @@ export default function AdminPanel({
   saveStatus,
   saveMessage,
 }) {
+  const donationStorageKey = "paroquia-doacoes-v1";
+  const [donations, setDonations] = useState(() => {
+    if (typeof window === "undefined") {
+      return [];
+    }
+
+    try {
+      return JSON.parse(localStorage.getItem(donationStorageKey) || "[]");
+    } catch {
+      return [];
+    }
+  });
+
   const updateMassTime = (index, field, value) => {
     const newMassTimes = [...(editor.massTimes || [])];
     newMassTimes[index] = { ...newMassTimes[index], [field]: value };
@@ -48,6 +63,16 @@ export default function AdminPanel({
       { id: Date.now().toString(), day: "", time: "", location: "" },
     ];
     setEditor({ ...editor, massTimes: newMassTimes });
+  };
+
+  const removeDonation = (donationId) => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const updatedDonations = donations.filter((donation) => donation.id !== donationId);
+    localStorage.setItem(donationStorageKey, JSON.stringify(updatedDonations));
+    setDonations(updatedDonations);
   };
 
   return (
@@ -176,6 +201,14 @@ export default function AdminPanel({
                     <Megaphone size={18} />
                     <span>Avisos / Mural</span>
                   </button>
+                  <button
+                    type="button"
+                    className={`sidebar-tab-btn ${adminTab === "doacoes" ? "active" : ""}`}
+                    onClick={() => setAdminTab("doacoes")}
+                  >
+                    <HandCoins size={18} />
+                    <span>Doações</span>
+                  </button>
                 </nav>
               </aside>
 
@@ -189,6 +222,7 @@ export default function AdminPanel({
                     {adminTab === "comunidade" && "Clero & Comunidades"}
                     {adminTab === "links" && "Links & Mapas"}
                     {adminTab === "avisos" && "Avisos / Mural"}
+                    {adminTab === "doacoes" && "Doações recebidas"}
                   </h3>
                   <p className="tab-explanation">
                     {adminTab === "geral" &&
@@ -203,6 +237,8 @@ export default function AdminPanel({
                       "Atualize os links oficiais de redes sociais da diocese, posts incorporados e o link do Google Maps."}
                     {adminTab === "avisos" &&
                       "Escreva avisos e comunicados (um por linha) que aparecerão em destaque dourado imediatamente acima do calendário de celebrações."}
+                    {adminTab === "doacoes" &&
+                      "Veja as doações registradas pelos fiéis com nome, telefone e valor."}
                   </p>
                 </div>
 
@@ -522,6 +558,41 @@ export default function AdminPanel({
                         <span className="field-hint">
                           Cada linha inserida criará um novo item com marcadores de aviso na página pública.
                         </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {adminTab === "doacoes" && (
+                    <div className="admin-fields-stack">
+                      <div className="form-group-admin">
+                        <div className="donation-header-row">
+                          <label>Doações recebidas</label>
+                        </div>
+                        {donations.length === 0 ? (
+                          <p className="field-hint">Ainda não há doações registradas.</p>
+                        ) : (
+                          <div className="donation-list">
+                            {donations.map((donation) => (
+                              <div key={donation.id} className="donation-item">
+                                <div>
+                                  <strong>{donation.name}</strong>
+                                  <p>{donation.phone}</p>
+                                </div>
+                                <div className="donation-item-actions">
+                                  <div className="donation-value">{donation.value}</div>
+                                  <button
+                                    type="button"
+                                    className="donation-clear-btn"
+                                    onClick={() => removeDonation(donation.id)}
+                                    title="Remover doação"
+                                  >
+                                    ×
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}

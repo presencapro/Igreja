@@ -1,6 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
+import { resolveSupabaseConfig } from '../config/supabase-env';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
@@ -8,8 +9,14 @@ export class AuthService {
   private supabase: SupabaseClient;
 
   constructor(private config: ConfigService) {
-    const url = this.config.getOrThrow<string>('SUPABASE_URL');
-    const serviceKey = this.config.getOrThrow<string>('SUPABASE_SERVICE_ROLE_KEY');
+    const env = this.config.get<Record<string, string | undefined>>('env') ?? {};
+    const { url, serviceKey } = resolveSupabaseConfig(
+      {
+        ...process.env,
+        ...env,
+      },
+      { useServiceRole: false },
+    );
 
     this.supabase = createClient(url, serviceKey, {
       auth: { autoRefreshToken: false, persistSession: false },

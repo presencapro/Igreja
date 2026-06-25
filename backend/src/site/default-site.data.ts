@@ -84,4 +84,8 @@ export const defaultSiteData = {
     mapEmbed:
       "https://www.google.com/maps?q=Pra%C3%A7a%20Caetano%20Mascarenhas%2C%20480%2C%20Paraopeba&output=embed",
   },
+  pix: {
+    key: "escadariamatriz@gmail.com",
+    city: "PARAOPEBA",
+  },
 };
