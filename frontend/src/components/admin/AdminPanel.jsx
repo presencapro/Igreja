@@ -382,62 +382,52 @@ export default function AdminPanel({
                               Nenhum horário cadastrado. Clique em Adicionar.
                             </div>
                           ) : (
-                            <table className="mass-times-edit-table">
-                              <thead>
-                                <tr>
-                                  <th>Dia / Frequência</th>
-                                  <th>Horário</th>
-                                  <th>Local / Paróquia / Comunidade</th>
-                                  <th style={{ width: "60px", textAlign: "center" }}>Ações</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                {(editor.massTimes || []).map((mt, index) => (
-                                  <tr key={index}>
-                                    <td>
-                                      <input
-                                        value={mt.day || ""}
-                                        onChange={(e) =>
-                                          updateMassTime(index, "day", e.target.value)
-                                        }
-                                        placeholder="Ex: Domingo, 1° Sexta"
-                                        className="inline-input"
-                                      />
-                                    </td>
-                                    <td>
-                                      <input
-                                        value={mt.time || ""}
-                                        onChange={(e) =>
-                                          updateMassTime(index, "time", e.target.value)
-                                        }
-                                        placeholder="Ex: 19:30"
-                                        className="inline-input"
-                                      />
-                                    </td>
-                                    <td>
-                                      <input
-                                        value={mt.location || ""}
-                                        onChange={(e) =>
-                                          updateMassTime(index, "location", e.target.value)
-                                        }
-                                        placeholder="Ex: Matriz"
-                                        className="inline-input"
-                                      />
-                                    </td>
-                                    <td style={{ textAlign: "center" }}>
-                                      <button
-                                        type="button"
-                                        onClick={() => removeMassTime(index)}
-                                        className="btn-remove-time"
-                                        title="Remover este horário"
-                                      >
-                                        <Trash2 size={16} />
-                                      </button>
-                                    </td>
-                                  </tr>
-                                ))}
-                              </tbody>
-                            </table>
+                            <div className="mass-times-list">
+                              {(editor.massTimes || []).map((mt, index) => (
+                                <div key={index} className="mass-time-item">
+                                  <div className="mass-time-field">
+                                    <input
+                                      value={mt.day || ""}
+                                      onChange={(e) =>
+                                        updateMassTime(index, "day", e.target.value)
+                                      }
+                                      placeholder="Ex: Domingo, 1° Sexta"
+                                      className="inline-input"
+                                    />
+                                  </div>
+                                  <div className="mass-time-field">
+                                    <input
+                                      value={mt.time || ""}
+                                      onChange={(e) =>
+                                        updateMassTime(index, "time", e.target.value)
+                                      }
+                                      placeholder="Ex: 19:30"
+                                      className="inline-input"
+                                    />
+                                  </div>
+                                  <div className="mass-time-field mass-time-field-wide">
+                                    <input
+                                      value={mt.location || ""}
+                                      onChange={(e) =>
+                                        updateMassTime(index, "location", e.target.value)
+                                      }
+                                      placeholder="Ex: Matriz"
+                                      className="inline-input"
+                                    />
+                                  </div>
+                                  <div className="mass-time-actions">
+                                    <button
+                                      type="button"
+                                      onClick={() => removeMassTime(index)}
+                                      className="btn-remove-time"
+                                      title="Remover este horário"
+                                    >
+                                      <Trash2 size={16} />
+                                    </button>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
                           )}
                         </div>
                       </div>

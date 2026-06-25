@@ -391,6 +391,8 @@ h2 {
 .admin-panel-section {
   width: 100%;
   margin: 0 auto;
+  min-width: 0;
+  overflow-x: hidden;
 }
 
 /* Restrictive Access / Login Card */
@@ -756,10 +758,41 @@ h2 {
 }
 
 .mass-times-table-container {
-  overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: 12px;
   background: var(--surface);
+  padding: 0.75rem;
+}
+
+.mass-times-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mass-time-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.3fr) auto;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.mass-time-field {
+  min-width: 0;
+}
+
+.mass-time-field-wide {
+  min-width: 0;
+}
+
+.mass-time-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .empty-mass-times {
@@ -800,6 +833,11 @@ h2 {
   padding: 0.5rem 0.75rem !important;
   background: transparent !important;
   font-size: 0.9rem !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
+  overflow-wrap: anywhere !important;
+  word-break: break-word !important;
 }
 
 .inline-input:hover {
@@ -811,6 +849,52 @@ h2 {
   background: var(--surface) !important;
   border-color: var(--primary) !important;
   box-shadow: 0 0 0 3px rgba(11, 37, 69, 0.06) !important;
+}
+
+@media (max-width: 880px) {
+  .mass-time-item {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mass-time-field-wide {
+    grid-column: 1 / -1;
+  }
+
+  .mass-time-actions {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 680px) {
+  .mass-times-table-container {
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  .mass-times-list {
+    gap: 0.7rem;
+  }
+
+  .mass-time-item {
+    grid-template-columns: 1fr;
+    padding: 0.85rem;
+  }
+
+  .mass-time-field-wide,
+  .mass-time-actions {
+    grid-column: auto;
+  }
+
+  .mass-time-actions {
+    justify-content: flex-end;
+  }
+
+  .inline-input {
+    background: var(--surface) !important;
+    border-color: var(--border) !important;
+  }
 }
 
 .btn-remove-time {
@@ -912,6 +996,84 @@ h2 {
   }
   .sidebar-tab-btn {
     white-space: nowrap;
+  }
+}
+
+@media (max-width: 680px) {
+  .admin-dashboard {
+    padding: 1rem;
+    border-radius: 18px;
+    overflow-x: hidden;
+  }
+
+  .dashboard-header-bar {
+    gap: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-header-bar h2 {
+    font-size: 1.4rem;
+  }
+
+  .dashboard-top-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-toggle-editor,
+  .btn-admin-logout,
+  .btn-admin-save,
+  .btn-admin-reset {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-layout-container {
+    gap: 1rem;
+  }
+
+  .admin-sidebar {
+    padding: 0.75rem;
+  }
+
+  .admin-sidebar-nav {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .sidebar-tab-btn {
+    width: 100%;
+    white-space: normal;
+  }
+
+  .admin-content-card {
+    padding: 1rem;
+  }
+
+  .admin-card-header {
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .admin-card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mass-times-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .login-card-container {
+    padding: 1.25rem 0.25rem;
+  }
+
+  .login-card {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
   }
 }
 
