@@ -1,0 +1,236 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: linear-gradient(90deg, rgba(7, 23, 43, 0.98), rgba(11, 37, 69, 0.96));
+  border-bottom: 2px solid rgba(212, 175, 55, 0.35); /* Dourado da Borda */
+  backdrop-filter: blur(8px);
+}
+
+.topbarContent {
+  position: relative;
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.brandCenter {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--surface);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: transform 0.3s;
+}
+
+.brandLink:hover {
+  transform: scale(1.05);
+}
+
+.brandLogo {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.navHalf {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navLeft {
+  flex: 1;
+  justify-content: flex-end;
+  padding-right: 4.5rem;
+}
+
+.navRight {
+  flex: 1;
+  justify-content: flex-start;
+  padding-left: 4.5rem;
+}
+
+.navHalf a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.navHalf a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.navHalf a:hover::after {
+  width: 100%;
+}
+
+.navAdmin {
+  color: var(--accent) !important;
+  border: 1px solid var(--accent);
+  border-radius: 99px;
+  padding: 0.3rem 1rem !important;
+}
+
+.navAdmin::after {
+  display: none;
+}
+.navAdmin:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+.mobileActions {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+}
+
+.themeToggle {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.2rem;
+  transition: transform 0.3s;
+}
+.themeToggle:hover { transform: scale(1.15); }
+
+.mobileExtraLinks {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .topbarContent {
+    min-height: 72px;
+    padding-block: 0.35rem;
+  }
+
+  .navRight { display: none; }
+  .navLeft { 
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    height: 100dvh;
+    width: min(280px, 85vw);
+    flex: none;
+    padding-right: 0;
+    background: linear-gradient(180deg, #07172b 0%, #0b2545 100%);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 5.5rem 1.5rem 2rem;
+    gap: 1.25rem;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-right: 1px solid var(--accent);
+    z-index: 100;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .navLeft.isOpen {
+    transform: translateX(0);
+  }
+  .mobileExtraLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 100%;
+    margin-top: 0.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .navHalf a {
+    font-size: 1.05rem;
+    width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .brandCenter {
+    position: relative;
+    left: 0;
+    transform: none;
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-start;
+  }
+  
+  .brandLogo {
+    width: 48px;
+    height: 48px;
+  }
+
+  .mobileActions {
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  .navToggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 110;
+  }
+  
+  .navToggleBar {
+    width: 24px;
+    height: 2px;
+    background: #fff;
+    transition: 0.3s;
+  }
+}
+
+@media (max-width: 480px) {
+  .brandLogo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .navLeft {
+    width: min(260px, 88vw);
+    padding-inline: 1.25rem;
+  }
+}
+
+.navBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 90;
+  border: none;
+}
