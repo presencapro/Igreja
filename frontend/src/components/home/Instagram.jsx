@@ -65,6 +65,7 @@ export default function Instagram({ siteData }) {
             </p>
           </div>
         </div>
+        </div>
       </section>
       <a
         className="btn-secondary"
