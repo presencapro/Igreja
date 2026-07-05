@@ -29,6 +29,11 @@ export default function Instagram({ siteData }) {
         <div className="insta-post-card">
           <div className="insta-post-header">
             <div className="insta-post-profile">
+              <div className="insta-post-avatar-ring">
+                <div className="insta-post-avatar-inner">
+                  {siteData.name ? siteData.name.charAt(0).toUpperCase() : 'P'}
+                </div>
+              </div>
               <div className="insta-post-meta">
                 <strong>{siteData.name}</strong>
                 <span>{instagramHandle}</span>
