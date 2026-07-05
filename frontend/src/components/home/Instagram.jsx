@@ -29,11 +29,6 @@ export default function Instagram({ siteData }) {
         <div className="insta-post-card">
           <div className="insta-post-header">
             <div className="insta-post-profile">
-              <img
-                className="insta-post-avatar"
-                src="/logo-paroquia.svg"
-                alt="Logo da paroquia"
-              />
               <div className="insta-post-meta">
                 <strong>{siteData.name}</strong>
                 <span>{instagramHandle}</span>
