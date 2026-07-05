@@ -1160,6 +1160,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
+  flex: 1;
 }
 
 .insta-post-avatar-ring {
@@ -1172,6 +1174,7 @@ h2 {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .insta-post-avatar-inner {
@@ -1193,6 +1196,7 @@ h2 {
   display: flex;
   flex-direction: column;
   text-align: left;
+  min-width: 0;
 }
 
 .insta-post-meta strong {
@@ -1200,6 +1204,8 @@ h2 {
   font-weight: 600;
   color: var(--text);
   line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 .insta-post-meta span {
