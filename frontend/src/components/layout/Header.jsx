@@ -23,14 +23,14 @@ export default function Header({ siteData, theme, setTheme }) {
         <div className={`container ${styles.topbarContent}`}>
           
           <nav className={`${styles.navHalf} ${styles.navLeft} ${menuOpen ? styles.isOpen : ""}`}>
-            <a href="/#celebracoes" onClick={closeMenu}>Celebrações</a>
-            <a href="/#secretaria" onClick={closeMenu}>Secretaria</a>
+            <Link to="/celebracoes" onClick={closeMenu}>Celebrações</Link>
+            <Link to="/secretaria" onClick={closeMenu}>Secretaria</Link>
 
             
             {/* Nav do mobile extra - No desktop esse menuSome */}
             <div className={styles.mobileExtraLinks}>
-              <a href="/#mapa" onClick={closeMenu}>Mapa</a>
-              <a href="/#instagram" onClick={closeMenu}>Instagram</a>
+              <Link to="/mapa" onClick={closeMenu}>Mapa</Link>
+              <Link to="/instagram" onClick={closeMenu}>Instagram</Link>
               <Link to="/acesso-secretaria" className={styles.navAdmin} onClick={closeMenu}>Admin</Link>
             </div>
           </nav>
@@ -46,8 +46,8 @@ export default function Header({ siteData, theme, setTheme }) {
           </div>
 
           <nav className={`${styles.navHalf} ${styles.navRight}`}>
-            <a href="/#mapa">Mapa</a>
-            <a href="/#instagram">Instagram</a>
+            <Link to="/mapa">Mapa</Link>
+            <Link to="/instagram">Instagram</Link>
             <Link to="/acesso-secretaria" className={styles.navAdmin}>Admin</Link>
           </nav>
 

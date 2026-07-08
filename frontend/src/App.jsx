@@ -1,5 +1,5 @@
-import { Routes, Route } from "react-router-dom";
-import { useContext } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { useContext, useEffect } from "react";
 import { SiteContext } from "./context/SiteContext";
 import "./App.css";
 
@@ -22,6 +22,28 @@ import SEOMeta from "./components/layout/SEOMeta";
 
 function PublicSite() {
   const { siteData, theme, setTheme, phoneLinks, whatsappMessage } = useContext(SiteContext);
+  const location = useLocation();
+
+  useEffect(() => {
+    const sectionMap = {
+      "/celebracoes": "celebracoes",
+      "/secretaria": "secretaria",
+      "/mapa": "mapa",
+      "/instagram": "instagram",
+      "/destaques": "destaques",
+    };
+
+    const sectionId = sectionMap[location.pathname];
+
+    if (sectionId) {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else if (location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [location.pathname]);
 
   return (
     <div className="app-shell" id="top">
@@ -83,6 +105,10 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<PublicSite />} />
+      <Route path="/celebracoes" element={<PublicSite />} />
+      <Route path="/secretaria" element={<PublicSite />} />
+      <Route path="/mapa" element={<PublicSite />} />
+      <Route path="/instagram" element={<PublicSite />} />
       <Route path="/acesso-secretaria" element={<AdminRoute />} />
     </Routes>
   );

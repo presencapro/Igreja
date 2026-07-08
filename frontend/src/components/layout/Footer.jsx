@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Footer({ siteData }) {
   return (
     <footer className="footer">
@@ -10,11 +12,11 @@ export default function Footer({ siteData }) {
         <div>
           <h3>Links Rápidos</h3>
           <p>
-            <a href="#celebracoes">Celebrações</a>
+            <Link to="/celebracoes">Celebrações</Link>
           </p>
 
           <p>
-            <a href="#admin">Administrador</a>
+            <Link to="/acesso-secretaria">Administrador</Link>
           </p>
         </div>
         <div>
