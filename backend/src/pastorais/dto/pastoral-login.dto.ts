@@ -1,7 +1,6 @@
 import { IsEmail, IsString } from 'class-validator';
 
-// login.dto.ts
-export class LoginDto {
+export class PastoralLoginDto {
   @IsEmail()
   email: string;
 

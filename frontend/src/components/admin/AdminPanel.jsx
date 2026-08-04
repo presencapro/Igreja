@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   Settings,
   Phone,
@@ -13,7 +13,9 @@ import {
   Plus,
   Trash2,
   HandCoins,
+  HandHeart,
 } from "lucide-react";
+import { PastoraisContext } from "../../context/PastoraisContext";
 
 export default function AdminPanel({
   isAuthenticated,
@@ -46,6 +48,120 @@ export default function AdminPanel({
       return [];
     }
   });
+
+  const pastoraisCtx = useContext(PastoraisContext);
+  const [pastoralForm, setPastoralForm] = useState({
+    name: "",
+    description: "",
+    imageUrl: "",
+    coordinator: "",
+    contact: "",
+    email: "",
+    password: "",
+  });
+  const [editingPastoral, setEditingPastoral] = useState(null);
+  const [pastoralError, setPastoralError] = useState("");
+  const [pastoralSuccess, setPastoralSuccess] = useState("");
+  const [inscricoesMap, setInscricoesMap] = useState({});
+  const [loadingInscricoes, setLoadingInscricoes] = useState(false);
+
+  function handlePastoralFormChange(event) {
+    const { name, value } = event.target;
+    setPastoralForm((prev) => ({ ...prev, [name]: value }));
+    setPastoralError("");
+    setPastoralSuccess("");
+  }
+
+  function startEditPastoral(p) {
+    setEditingPastoral(p);
+    setPastoralForm({
+      name: p.name || "",
+      description: p.description || "",
+      imageUrl: p.imageUrl || "",
+      coordinator: p.coordinator || "",
+      contact: p.contact || "",
+      email: p.email || "",
+      password: "",
+    });
+    setPastoralError("");
+    setPastoralSuccess("");
+  }
+
+  async function submitPastoral(event) {
+    event.preventDefault();
+    setPastoralError("");
+    setPastoralSuccess("");
+    if (!pastoralForm.name.trim()) {
+      setPastoralError("O nome da pastoral é obrigatório.");
+      return;
+    }
+    try {
+      if (editingPastoral) {
+        const payload = { ...pastoralForm };
+        if (!payload.password) delete payload.password;
+        await pastoraisCtx.adminUpdatePastoral(editingPastoral.id, payload);
+        setPastoralSuccess("Pastoral atualizada com sucesso!");
+      } else {
+        if (!pastoralForm.email.trim() || !pastoralForm.password) {
+          setPastoralError("Informe e-mail e senha para a pastoral acessar seu painel.");
+          return;
+        }
+        await pastoraisCtx.adminCreatePastoral(pastoralForm);
+        setPastoralSuccess("Pastoral criada com sucesso!");
+      }
+      setEditingPastoral(null);
+      setPastoralForm({
+        name: "",
+        description: "",
+        imageUrl: "",
+        coordinator: "",
+        contact: "",
+        email: "",
+        password: "",
+      });
+    } catch (error) {
+      setPastoralError(error.message || "Não foi possível salvar a pastoral.");
+    }
+  }
+
+  function cancelEditPastoral() {
+    setEditingPastoral(null);
+    setPastoralForm({
+      name: "",
+      description: "",
+      imageUrl: "",
+      coordinator: "",
+      contact: "",
+      email: "",
+      password: "",
+    });
+    setPastoralError("");
+    setPastoralSuccess("");
+  }
+
+  async function deletePastoral(p) {
+    if (!window.confirm(`Excluir a pastoral "${p.name}"? Esta ação não pode ser desfeita.`)) {
+      return;
+    }
+    try {
+      await pastoraisCtx.adminDeletePastoral(p.id);
+      setPastoralSuccess("Pastoral excluída.");
+    } catch (error) {
+      setPastoralError(error.message || "Não foi possível excluir.");
+    }
+  }
+
+  async function toggleInscricoes(p) {
+    setLoadingInscricoes(true);
+    try {
+      const data = await pastoraisCtx.adminListInscricoes(p.id);
+      setInscricoesMap((prev) => ({ ...prev, [p.id]: data }));
+    } catch (error) {
+      setPastoralError(error.message || "Não foi possível carregar as inscrições.");
+    } finally {
+      setLoadingInscricoes(false);
+    }
+  }
 
   const updateMassTime = (index, field, value) => {
     const newMassTimes = [...(editor.massTimes || [])];
@@ -209,6 +325,14 @@ export default function AdminPanel({
                     <HandCoins size={18} />
                     <span>Doações</span>
                   </button>
+                  <button
+                    type="button"
+                    className={`sidebar-tab-btn ${adminTab === "pastorais" ? "active" : ""}`}
+                    onClick={() => setAdminTab("pastorais")}
+                  >
+                    <HandHeart size={18} />
+                    <span>Pastorais e Movimentos</span>
+                  </button>
                 </nav>
               </aside>
 
@@ -223,6 +347,7 @@ export default function AdminPanel({
                     {adminTab === "links" && "Links & Mapas"}
                     {adminTab === "avisos" && "Avisos / Mural"}
                     {adminTab === "doacoes" && "Doações recebidas"}
+                    {adminTab === "pastorais" && "Pastorais e Movimentos"}
                   </h3>
                   <p className="tab-explanation">
                     {adminTab === "geral" &&
@@ -239,6 +364,8 @@ export default function AdminPanel({
                       "Escreva avisos e comunicados (um por linha) que aparecerão em destaque dourado imediatamente acima do calendário de celebrações."}
                     {adminTab === "doacoes" &&
                       "Veja as doações registradas pelos fiéis com nome, telefone e valor."}
+                    {adminTab === "pastorais" &&
+                      "Crie e gerencie as pastorais e movimentos. Cada pastoral recebe e-mail e senha próprios para publicar seu blog e acompanhar as inscrições."}
                   </p>
                 </div>
 
@@ -549,6 +676,206 @@ export default function AdminPanel({
                           Cada linha inserida criará um novo item com marcadores de aviso na página pública.
                         </span>
                       </div>
+                    </div>
+                  )}
+
+                  {adminTab === "pastorais" && (
+                    <div className="admin-fields-stack">
+                      <div className="mass-times-management-card">
+                        <div className="mass-times-header">
+                          <h4>
+                            {editingPastoral
+                              ? `Editar: ${editingPastoral.name}`
+                              : "Nova Pastoral / Movimento"}
+                          </h4>
+                          {editingPastoral && (
+                            <button
+                              type="button"
+                              onClick={cancelEditPastoral}
+                              className="btn-toggle-editor"
+                            >
+                              Cancelar edição
+                            </button>
+                          )}
+                        </div>
+                        <form onSubmit={submitPastoral}>
+                          <div className="admin-fields-row">
+                            <div className="form-group-admin">
+                              <label>Nome *</label>
+                              <input
+                                name="name"
+                                value={pastoralForm.name}
+                                onChange={handlePastoralFormChange}
+                                placeholder="Ex: Pastoral da Criança"
+                              />
+                            </div>
+                            <div className="form-group-admin">
+                              <label>Coordenador(a)</label>
+                              <input
+                                name="coordinator"
+                                value={pastoralForm.coordinator}
+                                onChange={handlePastoralFormChange}
+                                placeholder="Nome do responsável"
+                              />
+                            </div>
+                          </div>
+                          <div className="admin-fields-row">
+                            <div className="form-group-admin">
+                              <label>E-mail de acesso</label>
+                              <input
+                                name="email"
+                                type="email"
+                                value={pastoralForm.email}
+                                onChange={handlePastoralFormChange}
+                                placeholder="pastoral@exemplo.com"
+                                required={!editingPastoral}
+                              />
+                              <span className="field-hint">
+                                Usado pela pastoral para entrar no painel.
+                              </span>
+                            </div>
+                            <div className="form-group-admin">
+                              <label>{editingPastoral ? "Nova senha (opcional)" : "Senha de acesso"}</label>
+                              <input
+                                name="password"
+                                type="password"
+                                value={pastoralForm.password}
+                                onChange={handlePastoralFormChange}
+                                placeholder={editingPastoral ? "Deixe em branco para manter" : "Senha da pastoral"}
+                                required={!editingPastoral}
+                              />
+                            </div>
+                          </div>
+                          <div className="admin-fields-row">
+                            <div className="form-group-admin">
+                              <label>Foto / Imagem (URL)</label>
+                              <input
+                                name="imageUrl"
+                                value={pastoralForm.imageUrl}
+                                onChange={handlePastoralFormChange}
+                                placeholder="https://exemplo.com/foto.jpg"
+                              />
+                            </div>
+                            <div className="form-group-admin">
+                              <label>Contato / WhatsApp</label>
+                              <input
+                                name="contact"
+                                value={pastoralForm.contact}
+                                onChange={handlePastoralFormChange}
+                                placeholder="(31) 99999-9999"
+                              />
+                            </div>
+                          </div>
+                          <div className="form-group-admin">
+                            <label>Descrição / Sobre a pastoral</label>
+                            <textarea
+                              name="description"
+                              rows="3"
+                              value={pastoralForm.description}
+                              onChange={handlePastoralFormChange}
+                              placeholder="Conte um pouco sobre a pastoral, encontros, horários..."
+                            />
+                          </div>
+                          {pastoralError && (
+                            <div className="save-message-alert alert-error">{pastoralError}</div>
+                          )}
+                          {pastoralSuccess && (
+                            <div className="save-message-alert alert-success">{pastoralSuccess}</div>
+                          )}
+                          <div className="admin-card-actions" style={{ marginTop: "1rem" }}>
+                            <button className="btn-admin-save" type="submit">
+                              <Save size={18} />
+                              <span>{editingPastoral ? "Salvar alterações" : "Criar pastoral"}</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+
+                      <div className="mass-times-management-card">
+                        <div className="mass-times-header">
+                          <h4>Pastorais cadastradas</h4>
+                        </div>
+                        {pastoraisCtx.loading ? (
+                          <p className="field-hint">Carregando...</p>
+                        ) : pastoraisCtx.pastorais.length === 0 ? (
+                          <p className="field-hint">Nenhuma pastoral cadastrada ainda.</p>
+                        ) : (
+                          <div className="mass-times-list">
+                            {pastoraisCtx.pastorais.map((p) => (
+                              <div key={p.id} className="mass-time-item" style={{ gridTemplateColumns: "minmax(0,1fr) auto auto" }}>
+                                <div className="mass-time-field">
+                                  <strong>{p.name}</strong>
+                                  <div style={{ fontSize: "0.82rem", color: "var(--muted)", marginTop: "0.2rem" }}>
+                                    {p.coordinator && `Coordenador: ${p.coordinator}`}
+                                    {p.contact && ` • ${p.contact}`}
+                                    {p.email && ` • ${p.email}`}
+                                  </div>
+                                  <div style={{ fontSize: "0.82rem", color: "var(--muted)" }}>
+                                    {p.postsCount ?? 0} publicação(ões) •{" "}
+                                    {p.inscricoesCount ?? 0} inscrição(ões)
+                                  </div>
+                                </div>
+                                <div className="mass-time-actions" style={{ flexDirection: "column", gap: "0.5rem" }}>
+                                  <button
+                                    type="button"
+                                    className="btn-toggle-editor"
+                                    onClick={() => toggleInscricoes(p)}
+                                    disabled={loadingInscricoes}
+                                  >
+                                    Inscrições
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn-toggle-editor"
+                                    onClick={() => startEditPastoral(p)}
+                                  >
+                                    Editar
+                                  </button>
+                                  <button
+                                    type="button"
+                                    className="btn-remove-time"
+                                    onClick={() => deletePastoral(p)}
+                                    title="Excluir pastoral"
+                                    style={{ margin: 0 }}
+                                  >
+                                    <Trash2 size={16} />
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+
+                      {Object.keys(inscricoesMap).length > 0 && (
+                        <div className="mass-times-management-card">
+                          <div className="mass-times-header">
+                            <h4>Inscrições</h4>
+                          </div>
+                          {Object.entries(inscricoesMap).map(([pastoralId, list]) => {
+                            const p = pastoraisCtx.pastorais.find((x) => x.id === pastoralId);
+                            return (
+                              <div key={pastoralId} style={{ marginBottom: "1.25rem" }}>
+                                <strong style={{ color: "var(--primary)" }}>{p?.name ?? "Pastoral"}</strong>
+                                {list.length === 0 ? (
+                                  <p className="field-hint">Nenhuma inscrição.</p>
+                                ) : (
+                                  list.map((i) => (
+                                    <div key={i.id} className="donation-item" style={{ marginTop: "0.5rem" }}>
+                                      <div>
+                                        <strong>{i.name}</strong>
+                                        {i.email && <p>{i.email}</p>}
+                                        {i.phone && <p>{i.phone}</p>}
+                                        {i.message && <p>{i.message}</p>}
+                                      </div>
+                                    </div>
+                                  ))
+                                )}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
                   )}
 

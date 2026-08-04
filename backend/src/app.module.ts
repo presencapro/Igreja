@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { PastoraisModule } from './pastorais/pastorais.module';
 import { SiteModule } from './site/site.module';
 
 @Module({
@@ -10,6 +11,7 @@ import { SiteModule } from './site/site.module';
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     AuthModule,
     SiteModule,
+    PastoraisModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { SiteContext } from "./context/SiteContext";
+import { PastoraisProvider } from "./context/PastoraisContext";
 import "./App.css";
 
 import Header from "./components/layout/Header";
@@ -20,6 +21,10 @@ import PixSection from "./components/home/PixSection";
 
 import AdminPanel from "./components/admin/AdminPanel";
 import SEOMeta from "./components/layout/SEOMeta";
+
+import Pastorais from "./pages/Pastorais";
+import PastoralDetail from "./pages/PastoralDetail";
+import PastoralAccess from "./pages/PastoralAccess";
 
 
 function PublicSite() {
@@ -107,14 +112,33 @@ function AdminRoute() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<PublicSite />} />
-      <Route path="/celebracoes" element={<PublicSite />} />
-      <Route path="/secretaria" element={<PublicSite />} />
-      <Route path="/mapa" element={<PublicSite />} />
-      <Route path="/instagram" element={<PublicSite />} />
-      <Route path="/acesso-secretaria" element={<AdminRoute />} />
-    </Routes>
+    <PastoraisProvider>
+      <Routes>
+        <Route path="/" element={<PublicSite />} />
+        <Route path="/celebracoes" element={<PublicSite />} />
+        <Route path="/secretaria" element={<PublicSite />} />
+        <Route path="/mapa" element={<PublicSite />} />
+        <Route path="/instagram" element={<PublicSite />} />
+        <Route path="/acesso-secretaria" element={<AdminRoute />} />
+        <Route path="/pastorais" element={<PublicPageWrapper><Pastorais /></PublicPageWrapper>} />
+        <Route path="/pastorais/acesso" element={<PublicPageWrapper><PastoralAccess /></PublicPageWrapper>} />
+        <Route path="/pastorais/:id" element={<PublicPageWrapper><PastoralDetail /></PublicPageWrapper>} />
+      </Routes>
+    </PastoraisProvider>
+  );
+}
+
+function PublicPageWrapper({ children }) {
+  const { siteData, theme, setTheme, phoneLinks, whatsappMessage } = useContext(SiteContext);
+
+  return (
+    <div className="app-shell" id="top">
+      <SEOMeta siteData={siteData} />
+      <Header siteData={siteData} theme={theme} setTheme={setTheme} />
+      <main style={{ marginBottom: "3rem", minHeight: "60vh" }}>{children}</main>
+      <Footer siteData={siteData} />
+      <FloatingButtons phoneLinks={phoneLinks} whatsappMessage={whatsappMessage} />
+    </div>
   );
 }
 
