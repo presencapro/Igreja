@@ -66,7 +66,7 @@ export const defaultSiteData = {
     { startMonth: 6, startDay: 31, endMonth: 7, endDay: 2, title: "Festa em honra a Nossa Senhora do Rosário", location: "Comunidade da Pontinha", mapLink: "" },
     { startMonth: 6, startDay: 31, endMonth: 7, endDay: 2, title: "Festa em honra a Nossa Senhora das Dores", location: "Comunidade do Retiro", mapLink: "" },
     { startMonth: 7, startDay: 1, endMonth: 7, endDay: 4, title: "Tríduo Vocacional - Dia do padre", location: "RESPONSÁVEIS: Movimento Serra, Apostolado da Oração, Mães que oram pelos filhos e terço dos homens.", mapLink: "" },
-    { startMonth: 7, startDay: 17, endMonth: 7, endDay: 23, title: "Festa em honra a Nossa Senhora do Rosário", location: "Comunidade Paroquial", mapLink: "" },
+    { startMonth: 7, startDay: 19, endMonth: 7, endDay: 23, title: "70 anos da Festa de N.S. do Rosário", location: "Comunidade Paroquial - Paraopeba MG", mapLink: "" },
     { startMonth: 7, startDay: 27, endMonth: 7, endDay: 30, title: "Festa em honra a Santa Maria, Mãe de Deus", mapLink: "" },
     { startMonth: 8, startDay: 10, endMonth: 8, endDay: 13, title: "Festa em honra ao Senhor Bom Jesus", location: "Comunidade do Embiruçu", mapLink: "" },
     { startMonth: 8, startDay: 12, endMonth: 8, endDay: 15, title: "Festa em honra a Nossa Senhora da Piedade", location: "Comunidade Nossa Senhora da Piedade", mapLink: "" },
@@ -74,6 +74,198 @@ export const defaultSiteData = {
     { startMonth: 9, startDay: 9, endMonth: 9, endDay: 12, title: "Festa em honra a Nossa Senhora Aparecida", location: "Comunidade do Canabrava", mapLink: "" },
     { startMonth: 9, startDay: 25, endMonth: 9, endDay: 28, title: "Festa em honra a São Judas Tadeu", location: "Comunidade São Judas", mapLink: "" },
     { startMonth: 10, startDay: 19, endMonth: 10, endDay: 22, title: "Festa em honra a Jesus das Santas Chagas", location: "Comunidade Jesus das Santas Chagas - CRISTO REI, DIA DO LEIGO.", mapLink: "" },
+  ],
+  rosarioFestivalInfo: {
+    title: "70 anos da Festa de N.S. do Rosário",
+    subtitle: "Paraopeba - MG — 17 a 23 de agosto de 2026",
+    festeiros: "Ana Júlia Lima Marques & Marcelino Reis",
+    imperadores: "Taynara Nadi Lima Marques & Marcelo Reis",
+    padres: "Pe. Rafael Lucas & Pe. Roberto Vicente",
+  },
+  rosarioFestivalSchedule: [
+    {
+      day: "Segunda-Feira, 17",
+      dateKey: "17",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "18:00",
+          title: "Abertura e Coroação das Guardas de Congo",
+          detail: "Carreata saindo do Antigo Posto do Zezé em direção à Igrejinha do Rosário. Após a chegada, bênção das chaves dos automóveis e das casas.",
+        },
+        {
+          time: "18:30",
+          title: "Meditação do Terço — Mistérios Gozosos",
+          responsaveis: "Vicentinos, Legião de Maria e Jesus das Santas Chagas.",
+        },
+        {
+          time: "19:30",
+          title: "Missa de envio dos Festeiros, Imperadores, Mordomos e Equipe Organizadora",
+          responsaveis: "Vicentinos, Legião de Maria, Jesus das Santas Chagas e Grupos de Oração RCC.",
+          participacao: "E.M. \"Recanto Feliz\", E.E. \"Joaquina Cândida Moreira\".",
+        },
+        {
+          time: "20:30",
+          title: "Coroação à Nossa Senhora",
+          extra: "Venda na Barraquinha.",
+        },
+      ],
+    },
+    {
+      day: "Terça-Feira, 18",
+      dateKey: "18",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "18:30",
+          title: "Meditação do Terço — Mistérios Dolorosos",
+        },
+        {
+          time: "19:30",
+          title: "Missa",
+          responsaveis: "Terço dos Homens, Mães que oram pelos filhos, Conselho Pastoral (CPP) e Ministros da Eucaristia.",
+          participacao: "E.M. \"Américo Vaz da Silva\" e E.M. \"Sabino de Paula Freitas\".",
+          extra: "Venda na Barraquinha.",
+        },
+      ],
+    },
+    {
+      day: "Quarta-Feira, 19",
+      dateKey: "19",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "18:30",
+          title: "Meditação do Terço — Mistérios Gloriosos",
+        },
+        {
+          time: "19:30",
+          title: "Missa",
+          responsaveis: "Apostolado da Oração, Oficina de Oração e Círculos Bíblicos.",
+          participacao: "E.E. \"Conselheiro Afonso Pena\", CEIM \"Ana Maria Moreira de Figueiredo Martins\" e CEIM \"Elza Moreira Lopes\".",
+        },
+        {
+          time: "20:30",
+          title: "Apresentação: Dança da Capina",
+          extra: "Venda na Barraquinha.",
+        },
+      ],
+    },
+    {
+      day: "Quinta-Feira, 20",
+      dateKey: "20",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "15:00",
+          title: "Meditação do Terço e Adoração",
+          detail: "Meditação do Terço e Adoração ao Santíssimo Sacramento.",
+        },
+        {
+          time: "18:30",
+          title: "Meditação do Terço — Mistérios Luminosos",
+        },
+        {
+          time: "19:30",
+          title: "Missa",
+          responsaveis: "Pastorais do Batismo, Crisma, Noivos e Catequese.",
+          participacao: "E.E. \"Padre Augusto Horta\" e E.E. \"Agnaldo Edmundo Silva\".",
+        },
+        {
+          time: "21:00",
+          title: "Noite premiada e barraquinha",
+          detail: "Realização da Noite Premiada e Som.",
+          extra: "Venda na Barraquinha.",
+        },
+      ],
+    },
+    {
+      day: "Sexta-Feira, 21",
+      dateKey: "21",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "18:30",
+          title: "Meditação do Terço — Mistérios Dolorosos",
+        },
+        {
+          time: "19:30",
+          title: "Missa",
+          responsaveis: "Serra Clube, ECC, EJC e EAC.",
+          participacao: "Colégio Nossa Senhora do Carmo, Centro Educacional \"Castelinho Encantado\"",
+        },
+        {
+          time: "20:30",
+          title: "Barraquinha e música ao vivo",
+          show: "Show com a banda Pancada Bruta.",
+          extra: "Venda na Barraquinha.",
+        },
+      ],
+    },
+    {
+      day: "Sábado, 22",
+      dateKey: "22",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "16:00",
+          title: "Desfile Príncipe e Princesa",
+        },
+        {
+          time: "18:00",
+          title: "Procissão luminosa da Bandeira",
+          detail: "Procissão luminosa com os festeiros e, após a Missa, o levantamento da bandeira com as Guardas de Congo",
+        },
+        {
+          time: "19:30",
+          title: "Missa",
+          detail: "Levantamento da Bandeira.",
+        },
+        {
+          time: "20:30",
+          title: "Barraquinha e música ao vivo",
+          show: "Show com Patrícia Amorim.",
+          extra: "Venda na Barraquinha.",
+        },
+      ],
+    },
+    {
+      day: "Domingo, 23",
+      dateKey: "23",
+      monthLabel: "AGO",
+      events: [
+        {
+          time: "06:00",
+          title: "Repique dos sinos — Alvorada festiva",
+          detail: "Alvorada festiva com a fanfarra da E.M. \"Américo Vaz da Silva\"",
+        },
+        {
+          time: "08:00",
+          title: "Chegada das Guardas",
+        },
+        {
+          time: "09:00",
+          title: "Missa Conga",
+          detail: "Participação especial: Grupos de Congado. Saída em procissão junto das Guardas percorrendo: Avenida D. Cirilo, Rua Emílio de Vasconcelos (GGgás), Rua Afonso Dale, Rua Galdino Martins dos Reis, Rua Bernardo Moreira Barbosa e Rua Cirilo Antônio Teixeira até a Igrejinha do Rosário. Bênção final: Hino de Nossa Senhora do Rosário, cantado pelos presentes, com saudação de lenços brancos; agradecimentos e posse dos novos Festeiros de 2027.",
+        },
+        {
+          time: "12:00",
+          title: "Almoço com música ao vivo",
+          show: "Show com Trio Zap.",
+          extra: "Venda na Barraquinha.",
+        },
+        {
+          time: "14:00",
+          title: "Cumprimento de promessas com as Guardas",
+          detail: "Em seguida, descida da bandeira com as Guardas",
+        },
+        {
+          time: "19:00",
+          title: "Encerramento da Festa",
+          detail: "Encerramento da Festa e Show com Willian e Davi",
+        },
+      ],
+    },
   ],
   carmoFestivalSchedule: [
     { day: "05 de julho", time: "19h30", event: "Abertura do Novenário - Missa", location: "Matriz" },

@@ -11,6 +11,7 @@ import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
 import SemanaBanner from "./components/home/SemanaBanner";
+import RosarioBanner from "./components/home/RosarioBanner";
 
 import Celebracoes from "./components/home/Celebracoes";
 import Secretaria from "./components/home/Secretaria";
@@ -58,6 +59,7 @@ function PublicSite() {
       <Header siteData={siteData} theme={theme} setTheme={setTheme} />
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
+      <RosarioBanner siteData={siteData} />
       <SemanaBanner />
 
 
