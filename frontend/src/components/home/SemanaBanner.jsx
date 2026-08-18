@@ -87,13 +87,6 @@ export default function SemanaBanner() {
           </p>
 
           <div className="event-schedule">
-            <div className="event-item">
-              <div className="event-icon-wrapper">📅</div>
-              <div className="event-info">
-                <span className="event-time">04 a 09 de Agosto</span>
-                <span className="event-desc">Semana Paroquial da Família</span>
-              </div>
-            </div>
 
             <div className="event-item highlight">
               <div className="event-icon-wrapper">⛪</div>
