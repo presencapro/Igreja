@@ -10,7 +10,6 @@ import FloatingButtons from "./components/layout/FloatingButtons";
 import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
-import SemanaBanner from "./components/home/SemanaBanner";
 import RosarioBanner from "./components/home/RosarioBanner";
 
 import Celebracoes from "./components/home/Celebracoes";
@@ -60,7 +59,6 @@ function PublicSite() {
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
       <RosarioBanner siteData={siteData} />
-      <SemanaBanner />
 
 
       <main className="container main-grid">
