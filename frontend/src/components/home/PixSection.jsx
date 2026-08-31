@@ -138,7 +138,7 @@ export default function PixSection({ siteData }) {
   }
 
   return (
-    <section className="pix-section card">
+    <section id="doacao" className="pix-section card">
       <div className="pix-section-header">
         <div className="pix-section-title-wrap">
           <p className="section-tag">Doação</p>

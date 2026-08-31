@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Heart, MessageCircle, Send, Bookmark } from "lucide-react";
+
 function getInstagramHandle(url) {
   if (!url) return "@paroquia";
 
@@ -17,6 +20,24 @@ function getInstagramReelUrl(url) {
 export default function Instagram({ siteData }) {
   const instagramHandle = getInstagramHandle(siteData.links.instagramProfile);
   const instagramReelUrl = getInstagramReelUrl(siteData.links.instagramPost);
+  
+  const [liked, setLiked] = useState(false);
+  const [likesCount, setLikesCount] = useState(2336);
+  const [bookmarked, setBookmarked] = useState(false);
+
+  const handleLike = () => {
+    if (liked) {
+      setLiked(false);
+      setLikesCount(prev => prev - 1);
+    } else {
+      setLiked(true);
+      setLikesCount(prev => prev + 1);
+    }
+  };
+
+  const handleBookmark = () => {
+    setBookmarked(!bookmarked);
+  };
 
   return (
     <section id="instagram" className="card full instagram-card reveal">
@@ -25,30 +46,36 @@ export default function Instagram({ siteData }) {
         Acompanhe publicações, avisos e conteúdos da comunidade no perfil
         oficial.
       </p>
+      
       <section className="destaque-instagram">
         <div className="insta-post-card">
           <div className="insta-post-header">
             <div className="insta-post-profile">
-              <div className="insta-post-avatar-ring">
-                <div className="insta-post-avatar-inner">
-                  {siteData.name ? siteData.name.charAt(0).toUpperCase() : 'P'}
-                </div>
-              </div>
+              <img
+                className="insta-post-avatar"
+                src="/logo-paroquia.svg"
+                alt="Logo da paróquia"
+              />
               <div className="insta-post-meta">
-                <strong>{siteData.name}</strong>
+                <strong>{siteData.name || "Paróquia Nossa Senhora do Carmo - Paraopeba"}</strong>
                 <span>{instagramHandle}</span>
               </div>
             </div>
             <a
-              className="insta-post-tag"
-              href={instagramReelUrl}
+              className="insta-post-header-btn"
+              href={siteData.links.instagramProfile}
               target="_blank"
               rel="noreferrer"
             >
-              Reel
+              Ver perfil
             </a>
           </div>
-          <div className="insta-embed-wrap">
+
+          <div 
+            className="insta-embed-wrap" 
+            onDoubleClick={handleLike} 
+            style={{ cursor: "pointer" }}
+          >
             <video
               className="insta-embed-frame"
               src="/instagram-reel.mp4"
@@ -56,24 +83,89 @@ export default function Instagram({ siteData }) {
               playsInline
               preload="metadata"
             >
-              Seu navegador não suporta a reproducao deste video.
+              Seu navegador não suporta a reprodução deste vídeo.
             </video>
+            <div className="overlay"></div>
           </div>
+
+          <a 
+            className="insta-post-more-link"
+            href={instagramReelUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Ver mais no Instagram
+          </a>
+
+          <div className="insta-post-actions">
+            <div className="insta-post-actions-left">
+              <button 
+                className="insta-post-action-btn" 
+                onClick={handleLike}
+                style={{ color: liked ? "#ff3040" : "inherit" }}
+                aria-label="Curtir"
+              >
+                <Heart size={24} fill={liked ? "#ff3040" : "none"} />
+              </button>
+              <a 
+                className="insta-post-action-btn comment" 
+                href={instagramReelUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Comentar"
+              >
+                <MessageCircle size={24} />
+              </a>
+              <a 
+                className="insta-post-action-btn share" 
+                href={instagramReelUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Compartilhar"
+              >
+                <Send size={24} />
+              </a>
+            </div>
+            <button 
+              className="insta-post-action-btn bookmark" 
+              onClick={handleBookmark}
+              style={{ color: bookmarked ? "#ffb000" : "inherit" }}
+              aria-label="Salvar"
+            >
+              <Bookmark size={24} fill={bookmarked ? "#ffb000" : "none"} />
+            </button>
+          </div>
+
+          <div className="insta-post-likes">
+            {likesCount.toLocaleString("pt-BR")} curtidas
+          </div>
+
           <div className="insta-post-footer">
             <p className="insta-post-caption">
-              Video em destaque da comunidade paroquial.
+              <strong>{instagramHandle.replace("@", "")}</strong>
+              {" "}Vídeo em destaque da comunidade paroquial.
             </p>
           </div>
         </div>
       </section>
-      <a
-        className="btn-secondary"
-        href={siteData.links.instagramProfile}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Ver perfil oficial no Instagram
-      </a>
+
+      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+        <a
+          className="btn-secondary"
+          href={siteData.links.instagramProfile}
+          target="_blank"
+          rel="noreferrer"
+        >
+          Ver perfil oficial no Instagram
+        </a>
+        <a
+          className="btn-primary"
+          href="#doacao"
+        >
+          Doação
+        </a>
+      </div>
     </section>
   );
 }
+

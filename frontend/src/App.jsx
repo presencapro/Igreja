@@ -11,6 +11,7 @@ import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
 import RosarioBanner from "./components/home/RosarioBanner";
+import EmbirucuBanner from "./components/home/EmbirucuBanner";
 
 import Celebracoes from "./components/home/Celebracoes";
 import Secretaria from "./components/home/Secretaria";
@@ -59,16 +60,15 @@ function PublicSite() {
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
       <RosarioBanner siteData={siteData} />
+      <EmbirucuBanner />
 
 
       <main className="container main-grid">
         <Celebracoes siteData={siteData} />
         <Secretaria siteData={siteData} phoneLinks={phoneLinks} />
         <Mapa siteData={siteData} />
-        <Instagram siteData={siteData} />
         <Destaques siteData={siteData} phoneLinks={phoneLinks} />
         <PixSection siteData={siteData} />
-
       </main>
 
       <Footer siteData={siteData} />
