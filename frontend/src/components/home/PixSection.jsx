@@ -25,11 +25,17 @@ export default function PixSection({ siteData }) {
   );
 
   async function requestPixPayload(rawValue) {
+    // O backend pode demorar a responder; após o timeout aborta e gera localmente
+    // (o payload local segue o mesmo padrão BR Code, então o QR é equivalente).
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
     try {
       const response = await fetch(`${BACKEND_URL}/site/pix`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ valor: rawValue }),
+        signal: controller.signal,
       });
 
       if (response.ok) {
@@ -39,7 +45,9 @@ export default function PixSection({ siteData }) {
         }
       }
     } catch {
-      // Fallback local quando o backend estiver indisponível.
+      // Fallback local quando o backend estiver indisponível ou lento.
+    } finally {
+      clearTimeout(timeoutId);
     }
 
     if (!pixConfig.key) {

@@ -2,6 +2,23 @@ import { useState, useMemo } from "react";
 import { Clock, Calendar as CalendarIcon, MapPin, ChevronLeft, ChevronRight, Info, Megaphone } from "lucide-react";
 import styles from "./Celebracoes.module.css";
 
+const KNOWN_MAP_LINKS = {
+  "igreja bom jesus - embiriçu": "https://maps.app.goo.gl/GcU9QntA9Qtg6A796",
+  "comunidade do embiruçu": "https://maps.app.goo.gl/GcU9QntA9Qtg6A796",
+  "igreja são josé - caboclo": "https://maps.app.goo.gl/LPNaarR65rjNC3pZ8",
+  "comunidade do caboclo": "https://maps.app.goo.gl/LPNaarR65rjNC3pZ8",
+  "matriz": "https://www.google.com/maps?q=Pra%C3%A7a%20Caetano%20Mascarenhas%2C%20480%2C%20Paraopeba&output=embed",
+};
+
+function getEffectiveMapLink(item) {
+  if (item && item.mapLink && item.mapLink.trim()) {
+    return item.mapLink.trim();
+  }
+  if (!item || !item.location) return null;
+  const key = item.location.toLowerCase().trim();
+  return KNOWN_MAP_LINKS[key] || null;
+}
+
 export default function Celebracoes({ siteData }) {
   const { massTimes } = siteData;
 
@@ -191,6 +208,8 @@ export default function Celebracoes({ siteData }) {
           <div className={styles.eventList}>
             {selectedEvents.length > 0 ? (
               selectedEvents.map((mt, i) => {
+                const mapUrl = getEffectiveMapLink(mt);
+
                 if (mt.isSpecial) {
                   return (
                     <div key={i} className={styles.eventItem} style={{ background: "rgba(212, 175, 55, 0.08)", borderLeftColor: "var(--accent)" }}>
@@ -201,20 +220,23 @@ export default function Celebracoes({ siteData }) {
                       <div className={styles.eventLocation}>
                         <strong style={{ fontSize: "1rem", color: "var(--primary)", display: "block", marginBottom: "4px" }}>{mt.title}</strong>
                         <div style={{ fontSize: "0.85rem", color: "var(--muted)", display: "flex", alignItems: "flex-start", gap: "4px" }}>
-                          {mt.mapLink ? (
+                          {mapUrl ? (
                             <a 
-                              href={mt.mapLink}
+                              href={mapUrl}
                               target="_blank" 
                               rel="noopener noreferrer"
                               title="Abrir no Google Maps"
-                              style={{ textDecoration: "none", cursor: "pointer" }}
+                              style={{ textDecoration: "underline", cursor: "pointer", color: "inherit", display: "inline-flex", alignItems: "center", gap: "4px" }}
                             >
                               <span>📍</span>
+                              <span>{mt.location} ↗</span>
                             </a>
                           ) : (
-                            <span>📍</span>
+                            <>
+                              <span>📍</span>
+                              <span>{mt.location}</span>
+                            </>
                           )}
-                          <span>{mt.location}</span>
                         </div>
                       </div>
                     </div>
@@ -229,21 +251,24 @@ export default function Celebracoes({ siteData }) {
                       <span>{mt.time}</span>
                     </div>
                     <div className={styles.eventLocation}>
-                      {mt.mapLink ? (
+                      {mapUrl ? (
                         <a 
-                          href={mt.mapLink} 
+                          href={mapUrl} 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className={styles.mapLink}
                           title="Abrir no Google Maps"
-                          style={{ display: 'inline-flex', color: 'inherit' }}
                         >
                           <MapPin size={16} />
+                          <strong>{mt.location}</strong>
+                          <span style={{ fontSize: "0.85rem", opacity: 0.8 }}>↗</span>
                         </a>
                       ) : (
-                        <MapPin size={16} />
+                        <>
+                          <MapPin size={16} />
+                          <strong>{mt.location}</strong>
+                        </>
                       )}
-                      <strong>{mt.location}</strong>
                     </div>
                   </div>
                 );

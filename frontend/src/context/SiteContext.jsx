@@ -106,6 +106,18 @@ export function SiteProvider({ children }) {
   const [authError, setAuthError] = useState("");
 
   const applySiteData = useCallback((data) => {
+    if (data && Array.isArray(data.massTimes)) {
+      const mapLinksMap = {
+        m4: "https://maps.app.goo.gl/GcU9QntA9Qtg6A796",
+        m16: "https://maps.app.goo.gl/LPNaarR65rjNC3pZ8",
+      };
+      data.massTimes = data.massTimes.map((mt) => {
+        if (mapLinksMap[mt.id] && !mt.mapLink) {
+          return { ...mt, mapLink: mapLinksMap[mt.id] };
+        }
+        return mt;
+      });
+    }
     setSiteData(data);
     setEditor(toEditorState(data));
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));

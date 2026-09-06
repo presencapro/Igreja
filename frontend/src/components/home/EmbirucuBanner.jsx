@@ -1,167 +1,186 @@
 import { useState } from "react";
+import styles from "./EmbirucuBanner.module.css";
 
-const schedule = [
+const scheduleData = [
   {
-    day: "11/09 — Sexta-feira",
-    items: [
-      "18:30 – Terço Mariano",
-      "19:30 – Santa Missa",
+    dayLabel: "11/09 — Sexta-Feira",
+    dateNum: "11",
+    weekDay: "Sexta",
+    events: [
+      { time: "18h30", title: "Terço Mariano" },
+      { time: "19h30", title: "Santa Missa" },
     ],
   },
   {
-    day: "12/09 — Sábado",
-    items: [
-      "18:30 – Terço Mariano",
-      "19:30 – Santa Missa",
-      "Logo após – Levantamento da Bandeira",
-      "🎵 Música ao vivo",
+    dayLabel: "12/09 — Sábado",
+    dateNum: "12",
+    weekDay: "Sábado",
+    events: [
+      { time: "18h30", title: "Terço Mariano" },
+      { time: "19h30", title: "Santa Missa" },
+      { time: "Após a Missa", title: "Levantamento da bandeira" },
+      { time: "Show", isMusic: true, title: "Música ao vivo com Zezé e Tiozinho" },
     ],
-    extra: "🍢 Funcionamento da barraquinha com deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.",
+    barraquinha: "🍢 Funcionamento de barraquinha com deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.",
   },
   {
-    day: "13/09 — Domingo",
-    items: [
-      "06:00 – Alvorada festiva",
-      "11:00 – Santa Missa",
-      "Em seguida – Procissão",
-      "Logo após – Almoço na barraquinha",
-      "🎵 Música ao vivo",
-      "13:30 – Cumprimento de promessas",
+    dayLabel: "13/09 — Domingo",
+    dateNum: "13",
+    weekDay: "Domingo",
+    events: [
+      { time: "06h00", title: "Alvorada festiva" },
+      { time: "11h00", title: "Santa Missa" },
+      { time: "Em seguida", title: "Procissão" },
+      { time: "Logo após", title: "Almoço na barraquinha" },
+      { time: "Show", isMusic: true, title: "Música ao vivo com Ricardo Araújo e Heleno" },
+      { time: "13h30", title: "Cumprimento de promessas" },
     ],
-    extra: "🍢 Funcionamento da barraquinha com deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.",
+    barraquinha: "🍢 Funcionamento de barraquinha com deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.",
   },
 ];
 
 export default function EmbirucuBanner() {
   const [showSchedule, setShowSchedule] = useState(false);
-  const [selectedDay, setSelectedDay] = useState(null);
-
-  const handleDayClick = (index) => {
-    setSelectedDay(index === selectedDay ? null : index);
-  };
-
-  const calendarDays = [
-    { num: "11", label: "SET" },
-    { num: "12", label: "SET" },
-    { num: "13", label: "SET" },
-  ];
+  const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="event-banner">
-      <div className="event-banner-content">
-        {/* Visual icon */}
-        <div className="event-visual">
-          <div className="event-placeholder">
-            <div className="event-icon">✝️</div>
-            <div className="event-number">2026</div>
+    <section className={styles.bannerContainer}>
+      <div className={styles.contentWrapper}>
+        
+        {/* Badge */}
+        <div className={styles.badge}>
+          ⛪ FESTA DA COMUNIDADE
+        </div>
+
+        {/* Header Titles matching flyer */}
+        <div className={styles.headerGroup}>
+          <div className={styles.communityTag}>
+            Comunidade Embiruçu | Paróquia N. Sra do Carmo
+          </div>
+          <h2 className={styles.mainTitle}>
+            Festa do Senhor Bom Jesus, Nossa Senhora do Rosário e São Sebastião
+          </h2>
+          <p className={styles.motto}>
+            "Eis que estou à porta e bato" (Ap 3,20)
+          </p>
+        </div>
+
+        {/* Info Grid */}
+        <div className={styles.infoGrid}>
+          <a
+            href="https://maps.app.goo.gl/GcU9QntA9Qtg6A796"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.infoCardLink}
+            title="Abrir no Google Maps"
+          >
+            <div className={styles.infoCard}>
+              <div className={styles.infoIcon}>📍</div>
+              <div className={styles.infoContent}>
+                <span className={styles.infoLabel}>Localização & Data</span>
+                <span className={styles.infoValue}>Comunidade Embiruçu ↗</span>
+                <span className={styles.infoSub}>11 a 13 de setembro de 2026</span>
+              </div>
+            </div>
+          </a>
+
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>🙌</div>
+            <div className={styles.infoContent}>
+              <span className={styles.infoLabel}>Festeiros</span>
+              <span className={styles.infoValue}>Neusa e José Calixto</span>
+              <span className={styles.infoSub}>Festa em honra e louvor</span>
+            </div>
+          </div>
+
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>🙏</div>
+            <div className={styles.infoContent}>
+              <span className={styles.infoLabel}>Apoio Pastoral</span>
+              <span className={styles.infoValue}>Pe. Rafael Lucas & Pe. Roberto Vicente</span>
+              <span className={styles.infoSub}>Paróquia N. Sra do Carmo</span>
+            </div>
           </div>
         </div>
 
-        {/* Details */}
-        <div className="event-details">
-          <div className="event-badge">⛪ FESTA DA COMUNIDADE</div>
-          <h2>FESTA DE SENHOR BOM JESUS, NOSSA SENHORA DO ROSÁRIO E SÃO SEBASTIÃO</h2>
-          <p className="event-motto">
-            "Eis que estou à porta e bato" (Ap 3,20)
-          </p>
+        {/* Toggle Button */}
+        <button
+          className={styles.toggleBtn}
+          onClick={() => setShowSchedule(!showSchedule)}
+        >
+          {showSchedule ? "▲ Ocultar programação" : "▼ Ver programação completa"}
+        </button>
 
-          <div className="event-schedule">
-            <div className="event-item">
-              <div className="event-icon-wrapper">📍</div>
-              <div className="event-info">
-                <span className="event-time">Comunidade Embiruçu — Paraopeba/MG</span>
-                <span className="event-desc">11 a 13 de setembro de 2026</span>
-              </div>
+        {/* Full Schedule Section */}
+        {showSchedule && (
+          <div className={styles.scheduleSection}>
+            <h3 className={styles.scheduleTitle}>📅 Programação Oficial da Festa</h3>
+
+            {/* Day Selector Tabs */}
+            <div className={styles.daysContainer}>
+              {scheduleData.map((item, index) => (
+                <button
+                  key={index}
+                  className={`${styles.dayTab} ${activeTab === index ? styles.activeDayTab : ""}`}
+                  onClick={() => setActiveTab(index)}
+                >
+                  <span className={styles.tabDate}>{item.dateNum} SET</span>
+                  <span className={styles.tabWeek}>{item.weekDay}</span>
+                </button>
+              ))}
             </div>
 
-            <div className="event-item highlight">
-              <div className="event-icon-wrapper">⛪</div>
-              <div className="event-info">
-                <span className="event-time">Missas, Terço Mariano e Procissão</span>
-                <span className="event-desc">
-                  Festeiros: Neusa e José Calixto
-                </span>
+            {/* Selected Day Events */}
+            <div className={styles.dayCard}>
+              <div className={styles.dayHeader}>
+                📌 {scheduleData[activeTab].dayLabel}
               </div>
-            </div>
 
-            <div className="event-item">
-              <div className="event-icon-wrapper">🙏</div>
-              <div className="event-info">
-                <span className="event-time">Pe. Rafael Lucas &amp; Pe. Roberto Vicente</span>
-                <span className="event-desc">Apoio pastoral</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Toggle button */}
-          <button
-            className="event-toggle-btn"
-            onClick={() => setShowSchedule(!showSchedule)}
-          >
-            {showSchedule ? "▲ Ocultar programação" : "▼ Ver programação completa"}
-          </button>
-
-          {/* Full schedule */}
-          {showSchedule && (
-            <div className="full-schedule">
-              <h3>📅 Programação da Festa</h3>
-
-              {/* Calendar grid — 3 days */}
-              <div className="calendar-grid semana-grid">
-                {calendarDays.map((d, index) => (
-                  <button
-                    key={d.num}
-                    className={`calendar-day has-events${selectedDay === index ? " selected" : ""}`}
-                    onClick={() => handleDayClick(index)}
-                  >
-                    <span className="day-number">{d.num}</span>
-                    <span className="day-label">{d.label}</span>
-                    <span className="event-indicator" />
-                  </button>
+              <div className={styles.eventsList}>
+                {scheduleData[activeTab].events.map((evt, idx) => (
+                  <div key={idx} className={styles.eventRow}>
+                    {evt.isMusic ? (
+                      <span className={styles.musicBadge}>🎵 SHOW</span>
+                    ) : (
+                      <span className={styles.eventTimeBadge}>{evt.time}</span>
+                    )}
+                    <span className={styles.eventDetailText}>{evt.title}</span>
+                  </div>
                 ))}
               </div>
 
-              {/* Selected day detail */}
-              {selectedDay !== null && (
-                <div className="selected-day-events">
-                  <h4>📌 {schedule[selectedDay].day}</h4>
-
-                  <div className="semana-items">
-                    {schedule[selectedDay].items.map((item, i) => (
-                      <div key={i} className="event-card-details">
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-
-                  {schedule[selectedDay].extra && (
-                    <div className="event-card-details" style={{ marginTop: "0.75rem", fontStyle: "italic", opacity: 0.85 }}>
-                      {schedule[selectedDay].extra}
-                    </div>
-                  )}
+              {scheduleData[activeTab].barraquinha && (
+                <div className={styles.extraCard}>
+                  {scheduleData[activeTab].barraquinha}
                 </div>
               )}
-
-              <div style={{ marginTop: "1rem", padding: "0.75rem 1rem", background: "rgba(220, 53, 69, 0.08)", borderRadius: "8px", fontSize: "0.85rem", color: "var(--text)" }}>
-                ⚠️ <strong>Aviso:</strong> É expressamente proibido o comércio de bebidas alcoólicas na barraquinha e local próximo da mesma sem alvará expedido.
-              </div>
-
-              <p className="semana-footer-note">
-                Festeiros: Neusa e José Calixto — Apoio: Pe. Rafael Lucas e Pe. Roberto Vicente.
-              </p>
             </div>
-          )}
 
-          {/* WhatsApp CTA */}
-          <a
-            href="https://wa.me/553137141018"
-            target="_blank"
-            rel="noreferrer"
-            className="event-cta"
-          >
-            <span>📱 Mais informações</span>
-          </a>
-        </div>
+            {/* General Barraquinha Note & Warning */}
+            <div className={styles.extraCard} style={{ marginTop: "1.25rem" }}>
+              🍢 <strong>Funcionamento de barraquinha no sábado e domingo:</strong> serão servidos deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.
+            </div>
+
+            <div className={styles.warningBox}>
+              ⚠️ <strong>Aviso Importante:</strong> É expressamente proibido o comércio de bebidas alcoólicas na barraquinha e local próximo dela sem alvará expedido.
+            </div>
+
+            <p className={styles.footerNote}>
+              <strong>Festeiros:</strong> Neusa e José Calixto — <strong>Apoio:</strong> Padre Rafael Lucas e Padre Roberto Vicente.
+            </p>
+          </div>
+        )}
+
+        {/* WhatsApp CTA */}
+        <a
+          href="https://wa.me/553137141018"
+          target="_blank"
+          rel="noreferrer"
+          className={styles.whatsappCta}
+        >
+          <span>📱 Mais informações pelo WhatsApp</span>
+        </a>
+
       </div>
     </section>
   );

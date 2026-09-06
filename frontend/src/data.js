@@ -9,7 +9,7 @@ export const parishData = {
     { id: "m1", day: "1° Sexta", time: "19:30", location: "Matriz" },
     { id: "m2", day: "Sábado", time: "19:30", location: "Matriz" },
     { id: "m3", day: "Domingo", time: "07:30 e 19:30", location: "Matriz" },
-    { id: "m4", day: "3° Domingo", time: "11:00", location: "Igreja Bom Jesus - Embiriçu" },
+    { id: "m4", day: "3° Domingo", time: "11:00", location: "Igreja Bom Jesus - Embiriçu", mapLink: "https://maps.app.goo.gl/GcU9QntA9Qtg6A796" },
     { id: "m5", day: "1° e 3° Quarta do mês", time: "19:30", location: "Igreja Divino Espírito Santo" },
     { id: "m6", day: "4° Sábado", time: "16:00", location: "Igreja Jesus Misericordioso - Aguada" },
     { id: "m7", day: "3° quarta do mês", time: "18:00", location: "Igreja Nossa Senhora Aparecida - Canabrava" },
@@ -69,7 +69,7 @@ export const parishData = {
     { startMonth: 7, startDay: 1, endMonth: 7, endDay: 4, title: "Tríduo Vocacional - Dia do padre", location: "RESPONSÁVEIS: Movimento Serra, Apostolado da Oração, Mães que oram pelos filhos e terço dos homens.", mapLink: "" },
 
     { startMonth: 7, startDay: 27, endMonth: 7, endDay: 30, title: "Festa em honra a Santa Maria, Mãe de Deus", mapLink: "" },
-    { startMonth: 8, startDay: 11, endMonth: 8, endDay: 13, title: "Festa em honra ao Senhor Bom Jesus, Nossa Senhora do Rosário e São Sebastião", location: "Comunidade do Embiruçu", mapLink: "" },
+    { startMonth: 8, startDay: 11, endMonth: 8, endDay: 13, title: "Festa em honra ao Senhor Bom Jesus, Nossa Senhora do Rosário e São Sebastião", location: "Comunidade do Embiruçu", mapLink: "https://maps.app.goo.gl/GcU9QntA9Qtg6A796" },
     { startMonth: 8, startDay: 12, endMonth: 8, endDay: 15, title: "Festa em honra a Nossa Senhora da Piedade", location: "Comunidade Nossa Senhora da Piedade", mapLink: "" },
     { startMonth: 9, startDay: 2, endMonth: 9, endDay: 5, title: "Festa em honra a São Benedito, O Mouro", location: "Comunidade São Benedito", mapLink: "" },
     { startMonth: 9, startDay: 9, endMonth: 9, endDay: 12, title: "Festa em honra a Nossa Senhora Aparecida", location: "Comunidade do Canabrava", mapLink: "" },
@@ -77,6 +77,7 @@ export const parishData = {
     { startMonth: 10, startDay: 19, endMonth: 10, endDay: 22, title: "Festa em honra a Jesus das Santas Chagas", location: "Comunidade Jesus das Santas Chagas - CRISTO REI, DIA DO LEIGO.", mapLink: "" },
   ],
 
+  rosarioFestivalInfo: null,
   rosarioFestivalSchedule: [],
   carmoFestivalSchedule: [
     { day: "05 de julho", time: "07h30", event: "Caminhada ecológica, corrida de 5km, corrida dos 100m, aulas de Cross, Zumba e muito mais", location: "Praça de Esportes da Padroeira" },

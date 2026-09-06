@@ -18,7 +18,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 1.5rem;
   padding: 2rem 0 3rem;
 }
@@ -477,5 +477,76 @@
 @media (max-width: 880px) {
   .detailLayout {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .pageHeader {
+    padding: 2rem 0 0.5rem;
+  }
+
+  .grid {
+    gap: 1rem;
+    padding: 1.25rem 0 2rem;
+  }
+
+  .card {
+    padding: 1.1rem;
+    border-radius: 14px;
+  }
+
+  .image,
+  .imagePlaceholder {
+    height: 150px;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cardFooter .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .detailHero {
+    margin: 1.25rem 0 1.5rem;
+    min-height: 200px;
+    border-radius: 16px;
+  }
+
+  .detailHeroContent {
+    padding: 1.1rem;
+  }
+
+  .detailLayout {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sectionCard,
+  .post {
+    padding: 1.1rem;
+    border-radius: 14px;
+  }
+
+  .inscricaoItem {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .accessWrap {
+    padding: 1.25rem 0 2rem;
+  }
+
+  .loginCard {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  .dashHeader {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

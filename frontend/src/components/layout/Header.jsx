@@ -9,9 +9,23 @@ export default function Header({ siteData, theme, setTheme }) {
     const onResize = () => {
       if (window.innerWidth > 900) setMenuOpen(false);
     };
+    const onKey = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("keydown", onKey);
+    };
   }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -31,7 +45,6 @@ export default function Header({ siteData, theme, setTheme }) {
             <div className={styles.mobileExtraLinks}>
               <Link to="/mapa" onClick={closeMenu}>Mapa</Link>
               <Link to="/instagram" onClick={closeMenu}>Instagram</Link>
-              <Link to="/pastorais" onClick={closeMenu}>Pastorais e Movimentos</Link>
               <Link to="/pastorais/acesso" onClick={closeMenu}>Acesso da Pastoral</Link>
               <Link to="/acesso-secretaria" className={styles.navAdmin} onClick={closeMenu}>Admin</Link>
             </div>
@@ -65,6 +78,8 @@ export default function Header({ siteData, theme, setTheme }) {
               type="button"
               className={`${styles.navToggle} ${menuOpen ? styles.isOpen : ""}`}
               onClick={() => setMenuOpen((prev) => !prev)}
+              aria-expanded={menuOpen}
+              aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
             >
               <span className={styles.navToggleBar} />
               <span className={styles.navToggleBar} />

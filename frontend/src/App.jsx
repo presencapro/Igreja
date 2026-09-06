@@ -10,7 +10,6 @@ import FloatingButtons from "./components/layout/FloatingButtons";
 import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
-import RosarioBanner from "./components/home/RosarioBanner";
 import EmbirucuBanner from "./components/home/EmbirucuBanner";
 
 import Celebracoes from "./components/home/Celebracoes";
@@ -59,7 +58,6 @@ function PublicSite() {
       <Header siteData={siteData} theme={theme} setTheme={setTheme} />
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
-      <RosarioBanner siteData={siteData} />
       <EmbirucuBanner />
 
 

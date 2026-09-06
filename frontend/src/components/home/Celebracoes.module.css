@@ -266,6 +266,21 @@
   word-break: break-word;
 }
 
+.mapLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mapLink:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .emptyState {
   display: flex;
   flex-direction: column;

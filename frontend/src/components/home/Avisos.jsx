@@ -36,7 +36,7 @@ export default function Avisos({ siteData }) {
         </div>
       )}
 
-      <div className="events-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "1.5rem" }}>
+      <div className="events-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))", gap: "1.5rem" }}>
         {Object.entries(groupedEvents).map(([month, events]) => (
           <div key={month} className="event-month-group">
             <h3 style={{ borderBottom: "2px solid var(--accent)", display: "inline-block", paddingBottom: "4px", marginBottom: "1rem", color: "var(--accent)" }}>
