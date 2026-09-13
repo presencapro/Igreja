@@ -1,94 +1,87 @@
 import { useState } from "react";
-import styles from "./EmbirucuBanner.module.css";
+import styles from "./PiedadeBanner.module.css";
 
 const scheduleData = [
   {
-    dayLabel: "11/09 — Sexta-Feira",
-    dateNum: "11",
+    dayLabel: "17/09 — Quarta-Feira",
+    dateNum: "17",
+    weekDay: "Quarta",
+    events: [
+      { time: "19h00", title: "Tríduo oracional e Santa Missa" },
+    ],
+  },
+  {
+    dayLabel: "18/09 — Quinta-Feira",
+    dateNum: "18",
+    weekDay: "Quinta",
+    events: [
+      { time: "19h00", title: "Tríduo oracional e Santa Missa" },
+    ],
+  },
+  {
+    dayLabel: "19/09 — Sexta-Feira",
+    dateNum: "19",
     weekDay: "Sexta",
     events: [
-      { time: "18h30", title: "Terço Mariano" },
-      { time: "19h30", title: "Santa Missa" },
+      { time: "19h00", title: "Tríduo oracional e Santa Missa" },
     ],
   },
   {
-    dayLabel: "12/09 — Sábado",
-    dateNum: "12",
+    dayLabel: "20/09 — Sábado",
+    dateNum: "20",
     weekDay: "Sábado",
     events: [
-      { time: "18h30", title: "Terço Mariano" },
-      { time: "19h30", title: "Santa Missa" },
-      { time: "Após a Missa", title: "Levantamento da bandeira" },
-      { time: "Show", isMusic: true, title: "Música ao vivo com Zezé e Tiozinho" },
+      { time: "11h00", title: "Santa Missa seguida de procissão" },
+      { time: "Após a Missa", title: "Delicioso almoço (adquira a sua adesão)" },
+      { time: "Show", isMusic: true, title: "Atrações musicais ao longo do dia" },
     ],
-    barraquinha: "🍢 Funcionamento de barraquinha com deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.",
-  },
-  {
-    dayLabel: "13/09 — Domingo",
-    dateNum: "13",
-    weekDay: "Domingo",
-    events: [
-      { time: "06h00", title: "Alvorada festiva" },
-      { time: "11h00", title: "Santa Missa" },
-      { time: "Em seguida", title: "Procissão" },
-      { time: "Logo após", title: "Almoço na barraquinha" },
-      { time: "Show", isMusic: true, title: "Música ao vivo com Ricardo Araújo e Heleno" },
-      { time: "13h30", title: "Cumprimento de promessas" },
-    ],
-    barraquinha: "🍢 Funcionamento de barraquinha com deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.",
+    barraquinha: "🍢 Movimentos de barraquinhas e atrações musicais todos os dias.",
   },
 ];
 
-export default function EmbirucuBanner() {
+export default function PiedadeBanner() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
   return (
     <section className={styles.bannerContainer}>
       <div className={styles.contentWrapper}>
-        
+
         {/* Badge */}
         <div className={styles.badge}>
           ⛪ FESTA DA COMUNIDADE
         </div>
 
-        {/* Header Titles matching flyer */}
+        {/* Header */}
         <div className={styles.headerGroup}>
           <div className={styles.communityTag}>
-            Comunidade Embiruçu | Paróquia N. Sra do Carmo
+            Comunidade N. Sra da Piedade | Paróquia N. Sra do Carmo
           </div>
           <h2 className={styles.mainTitle}>
-            Festa do Senhor Bom Jesus, Nossa Senhora do Rosário e São Sebastião
+            Tríduo e Festa em Honra a<br />
+            <em>Nossa Senhora da Piedade</em>
           </h2>
           <p className={styles.motto}>
-            "Eis que estou à porta e bato" (Ap 3,20)
+            "Roga pelos filhos teus!"
           </p>
         </div>
 
         {/* Info Grid */}
         <div className={styles.infoGrid}>
-          <a
-            href="https://maps.app.goo.gl/GcU9QntA9Qtg6A796"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.infoCardLink}
-            title="Abrir no Google Maps"
-          >
-            <div className={styles.infoCard}>
-              <div className={styles.infoIcon}>📍</div>
-              <div className={styles.infoContent}>
-                <span className={styles.infoLabel}>Localização & Data</span>
-                <span className={styles.infoValue}>Comunidade Embiruçu ↗</span>
-                <span className={styles.infoSub}>11 a 13 de setembro de 2026</span>
-              </div>
+          <div className={styles.infoCard}>
+            <div className={styles.infoIcon}>📅</div>
+            <div className={styles.infoContent}>
+              <span className={styles.infoLabel}>Período</span>
+              <span className={styles.infoValue}>17 a 20 de Setembro</span>
+              <span className={styles.infoSub}>Tríduo: dias 17, 18 e 19 às 19h</span>
             </div>
-          </a>
+          </div>
 
           <div className={styles.infoCard}>
             <div className={styles.infoIcon}>🙌</div>
             <div className={styles.infoContent}>
               <span className={styles.infoLabel}>Festeiros</span>
-              <span className={styles.infoValue}>Neusa e José Calixto</span>
+              <span className={styles.infoValue}>Sr. Egídio e família</span>
               <span className={styles.infoSub}>Festa em honra e louvor</span>
             </div>
           </div>
@@ -97,7 +90,7 @@ export default function EmbirucuBanner() {
             <div className={styles.infoIcon}>🙏</div>
             <div className={styles.infoContent}>
               <span className={styles.infoLabel}>Apoio Pastoral</span>
-              <span className={styles.infoValue}>Pe. Rafael Lucas & Pe. Roberto Vicente</span>
+              <span className={styles.infoValue}>Pe. Rafael Lucas &amp; Pe. Roberto Vicente</span>
               <span className={styles.infoSub}>Paróquia N. Sra do Carmo</span>
             </div>
           </div>
@@ -116,7 +109,7 @@ export default function EmbirucuBanner() {
           <div className={styles.scheduleSection}>
             <h3 className={styles.scheduleTitle}>📅 Programação Oficial da Festa</h3>
 
-            {/* Day Selector Tabs */}
+            {/* Day Tabs */}
             <div className={styles.daysContainer}>
               {scheduleData.map((item, index) => (
                 <button
@@ -156,17 +149,13 @@ export default function EmbirucuBanner() {
               )}
             </div>
 
-            {/* General Barraquinha Note & Warning */}
-            <div className={styles.extraCard} style={{ marginTop: "1.25rem" }}>
-              🍢 <strong>Funcionamento de barraquinha no sábado e domingo:</strong> serão servidos deliciosos pastéis, caldo, canjica, churrasco, tropeiro e refrigerante.
-            </div>
-
             <div className={styles.warningBox}>
-              ⚠️ <strong>Aviso Importante:</strong> É expressamente proibido o comércio de bebidas alcoólicas na barraquinha e local próximo dela sem alvará expedido.
+              🍽️ <strong>Dia 20 — Almoço especial:</strong> Adquira a sua adesão antecipadamente para participar do almoço após a procissão.
             </div>
 
             <p className={styles.footerNote}>
-              <strong>Festeiros:</strong> Neusa e José Calixto — <strong>Apoio:</strong> Padre Rafael Lucas e Padre Roberto Vicente.
+              <strong>Festeiros:</strong> Sr. Egídio e família —{" "}
+              <strong>Apoio:</strong> Padre Rafael Lucas e Padre Roberto Vicente.
             </p>
           </div>
         )}

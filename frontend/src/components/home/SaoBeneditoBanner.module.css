@@ -1,0 +1,474 @@
+/* ===== SÃO BENEDITO BANNER — CREME + DOURADO + MARROM ===== */
+
+.bannerContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  color: #3d2010;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(245, 230, 190, 0.8) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 90%, rgba(235, 215, 165, 0.6) 0%, transparent 55%),
+    linear-gradient(170deg, #faf3e0 0%, #f5ead0 50%, #ede0be 100%);
+  border-top: 3px solid #c9a227;
+  border-bottom: 4px solid #8b6914;
+  box-shadow: inset 0 0 60px rgba(100, 65, 10, 0.07);
+}
+
+/* Floral/ornamental texture */
+.bannerContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(180, 130, 30, 0.07) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Decorative corner lines */
+.bannerContainer::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1.5px solid rgba(180, 130, 30, 0.2);
+  border-radius: 4px;
+  pointer-events: none;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem clamp(1rem, 4vw, 2.5rem) 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #7a4f10 0%, #5c3608 100%);
+  color: #f5e8b0;
+  padding: 0.4rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 14px rgba(92, 54, 8, 0.3);
+  border: 1px solid rgba(201, 162, 39, 0.5);
+}
+
+/* ===== HEADER ===== */
+.headerGroup {
+  text-align: center;
+  max-width: 780px;
+  margin-bottom: 1.75rem;
+}
+
+.communityTag {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #7a4f10;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.mainTitle {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1rem, 2.2vw, 1.2rem);
+  font-weight: 600;
+  color: #5c3608;
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.03em;
+}
+
+.mainTitleBig {
+  font-family: 'Georgia', serif;
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #5c3608;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.01em;
+}
+
+.dateBadge {
+  display: inline-block;
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 800;
+  color: #7a4f10;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.25), rgba(201, 162, 39, 0.1));
+  border: 1.5px solid rgba(201, 162, 39, 0.45);
+  padding: 0.3rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* ===== TEMA & LEMA CARDS ===== */
+.themeCard {
+  width: 100%;
+  max-width: 780px;
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(180, 130, 30, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(100, 65, 10, 0.07);
+}
+
+.themeLabel {
+  display: inline-block;
+  background: linear-gradient(135deg, #c9a227 0%, #a07818 100%);
+  color: #fff8e8;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.85rem;
+}
+
+.themeText {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 700;
+  color: #3d2010;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+.lemaCard {
+  width: 100%;
+  max-width: 780px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1.5px solid rgba(180, 130, 30, 0.25);
+  border-radius: 16px;
+  padding: 1.25rem 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(100, 65, 10, 0.05);
+}
+
+.lemaLabel {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b6914 0%, #6a4f0c 100%);
+  color: #f5e8b0;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+}
+
+.lemaSubtitle {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #7a4f10;
+  margin-bottom: 0.4rem;
+}
+
+.lemaText {
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  color: #5c3608;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ===== TOGGLE BUTTON ===== */
+.toggleBtn {
+  background: linear-gradient(135deg, #5c3608 0%, #3d2010 100%);
+  color: #f5e8b0;
+  border: 1px solid #c9a227;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(61, 32, 16, 0.28);
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.toggleBtn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #724510 0%, #4d2815 100%);
+  box-shadow: 0 8px 26px rgba(61, 32, 16, 0.38);
+}
+
+/* ===== SCHEDULE SECTION ===== */
+.scheduleSection {
+  width: 100%;
+  max-width: 900px;
+  margin-top: 2rem;
+  animation: fadeIn 0.35s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scheduleTitle {
+  font-family: 'Georgia', serif;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #3d2010;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+/* Day Tabs */
+.daysContainer {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.dayTab {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(180, 130, 30, 0.3);
+  border-radius: 10px;
+  padding: 0.75rem 1.3rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 110px;
+  color: #3d2010;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.dayTab:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #c9a227;
+}
+
+.activeDayTab {
+  background: linear-gradient(135deg, #5c3608 0%, #3d2010 100%);
+  border-color: #c9a227;
+  color: #f5e8b0;
+  box-shadow: 0 4px 16px rgba(61, 32, 16, 0.22);
+}
+
+.tabDate {
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.tabWeek {
+  font-size: 0.75rem;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+/* Day Card */
+.dayCard {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(180, 130, 30, 0.22);
+  border-radius: 14px;
+  padding: 1.75rem;
+  box-shadow: 0 6px 22px rgba(100, 65, 10, 0.08);
+}
+
+.dayHeader {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #3d2010;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px dashed rgba(180, 130, 30, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eventRow {
+  background: #fdf8ee;
+  border: 1px solid rgba(180, 130, 30, 0.18);
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: background-color 0.15s ease;
+}
+
+.eventRow:hover {
+  background: #ffffff;
+}
+
+.eventTimeBadge {
+  background: #5c3608;
+  color: #f5e8b0;
+  font-weight: 700;
+  font-size: 0.86rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.eventDetailText {
+  font-size: 0.97rem;
+  color: #3d2010;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.specialBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: linear-gradient(135deg, #c9a227, #a07818);
+  color: #fff8e8;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.84rem;
+  flex-shrink: 0;
+}
+
+/* ===== ESPAÇO SOCIAL ===== */
+.socialCard {
+  margin-top: 1.5rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.12), rgba(180, 130, 30, 0.06));
+  border: 1.5px solid rgba(180, 130, 30, 0.3);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.socialTitle {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #5c3608;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.5rem;
+}
+
+.socialText {
+  font-size: 0.92rem;
+  color: #3d2010;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.socialFoods {
+  font-size: 0.88rem;
+  color: #7a4f10;
+  font-style: italic;
+}
+
+.footerNote {
+  margin-top: 1.25rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #5c3608;
+  font-weight: 700;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+}
+
+/* ===== WHATSAPP CTA ===== */
+.whatsappCta {
+  margin-top: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #25d366;
+  color: #ffffff;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+  transition: all 0.25s ease;
+}
+
+.whatsappCta:hover {
+  transform: translateY(-2px);
+  background: #20ba5a;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #c9a227, transparent);
+  margin: 1rem auto;
+  border: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 640px) {
+  .contentWrapper {
+    padding: 2rem clamp(0.75rem, 4vw, 1rem) 2rem;
+  }
+
+  .themeCard, .lemaCard {
+    padding: 1.1rem 1.25rem;
+  }
+
+  .eventRow {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .daysContainer {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    padding-bottom: 0.25rem;
+  }
+
+  .dayTab {
+    flex: 1 1 0;
+    min-width: 80px;
+    padding: 0.6rem 0.5rem;
+  }
+
+  .dayCard {
+    padding: 1rem;
+  }
+
+  .toggleBtn,
+  .whatsappCta {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}

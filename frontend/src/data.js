@@ -69,9 +69,9 @@ export const parishData = {
     { startMonth: 7, startDay: 1, endMonth: 7, endDay: 4, title: "Tríduo Vocacional - Dia do padre", location: "RESPONSÁVEIS: Movimento Serra, Apostolado da Oração, Mães que oram pelos filhos e terço dos homens.", mapLink: "" },
 
     { startMonth: 7, startDay: 27, endMonth: 7, endDay: 30, title: "Festa em honra a Santa Maria, Mãe de Deus", mapLink: "" },
-    { startMonth: 8, startDay: 11, endMonth: 8, endDay: 13, title: "Festa em honra ao Senhor Bom Jesus, Nossa Senhora do Rosário e São Sebastião", location: "Comunidade do Embiruçu", mapLink: "https://maps.app.goo.gl/GcU9QntA9Qtg6A796" },
-    { startMonth: 8, startDay: 12, endMonth: 8, endDay: 15, title: "Festa em honra a Nossa Senhora da Piedade", location: "Comunidade Nossa Senhora da Piedade", mapLink: "" },
-    { startMonth: 9, startDay: 2, endMonth: 9, endDay: 5, title: "Festa em honra a São Benedito, O Mouro", location: "Comunidade São Benedito", mapLink: "" },
+    { startMonth: 8, startDay: 17, endMonth: 8, endDay: 20, title: "Tríduo e Festa em honra a Nossa Senhora da Piedade", location: "Comunidade Nossa Senhora da Piedade", mapLink: "" },
+    { startMonth: 8, startDay: 30, endMonth: 8, endDay: 30, title: "Festa de São Benedito — Abertura (30/09 a 03/10)", location: "Comunidade São Benedito", mapLink: "" },
+    { startMonth: 9, startDay: 1, endMonth: 9, endDay: 3, title: "Festa em honra a São Benedito", location: "Comunidade São Benedito", mapLink: "" },
     { startMonth: 9, startDay: 9, endMonth: 9, endDay: 12, title: "Festa em honra a Nossa Senhora Aparecida", location: "Comunidade do Canabrava", mapLink: "" },
     { startMonth: 9, startDay: 25, endMonth: 9, endDay: 28, title: "Festa em honra a São Judas Tadeu", location: "Comunidade São Judas", mapLink: "" },
     { startMonth: 10, startDay: 19, endMonth: 10, endDay: 22, title: "Festa em honra a Jesus das Santas Chagas", location: "Comunidade Jesus das Santas Chagas - CRISTO REI, DIA DO LEIGO.", mapLink: "" },

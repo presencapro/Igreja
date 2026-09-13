@@ -10,7 +10,8 @@ import FloatingButtons from "./components/layout/FloatingButtons";
 import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
-import EmbirucuBanner from "./components/home/EmbirucuBanner";
+import PiedadeBanner from "./components/home/PiedadeBanner";
+import SaoBeneditoBanner from "./components/home/SaoBeneditoBanner";
 
 import Celebracoes from "./components/home/Celebracoes";
 import Secretaria from "./components/home/Secretaria";
@@ -58,8 +59,8 @@ function PublicSite() {
       <Header siteData={siteData} theme={theme} setTheme={setTheme} />
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
-      <EmbirucuBanner />
-
+      <PiedadeBanner />
+      <SaoBeneditoBanner />
 
       <main className="container main-grid">
         <Celebracoes siteData={siteData} />

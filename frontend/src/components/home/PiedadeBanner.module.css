@@ -1,28 +1,30 @@
-/* ===== EMBIRUÇU BANNER — ESTILO PERGAMINHO / CORES DO PANFLETO ===== */
+/* ===== PIEDADE BANNER — CORES DO PANFLETO ===== */
+/* Azul céu + Dourado/amarelo + Azul marinho escuro */
 
 .bannerContainer {
   width: 100%;
   position: relative;
   overflow: hidden;
-  color: #3d2314; /* Castanho escuro */
-  background: 
-    radial-gradient(circle at 15% 20%, rgba(247, 242, 231, 0.9) 0%, transparent 60%),
-    radial-gradient(circle at 85% 80%, rgba(196, 154, 69, 0.15) 0%, transparent 65%),
-    linear-gradient(165deg, #f9f5ea 0%, #f1e4c8 45%, #ebd7b0 100%);
-  border-top: 2px solid #d4c19c;
-  border-bottom: 4px solid #b88b32;
-  box-shadow: inset 0 0 50px rgba(140, 90, 43, 0.08);
+  color: #0d1b3e;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(200, 225, 255, 0.95) 0%, transparent 65%),
+    radial-gradient(ellipse at 20% 60%, rgba(170, 210, 250, 0.5) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(190, 220, 255, 0.4) 0%, transparent 55%),
+    linear-gradient(175deg, #d6eaf8 0%, #c2ddf5 40%, #b0cfe8 100%);
+  border-top: 3px solid #2e5fa3;
+  border-bottom: 4px solid #c9a227;
+  box-shadow: inset 0 0 60px rgba(14, 55, 120, 0.06);
 }
 
-/* Subtle vintage pattern texture */
+/* Subtle cloud-like texture */
 .bannerContainer::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: 
-    radial-gradient(rgba(140, 90, 43, 0.08) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
-  opacity: 0.4;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.55) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  opacity: 0.35;
   pointer-events: none;
 }
 
@@ -37,13 +39,13 @@
   align-items: center;
 }
 
-/* ===== BADGE & HEADINGS ===== */
+/* ===== BADGE ===== */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #8c3b2b 0%, #6e271a 100%);
-  color: #fff8ee;
+  background: linear-gradient(135deg, #1a3a6e 0%, #0d2550 100%);
+  color: #f5e87b;
   padding: 0.4rem 1.2rem;
   border-radius: 999px;
   font-size: 0.82rem;
@@ -51,47 +53,71 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
-  box-shadow: 0 4px 12px rgba(140, 59, 43, 0.25);
-  border: 1px solid rgba(255, 248, 238, 0.3);
+  box-shadow: 0 4px 14px rgba(13, 37, 80, 0.3);
+  border: 1px solid rgba(245, 232, 123, 0.35);
 }
 
+/* ===== HEADER GOLDEN STRIPE (like the flyer) ===== */
 .headerGroup {
   text-align: center;
-  max-width: 850px;
+  max-width: 860px;
   margin-bottom: 2rem;
+  background: linear-gradient(135deg, #f5d848 0%, #e8c030 40%, #d4a820 100%);
+  border-radius: 16px;
+  padding: 1.75rem 2.5rem;
+  box-shadow:
+    0 6px 24px rgba(200, 150, 20, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border: 1px solid #c9a020;
+  width: 100%;
 }
 
 .communityTag {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #7a5435;
-  letter-spacing: 0.05em;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1a2c5e;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  opacity: 0.85;
 }
 
 .mainTitle {
   font-family: serif, 'Georgia', 'Times New Roman';
-  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-  font-weight: 800;
-  color: #3d2314;
-  line-height: 1.25;
-  margin-bottom: 0.75rem;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+  font-size: clamp(1.5rem, 3.2vw, 2.3rem);
+  font-weight: 900;
+  color: #0d1b3e;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.mainTitle em {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 1.35em;
+  color: #0a1730;
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .motto {
   font-style: italic;
-  font-size: 1.1rem;
-  color: #6e4a32;
-  font-weight: 500;
+  font-size: 1.05rem;
+  color: #1a2c5e;
+  font-weight: 600;
+  margin-top: 0.4rem;
+  opacity: 0.9;
 }
 
 /* ===== INFO GRID CARDS ===== */
 .infoGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 1.1rem;
   width: 100%;
   max-width: 900px;
   margin-bottom: 2rem;
@@ -104,22 +130,22 @@
 }
 
 .infoCard {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(8px);
-  border: 1px solid #dfcfb3;
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(46, 95, 163, 0.2);
+  border-radius: 14px;
+  padding: 1.25rem 1.4rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  box-shadow: 0 4px 15px rgba(74, 46, 27, 0.06);
+  box-shadow: 0 4px 18px rgba(13, 37, 90, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .infoCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(74, 46, 27, 0.1);
-  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(13, 37, 90, 0.14);
+  background: rgba(255, 255, 255, 0.95);
 }
 
 .infoIcon {
@@ -133,36 +159,36 @@
 }
 
 .infoLabel {
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: #8c5a2b;
-  letter-spacing: 0.05em;
+  color: #2e5fa3;
+  letter-spacing: 0.06em;
 }
 
 .infoValue {
-  font-size: 1rem;
+  font-size: 0.97rem;
   font-weight: 700;
-  color: #3d2314;
+  color: #0d1b3e;
   margin-top: 0.15rem;
 }
 
 .infoSub {
-  font-size: 0.85rem;
-  color: #6e4a32;
+  font-size: 0.83rem;
+  color: #3a5580;
 }
 
 /* ===== TOGGLE BUTTON ===== */
 .toggleBtn {
-  background: linear-gradient(135deg, #4a2e1b 0%, #351f11 100%);
-  color: #f9f5ea;
-  border: 1px solid #b88b32;
+  background: linear-gradient(135deg, #1a3a6e 0%, #0d2550 100%);
+  color: #f5e87b;
+  border: 1px solid #c9a227;
   padding: 0.85rem 2rem;
   border-radius: 999px;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(53, 31, 17, 0.25);
+  box-shadow: 0 6px 18px rgba(13, 37, 80, 0.25);
   transition: all 0.25s ease;
   display: inline-flex;
   align-items: center;
@@ -171,8 +197,8 @@
 
 .toggleBtn:hover {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #5c3b24 0%, #422716 100%);
-  box-shadow: 0 8px 24px rgba(53, 31, 17, 0.35);
+  background: linear-gradient(135deg, #224a88 0%, #12306a 100%);
+  box-shadow: 0 8px 26px rgba(13, 37, 80, 0.35);
 }
 
 /* ===== SCHEDULE SECTION ===== */
@@ -185,19 +211,19 @@
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .scheduleTitle {
   font-family: serif, 'Georgia', 'Times New Roman';
   text-align: center;
-  font-size: 1.5rem;
-  color: #3d2314;
+  font-size: 1.45rem;
+  color: #0d1b3e;
   margin-bottom: 1.5rem;
   font-weight: 700;
 }
 
-/* Days Tabs */
+/* Day Tabs */
 .daysContainer {
   display: flex;
   justify-content: center;
@@ -207,58 +233,59 @@
 }
 
 .dayTab {
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid #d4c19c;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(46, 95, 163, 0.25);
   border-radius: 10px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 1.4rem;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 120px;
+  min-width: 110px;
+  color: #0d1b3e;
   transition: all 0.2s ease;
 }
 
 .dayTab:hover {
   background: rgba(255, 255, 255, 0.95);
-  border-color: #b88b32;
+  border-color: #2e5fa3;
 }
 
 .activeDayTab {
-  background: linear-gradient(135deg, #4a2e1b 0%, #351f11 100%);
-  border-color: #b88b32;
-  color: #f9f5ea;
-  box-shadow: 0 4px 14px rgba(53, 31, 17, 0.2);
+  background: linear-gradient(135deg, #1a3a6e 0%, #0d2550 100%);
+  border-color: #c9a227;
+  color: #f5e87b;
+  box-shadow: 0 4px 16px rgba(13, 37, 80, 0.25);
 }
 
 .tabDate {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 800;
 }
 
 .tabWeek {
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   opacity: 0.85;
   text-transform: uppercase;
 }
 
-/* Selected Day Content */
+/* Day Card */
 .dayCard {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(10px);
-  border: 1px solid #dfcfb3;
+  border: 1px solid rgba(46, 95, 163, 0.18);
   border-radius: 14px;
   padding: 1.75rem;
-  box-shadow: 0 6px 22px rgba(74, 46, 27, 0.08);
+  box-shadow: 0 6px 22px rgba(13, 37, 90, 0.08);
 }
 
 .dayHeader {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 800;
-  color: #3d2314;
+  color: #0d1b3e;
   margin-bottom: 1.25rem;
   padding-bottom: 0.75rem;
-  border-bottom: 2px dashed #e0d0b7;
+  border-bottom: 2px dashed rgba(46, 95, 163, 0.22);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -271,8 +298,8 @@
 }
 
 .eventRow {
-  background: #fdfaf3;
-  border: 1px solid #ebd9b8;
+  background: #f0f6ff;
+  border: 1px solid rgba(46, 95, 163, 0.15);
   border-radius: 10px;
   padding: 1rem 1.25rem;
   display: flex;
@@ -286,8 +313,8 @@
 }
 
 .eventTimeBadge {
-  background: #4a2e1b;
-  color: #f9f5ea;
+  background: #1a3a6e;
+  color: #f5e87b;
   font-weight: 700;
   font-size: 0.88rem;
   padding: 0.35rem 0.75rem;
@@ -298,7 +325,7 @@
 
 .eventDetailText {
   font-size: 0.98rem;
-  color: #3d2314;
+  color: #0d1b3e;
   font-weight: 600;
   line-height: 1.4;
 }
@@ -307,51 +334,52 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: #8c3b2b;
-  color: #fff8ee;
+  background: #c9a227;
+  color: #0d1b3e;
   padding: 0.3rem 0.75rem;
   border-radius: 6px;
   font-weight: 700;
   font-size: 0.88rem;
-  margin-top: 0.25rem;
+  flex-shrink: 0;
 }
 
 .extraCard {
   margin-top: 1rem;
   padding: 1rem 1.25rem;
-  background: #f6eedb;
-  border: 1px solid #e2d1b1;
+  background: #e8f2ff;
+  border: 1px solid rgba(46, 95, 163, 0.2);
   border-radius: 10px;
   font-size: 0.92rem;
-  color: #523824;
+  color: #1a3a6e;
   line-height: 1.5;
 }
 
-/* ===== WARNING BOX ===== */
+/* ===== WARNING / INFO BOX ===== */
 .warningBox {
   margin-top: 1.5rem;
   padding: 1rem 1.25rem;
-  background: rgba(140, 59, 43, 0.08);
-  border: 1px solid rgba(140, 59, 43, 0.3);
+  background: rgba(245, 232, 123, 0.2);
+  border: 1px solid rgba(201, 162, 39, 0.4);
   border-radius: 10px;
   font-size: 0.88rem;
-  color: #7a2b1c;
+  color: #0d1b3e;
   line-height: 1.5;
 }
 
 .warningBox strong {
-  color: #8c3b2b;
+  color: #8a6900;
 }
 
-/* ===== FOOTER NOTE & CTA ===== */
+/* ===== FOOTER NOTE ===== */
 .footerNote {
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.9rem;
-  color: #6e4a32;
+  color: #1a3a6e;
   font-weight: 600;
 }
 
+/* ===== WHATSAPP CTA ===== */
 .whatsappCta {
   margin-top: 2rem;
   display: inline-flex;
@@ -374,9 +402,14 @@
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
 }
 
+/* ===== RESPONSIVE ===== */
 @media (max-width: 640px) {
   .contentWrapper {
     padding: 2rem clamp(0.75rem, 4vw, 1rem) 2rem;
+  }
+
+  .headerGroup {
+    padding: 1.25rem 1.25rem;
   }
 
   .eventRow {
@@ -386,17 +419,20 @@
 
   .daysContainer {
     flex-wrap: nowrap;
+    overflow-x: auto;
     gap: 0.5rem;
+    justify-content: flex-start;
+    padding-bottom: 0.25rem;
   }
 
   .dayTab {
     flex: 1 1 0;
-    min-width: 0;
+    min-width: 80px;
     padding: 0.6rem 0.5rem;
   }
 
   .tabDate {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .dayCard {

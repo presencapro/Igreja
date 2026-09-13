@@ -1,0 +1,71 @@
+{
+  "pastorais": [
+    {
+      "id": "a089a9ea-58b1-4b2d-a6dc-5a85a8607e3c",
+      "name": "Fix Edit",
+      "slug": "fix-edit-5a4fd6",
+      "description": "",
+      "coordinator": "",
+      "contact": "",
+      "createdAt": "2026-08-03T00:46:18.270Z",
+      "posts": [],
+      "inscricoes": [],
+      "imageUrl": ""
+    },
+    {
+      "id": "bf44b8a2-6d23-40a3-a62d-e3fe8850fa8e",
+      "name": "ECC - Encontro de Casais com Cristo",
+      "slug": "ecc-encontro-de-casais-com-cristo",
+      "description": "Movimento de evangelização que reúne casais para o crescimento espiritual, vivência do sacramento do matrimônio e partilha da fé em comunidade.",
+      "coordinator": "",
+      "contact": "",
+      "createdAt": "2026-08-03T00:46:18.270Z",
+      "posts": [],
+      "inscricoes": []
+    },
+    {
+      "id": "e64b11d9-600d-4b51-a22f-f5b5c8c9e165",
+      "name": "Apostolado da Oração",
+      "slug": "apostolado-da-oracao",
+      "description": "Movimento dedicado à oração, consagração ao Sagrado Coração de Jesus e intercessão pelas intenções da Igreja e do mundo.",
+      "coordinator": "",
+      "contact": "",
+      "createdAt": "2026-08-03T00:46:18.270Z",
+      "posts": [],
+      "inscricoes": []
+    },
+    {
+      "id": "551f9e77-1918-4d1f-a29e-6c17fbdb653e",
+      "name": "Terço dos Homens",
+      "slug": "terco-dos-homens",
+      "description": "Encontros de oração do Santo Terço reunindo os homens da comunidade para rezar, partilhar e fortalecer a fé em família.",
+      "coordinator": "",
+      "contact": "",
+      "createdAt": "2026-08-03T00:46:18.270Z",
+      "posts": [],
+      "inscricoes": []
+    },
+    {
+      "id": "fc93e5e0-1fe8-43fa-a257-3543b6f10dce",
+      "name": "Mães que Oram pelos Filhos",
+      "slug": "maes-que-oram-pelos-filhos",
+      "description": "Grupo de mães que se reúnem para rezar pelos filhos, pelas famílias e pelas vocações, unidas na fé e na esperança.",
+      "coordinator": "",
+      "contact": "",
+      "createdAt": "2026-08-03T00:46:18.270Z",
+      "posts": [],
+      "inscricoes": []
+    },
+    {
+      "id": "7822985c-a9a0-45f7-9f21-e62aaa8f1a5a",
+      "name": "Movimento Serra",
+      "slug": "movimento-serra",
+      "description": "Movimento vocacional que atua na animação e promoção das vocações sacerdotais e religiosas dentro da comunidade paroquial.",
+      "coordinator": "",
+      "contact": "",
+      "createdAt": "2026-08-03T00:46:18.270Z",
+      "posts": [],
+      "inscricoes": []
+    }
+  ]
+}
