@@ -3,33 +3,33 @@ import styles from "./PiedadeBanner.module.css";
 
 const scheduleData = [
   {
-    dayLabel: "17/09 — Quarta-Feira",
+    dayLabel: "17/09 — Quinta-Feira",
     dateNum: "17",
-    weekDay: "Quarta",
-    events: [
-      { time: "19h00", title: "Tríduo oracional e Santa Missa" },
-    ],
-  },
-  {
-    dayLabel: "18/09 — Quinta-Feira",
-    dateNum: "18",
     weekDay: "Quinta",
     events: [
       { time: "19h00", title: "Tríduo oracional e Santa Missa" },
     ],
   },
   {
-    dayLabel: "19/09 — Sexta-Feira",
-    dateNum: "19",
+    dayLabel: "18/09 — Sexta-Feira",
+    dateNum: "18",
     weekDay: "Sexta",
     events: [
       { time: "19h00", title: "Tríduo oracional e Santa Missa" },
     ],
   },
   {
-    dayLabel: "20/09 — Sábado",
-    dateNum: "20",
+    dayLabel: "19/09 — Sábado",
+    dateNum: "19",
     weekDay: "Sábado",
+    events: [
+      { time: "19h00", title: "Tríduo oracional e Santa Missa" },
+    ],
+  },
+  {
+    dayLabel: "20/09 — Domingo",
+    dateNum: "20",
+    weekDay: "Domingo",
     events: [
       { time: "11h00", title: "Santa Missa seguida de procissão" },
       { time: "Após a Missa", title: "Delicioso almoço (adquira a sua adesão)" },
