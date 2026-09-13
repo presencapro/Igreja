@@ -106,6 +106,12 @@ export function SiteProvider({ children }) {
   const [authError, setAuthError] = useState("");
 
   const applySiteData = useCallback((data) => {
+    if (data) {
+      // Força o uso dos specialEvents locais (data.js), pois o Supabase pode ter cache antigo
+      // já que este campo não é editável no painel admin.
+      data.specialEvents = initialParishData.specialEvents;
+    }
+
     if (data && Array.isArray(data.massTimes)) {
       const mapLinksMap = {
         m4: "https://maps.app.goo.gl/GcU9QntA9Qtg6A796",
