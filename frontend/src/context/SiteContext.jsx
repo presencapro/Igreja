@@ -128,9 +128,10 @@ export function SiteProvider({ children }) {
 
     async function loadSiteData() {
       try {
-        const response = await fetch(`${BACKEND_URL}/site`);
+        const response = await fetch(`${BACKEND_URL}/site`, { cache: "no-store" });
         if (response.ok) {
           const data = await response.json();
+          console.log("Dados do backend carregados com sucesso!", data.specialEvents?.filter(e => e.startMonth >= 8));
           if (!cancelled) {
             applySiteData(data);
           }
