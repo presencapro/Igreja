@@ -51,7 +51,14 @@ export default function Avisos({ siteData }) {
                   <span style={{ fontWeight: "600", display: "block", lineHeight: "1.3" }}>{event.title}</span>
                   {event.location && (
                     <div style={{ fontSize: "0.85rem", color: "var(--muted)", marginTop: "6px", display: "flex", alignItems: "flex-start", gap: "4px" }}>
-                      <span>📍</span> <span>{event.location}</span>
+                      <span>📍</span>
+                      {event.mapLink ? (
+                        <a href={event.mapLink} target="_blank" rel="noreferrer" style={{ color: "var(--primary)", textDecoration: "underline" }}>
+                          {event.location}
+                        </a>
+                      ) : (
+                        <span>{event.location}</span>
+                      )}
                     </div>
                   )}
                 </li>

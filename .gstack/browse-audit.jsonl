@@ -1,0 +1,24 @@
+{"ts":"2026-08-31T01:55:25.838Z","cmd":"goto","args":"http://localhost:5173","origin":"http://localhost:5173/","durationMs":7142,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:55:29.304Z","cmd":"responsive","args":"C:\\Users\\Paulo Ferreira\\Desktop\\Igreja-master\\frontend","origin":"http://localhost:5173/","durationMs":2,"status":"error","hasCookies":false,"mode":"launched","error":"Path must be within: C:\\Users\\PAULOF~1\\AppData\\Local\\Temp, C:\\Users\\Paulo Ferreira\\Desktop\\Igreja-master"}
+{"ts":"2026-08-31T01:55:35.370Z","cmd":"responsive","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\responsividade","origin":"http://localhost:5173/","durationMs":2741,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:55:44.125Z","cmd":"viewport","args":"375x667","origin":"http://localhost:5173/","durationMs":13,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:55:52.810Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\mobile-iphone.png","origin":"http://localhost:5173/","durationMs":566,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:03.158Z","cmd":"viewport","args":"320x568","origin":"http://localhost:5173/","durationMs":5,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:09.281Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\mobile-small.png","origin":"http://localhost:5173/","durationMs":482,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:14.643Z","cmd":"viewport","args":"1280x720","origin":"http://localhost:5173/","durationMs":9,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:20.049Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\desktop-laptop.png","origin":"http://localhost:5173/","durationMs":1033,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:51.263Z","cmd":"reload","args":"","origin":"http://localhost:5173/","durationMs":96,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:54.944Z","cmd":"viewport","args":"375x667","origin":"http://localhost:5173/","durationMs":12,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:56:59.169Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\mobile-after-fix.png","origin":"http://localhost:5173/","durationMs":530,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:57:05.837Z","cmd":"viewport","args":"768x1024","origin":"http://localhost:5173/","durationMs":12,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:57:10.632Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\tablet-after-fix.png","origin":"http://localhost:5173/","durationMs":900,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:57:16.720Z","cmd":"snapshot","args":"","origin":"http://localhost:5173/","durationMs":37,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T01:57:26.752Z","cmd":"click","args":"","origin":"http://localhost:5173/","durationMs":0,"status":"error","hasCookies":false,"mode":"launched","error":"Usage: browse click <selector>"}
+{"ts":"2026-08-31T01:59:59.870Z","cmd":"click","args":"Celebrações","origin":"http://localhost:5173/","durationMs":35018,"status":"error","hasCookies":false,"mode":"launched","error":"locator.click: Timeout 5000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('Celebrações')\u001b[22m\n"}
+{"ts":"2026-08-31T02:05:26.120Z","cmd":"reload","args":"","origin":"about:blank","durationMs":9,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T02:05:51.239Z","cmd":"goto","args":"http://localhost:5173","origin":"http://localhost:5173/","durationMs":2581,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T02:05:59.113Z","cmd":"responsive","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\responsividade-v2","origin":"http://localhost:5173/","durationMs":3627,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T02:06:09.493Z","cmd":"viewport","args":"320x568","origin":"http://localhost:5173/","durationMs":15,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T02:06:14.814Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\mobile-small-v2.png","origin":"http://localhost:5173/","durationMs":692,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T02:06:32.929Z","cmd":"viewport","args":"414x896","origin":"http://localhost:5173/","durationMs":8,"status":"ok","hasCookies":false,"mode":"launched"}
+{"ts":"2026-08-31T02:06:40.302Z","cmd":"screenshot","args":"C:\\Users\\PAULOF~1\\AppData\\Local\\Temp\\iphone-max-v2.png","origin":"http://localhost:5173/","durationMs":734,"status":"ok","hasCookies":false,"mode":"launched"}

@@ -70,6 +70,7 @@ export const parishData = {
 
     { startMonth: 7, startDay: 27, endMonth: 7, endDay: 30, title: "Festa em honra a Santa Maria, Mãe de Deus", mapLink: "" },
     { startMonth: 8, startDay: 17, endMonth: 8, endDay: 20, title: "Tríduo e Festa em honra a Nossa Senhora da Piedade", location: "Comunidade Nossa Senhora da Piedade", mapLink: "" },
+    { startMonth: 8, startDay: 25, endMonth: 8, endDay: 27, title: "Festa do Retiro em honra de N. Sra. do Rosário e N. Sra. das Dores", location: "Comunidade do Retiro", mapLink: "https://maps.google.com/?q=-19.257777,-44.511005" },
     { startMonth: 8, startDay: 30, endMonth: 8, endDay: 30, title: "Festa de São Benedito — Abertura (30/09 a 03/10)", location: "Comunidade São Benedito", mapLink: "" },
     { startMonth: 9, startDay: 1, endMonth: 9, endDay: 3, title: "Festa em honra a São Benedito", location: "Comunidade São Benedito", mapLink: "" },
     { startMonth: 9, startDay: 9, endMonth: 9, endDay: 12, title: "Festa em honra a Nossa Senhora Aparecida", location: "Comunidade do Canabrava", mapLink: "" },
@@ -77,8 +78,26 @@ export const parishData = {
     { startMonth: 10, startDay: 19, endMonth: 10, endDay: 22, title: "Festa em honra a Jesus das Santas Chagas", location: "Comunidade Jesus das Santas Chagas - CRISTO REI, DIA DO LEIGO.", mapLink: "" },
   ],
 
-  rosarioFestivalInfo: null,
-  rosarioFestivalSchedule: [],
+  rosarioFestivalInfo: {
+    title: "Festa do Retiro em honra de N. Sra. do Rosário e N. Sra. das Dores",
+    date: "25/09 a 27/09",
+    location: "Comunidade do Retiro",
+    description: "Venha participar da nossa festividade com celebrações, atrações musicais e barraquinhas!"
+  },
+  rosarioFestivalSchedule: [
+    { day: "25 de setembro (Sexta-feira)", time: "18h30", event: "Abertura da festa com alvorada de fogos.", location: "Retiro" },
+    { day: "25 de setembro (Sexta-feira)", time: "19h00", event: "Santo Terço conduzido pelo EJC. Hasteamento da bandeira com o Congado do Retiro.", location: "Retiro", details: "Logo após, funcionamento de barraquinha e show com Gilson Costa e Forró G10" },
+    { day: "25 de setembro (Sexta-feira)", time: "20h30", event: "Show com Gilson Costa e Forró G10", location: "Retiro", isShow: true },
+    { day: "26 de setembro (Sábado)", time: "19h00", event: "Santo Terço conduzido pelo Terço dos Homens.", location: "Retiro", details: "Logo após, funcionamento de barraquinha e show com Gleiton do Forró e Vavá Silva" },
+    { day: "26 de setembro (Sábado)", time: "20h30", event: "Show com Gleiton do Forró e Vavá Silva", location: "Retiro", isShow: true },
+    { day: "27 de setembro (Domingo)", time: "06h00", event: "Alvorada de fogos.", location: "Retiro" },
+    { day: "27 de setembro (Domingo)", time: "09h00", event: "Café da manhã do Congado.", location: "Retiro" },
+    { day: "27 de setembro (Domingo)", time: "11h00", event: "Santa Missa em honra a Nossa Senhora do Rosário e Nossa Senhora das Dores.", location: "Retiro", details: "Logo após a Santa Missa, procissão e cumprimento de promessas." },
+    { day: "27 de setembro (Domingo)", time: "12h00", event: "Almoço com música ao vivo ao som de Willian e Davi.", location: "Retiro", isShow: true },
+    { day: "27 de setembro (Domingo)", time: "13h00", event: "Chegada da Cavalgada.", location: "Retiro" },
+    { day: "27 de setembro (Domingo)", time: "16h00", event: "Show com Higor Ribeiro.", location: "Retiro", isShow: true },
+    { day: "27 de setembro (Domingo)", time: "18h00", event: "Encerramento.", location: "Retiro" }
+  ],
   carmoFestivalSchedule: [
     { day: "05 de julho", time: "07h30", event: "Caminhada ecológica, corrida de 5km, corrida dos 100m, aulas de Cross, Zumba e muito mais", location: "Praça de Esportes da Padroeira" },
     { day: "05 de julho", time: "11h00", event: "Almoço no espaço social da Igreja Matriz e CUMBUCÃO", location: "Espaço Social da Matriz" },

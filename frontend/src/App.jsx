@@ -11,6 +11,7 @@ import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
 import PiedadeBanner from "./components/home/PiedadeBanner";
+import RetiroBanner from "./components/home/RetiroBanner";
 import SaoBeneditoBanner from "./components/home/SaoBeneditoBanner";
 
 import Celebracoes from "./components/home/Celebracoes";
@@ -60,6 +61,7 @@ function PublicSite() {
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
       <PiedadeBanner />
+      <RetiroBanner />
       <SaoBeneditoBanner />
 
       <main className="container main-grid">

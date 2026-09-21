@@ -109,7 +109,20 @@ export function SiteProvider({ children }) {
     if (data) {
       // Força o uso dos specialEvents locais (data.js), pois o Supabase pode ter cache antigo
       // já que este campo não é editável no painel admin.
-      data.specialEvents = initialParishData.specialEvents;
+      const now = new Date();
+      const currentMonth = now.getMonth();
+      const currentDay = now.getDate();
+
+      data.specialEvents = initialParishData.specialEvents.filter(event => {
+        if (event.endMonth > currentMonth) return true;
+        if (event.endMonth === currentMonth && event.endDay >= currentDay) return true;
+        return false;
+      });
+
+      // Também força o uso das informações dos festivais do arquivo local
+      data.rosarioFestivalInfo = initialParishData.rosarioFestivalInfo;
+      data.rosarioFestivalSchedule = initialParishData.rosarioFestivalSchedule;
+      data.carmoFestivalSchedule = initialParishData.carmoFestivalSchedule;
     }
 
     if (data && Array.isArray(data.massTimes)) {

@@ -1,0 +1,6 @@
+[2026-08-31T02:05:51.186Z] [debug] [vite] connecting...
+[2026-08-31T02:05:51.214Z] [info] %cDownload the React DevTools for a better development experience: https://reactjs.org/link/react-devtools font-weight:bold
+[2026-08-31T02:05:51.504Z] [debug] [vite] connected.
+[2026-08-31T02:05:51.507Z] [error] Failed to load resource: the server responded with a status of 401 (Unauthorized)
+[2026-08-31T02:05:51.507Z] [error] Failed to load resource: the server responded with a status of 401 (Unauthorized)
+[2026-08-31T02:05:52.464Z] [debug] Search endpoint requested!
