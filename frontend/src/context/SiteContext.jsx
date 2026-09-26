@@ -121,7 +121,32 @@ export function SiteProvider({ children }) {
 
       // Também força o uso das informações dos festivais do arquivo local
       data.rosarioFestivalInfo = initialParishData.rosarioFestivalInfo;
-      data.rosarioFestivalSchedule = initialParishData.rosarioFestivalSchedule;
+      // Filtra a programação do festival do Rosário para remover dias já passados
+      const monthMap = {
+        janeiro: 0,
+        fevereiro: 1,
+        março: 2,
+        abril: 3,
+        maio: 4,
+        junho: 5,
+        julho: 6,
+        agosto: 7,
+        setembro: 8,
+        outubro: 9,
+        novembro: 10,
+        dezembro: 11,
+      };
+      data.rosarioFestivalSchedule = initialParishData.rosarioFestivalSchedule.filter(item => {
+        const parts = item.day.split(' de ');
+        if (parts.length < 2) return true;
+        const dayNum = parseInt(parts[0], 10);
+        // Extract month name before any parenthesis or extra text
+        const monthName = parts[1].split(' ')[0].toLowerCase();
+        const monthNum = monthMap[monthName];
+        if (monthNum > currentMonth) return true;
+        if (monthNum === currentMonth && dayNum >= currentDay) return true;
+        return false;
+      });
       data.carmoFestivalSchedule = initialParishData.carmoFestivalSchedule;
     }
 

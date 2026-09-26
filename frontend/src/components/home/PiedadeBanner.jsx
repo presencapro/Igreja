@@ -43,6 +43,12 @@ export default function PiedadeBanner() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
+  // Exibe o banner apenas durante o período da festa (17 a 20 de setembro)
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 8, 17); // 17 de setembro (mês 8 = setembro)
+  const end = new Date(now.getFullYear(), 8, 21);   // expira após o dia 20
+  if (now < start || now >= end) return null;
+
   return (
     <section className={styles.bannerContainer}>
       <div className={styles.contentWrapper}>

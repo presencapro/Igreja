@@ -52,6 +52,12 @@ export default function SaoBeneditoBanner() {
   const [showSchedule, setShowSchedule] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
 
+  // Exibe o banner apenas durante o período da festa (30 de setembro a 03 de outubro)
+  const now = new Date();
+  const start = new Date(now.getFullYear(), 8, 30); // 30 de setembro (mês 8 = setembro)
+  const end = new Date(now.getFullYear(), 9, 4);    // expira após o dia 03/10
+  if (now < start || now >= end) return null;
+
   return (
     <section className={styles.bannerContainer}>
       <div className={styles.contentWrapper}>
