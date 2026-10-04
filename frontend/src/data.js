@@ -84,20 +84,7 @@ export const parishData = {
     location: "Comunidade do Retiro",
     description: "Venha participar da nossa festividade com celebrações, atrações musicais e barraquinhas!"
   },
-  rosarioFestivalSchedule: [
-    { day: "25 de setembro (Sexta-feira)", time: "18h30", event: "Abertura da festa com alvorada de fogos.", location: "Retiro" },
-    { day: "25 de setembro (Sexta-feira)", time: "19h00", event: "Santo Terço conduzido pelo EJC. Hasteamento da bandeira com o Congado do Retiro.", location: "Retiro", details: "Logo após, funcionamento de barraquinha e show com Gilson Costa e Forró G10" },
-    { day: "25 de setembro (Sexta-feira)", time: "20h30", event: "Show com Gilson Costa e Forró G10", location: "Retiro", isShow: true },
-    { day: "26 de setembro (Sábado)", time: "19h00", event: "Santo Terço conduzido pelo Terço dos Homens.", location: "Retiro", details: "Logo após, funcionamento de barraquinha e show com Gleiton do Forró e Vavá Silva" },
-    { day: "26 de setembro (Sábado)", time: "20h30", event: "Show com Gleiton do Forró e Vavá Silva", location: "Retiro", isShow: true },
-    { day: "27 de setembro (Domingo)", time: "06h00", event: "Alvorada de fogos.", location: "Retiro" },
-    { day: "27 de setembro (Domingo)", time: "09h00", event: "Café da manhã do Congado.", location: "Retiro" },
-    { day: "27 de setembro (Domingo)", time: "11h00", event: "Santa Missa em honra a Nossa Senhora do Rosário e Nossa Senhora das Dores.", location: "Retiro", details: "Logo após a Santa Missa, procissão e cumprimento de promessas." },
-    { day: "27 de setembro (Domingo)", time: "12h00", event: "Almoço com música ao vivo ao som de Willian e Davi.", location: "Retiro", isShow: true },
-    { day: "27 de setembro (Domingo)", time: "13h00", event: "Chegada da Cavalgada.", location: "Retiro" },
-    { day: "27 de setembro (Domingo)", time: "16h00", event: "Show com Higor Ribeiro.", location: "Retiro", isShow: true },
-    { day: "27 de setembro (Domingo)", time: "18h00", event: "Encerramento.", location: "Retiro" }
-  ],
+  
   carmoFestivalSchedule: [
     { day: "05 de julho", time: "07h30", event: "Caminhada ecológica, corrida de 5km, corrida dos 100m, aulas de Cross, Zumba e muito mais", location: "Praça de Esportes da Padroeira" },
     { day: "05 de julho", time: "11h00", event: "Almoço no espaço social da Igreja Matriz e CUMBUCÃO", location: "Espaço Social da Matriz" },
