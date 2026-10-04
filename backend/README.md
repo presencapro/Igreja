@@ -61,17 +61,6 @@ $ npm run test:cov
 
 O vídeo do destaque do Instagram é enviado pelo painel administrativo e armazenado no bucket público `site-media` do Supabase Storage. O bucket é criado automaticamente no primeiro envio. Configure no backend `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY`; são aceitos arquivos MP4, WebM ou MOV de até 50 MB.
 
-### Supabase keep-alive (Cloudflare Workers)
-
-O Worker em `../cloudflare/worker.js` executa uma consulta pequena à tabela `site_data` cinco vezes por dia (00:00, 05:00, 10:00, 15:00 e 20:00 UTC). O endpoint `GET /api/keep-alive` exige autenticação Bearer e consulta apenas a coluna `id`.
-
-1. Defina `KEEP_ALIVE_SECRET` nas variáveis de ambiente do backend com um segredo aleatório forte.
-2. Na raiz do repositório, configure `KEEP_ALIVE_URL` nas variáveis do Worker com a URL pública completa do backend, terminando em `/api/keep-alive`.
-3. Cadastre o mesmo valor de `KEEP_ALIVE_SECRET` como secret do Worker. Pela linha de comando, execute `npx wrangler secret put KEEP_ALIVE_SECRET`.
-4. Faça o deploy a partir da raiz do repositório com `npx wrangler deploy`.
-
-As falhas do endpoint ou da consulta ficam visíveis nos logs do Worker. O backend precisa estar implantado e acessível publicamente; essa rotina evita inatividade do banco, mas não substitui backups nem garante disponibilidade.
-
 When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
 
 If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
