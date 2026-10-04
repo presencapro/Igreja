@@ -18,6 +18,11 @@ async function keepSupabaseAwake(env) {
 }
 
 export default {
+  fetch() {
+    return new Response('Keep-alive Worker ativo. Execucoes via Cron Trigger.', {
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
+  },
   scheduled(_controller, env, ctx) {
     ctx.waitUntil(keepSupabaseAwake(env));
   },
