@@ -14,6 +14,8 @@ import {
   Trash2,
   HandCoins,
   HandHeart,
+  Film,
+  Download,
 } from "lucide-react";
 import { PastoraisContext } from "../../context/PastoraisContext";
 
@@ -35,6 +37,9 @@ export default function AdminPanel({
   resetEditor,
   saveStatus,
   saveMessage,
+  instagramVideoUrl,
+  instagramVideoDownloadUrl,
+  uploadInstagramVideo,
 }) {
   const donationStorageKey = "paroquia-doacoes-v1";
   const [donations, setDonations] = useState(() => {
@@ -64,6 +69,35 @@ export default function AdminPanel({
   const [pastoralSuccess, setPastoralSuccess] = useState("");
   const [inscricoesMap, setInscricoesMap] = useState({});
   const [loadingInscricoes, setLoadingInscricoes] = useState(false);
+  const [uploadingInstagramVideo, setUploadingInstagramVideo] = useState(false);
+  const [instagramVideoMessage, setInstagramVideoMessage] = useState("");
+  const [instagramVideoError, setInstagramVideoError] = useState(false);
+
+  async function handleInstagramVideoChange(event) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 50 * 1024 * 1024) {
+      setInstagramVideoError(true);
+      setInstagramVideoMessage("O vídeo deve ter no máximo 50 MB.");
+      event.target.value = "";
+      return;
+    }
+
+    setUploadingInstagramVideo(true);
+    setInstagramVideoError(false);
+    setInstagramVideoMessage("");
+    try {
+      await uploadInstagramVideo(file);
+      setInstagramVideoMessage("Vídeo atualizado com sucesso.");
+    } catch (error) {
+      setInstagramVideoError(true);
+      setInstagramVideoMessage(error.message || "Não foi possível enviar o vídeo.");
+    } finally {
+      setUploadingInstagramVideo(false);
+      event.target.value = "";
+    }
+  }
 
   function handlePastoralFormChange(event) {
     const { name, value } = event.target;
@@ -311,6 +345,14 @@ export default function AdminPanel({
                   </button>
                   <button
                     type="button"
+                    className={`sidebar-tab-btn ${adminTab === "instagram" ? "active" : ""}`}
+                    onClick={() => setAdminTab("instagram")}
+                  >
+                    <Film size={18} />
+                    <span>Destaque do Instagram</span>
+                  </button>
+                  <button
+                    type="button"
                     className={`sidebar-tab-btn ${adminTab === "avisos" ? "active" : ""}`}
                     onClick={() => setAdminTab("avisos")}
                   >
@@ -345,6 +387,7 @@ export default function AdminPanel({
                     {adminTab === "celebracoes" && "Horários & Celebrações"}
                     {adminTab === "comunidade" && "Clero & Comunidades"}
                     {adminTab === "links" && "Links & Mapas"}
+                    {adminTab === "instagram" && "Destaque do Instagram"}
                     {adminTab === "avisos" && "Avisos / Mural"}
                     {adminTab === "doacoes" && "Doações recebidas"}
                     {adminTab === "pastorais" && "Pastorais e Movimentos"}
@@ -360,6 +403,8 @@ export default function AdminPanel({
                       "Edite a lista de sacerdotes e ministros responsáveis (um por linha) e a descrição rápida de comunidades."}
                     {adminTab === "links" &&
                       "Atualize os links oficiais de redes sociais da diocese, posts incorporados e o link do Google Maps."}
+                    {adminTab === "instagram" &&
+                      "Troque somente o vídeo exibido no destaque do Instagram. Os demais dados e conteúdos do site não serão alterados."}
                     {adminTab === "avisos" &&
                       "Escreva avisos e comunicados (um por linha) que aparecerão em destaque dourado imediatamente acima do calendário de celebrações."}
                     {adminTab === "doacoes" &&
@@ -661,6 +706,56 @@ export default function AdminPanel({
                     </div>
                   )}
 
+                  {adminTab === "instagram" && (
+                    <div className="admin-fields-stack">
+                      <div className="instagram-video-admin-preview">
+                        <video
+                          key={instagramVideoUrl}
+                          src={instagramVideoUrl}
+                          controls
+                          playsInline
+                          preload="metadata"
+                        >
+                          Seu navegador não suporta a reprodução deste vídeo.
+                        </video>
+                      </div>
+                      <div className="form-group-admin">
+                        <label htmlFor="instagram-video-upload">Vídeo em destaque</label>
+                        <input
+                          id="instagram-video-upload"
+                          type="file"
+                          accept="video/mp4,video/webm,video/quicktime,.mp4,.webm,.mov"
+                          onChange={handleInstagramVideoChange}
+                          disabled={uploadingInstagramVideo}
+                        />
+                        <span className="field-hint">
+                          Selecione um vídeo MP4, WebM ou MOV de até 50 MB. Ao enviar, somente o vídeo desta publicação será substituído.
+                        </span>
+                      </div>
+                      <div className="instagram-video-admin-actions">
+                        <a
+                          className="btn-toggle-editor"
+                          href={instagramVideoDownloadUrl}
+                          download="destaque-instagram"
+                        >
+                          <Download size={17} />
+                          <span>Baixar vídeo atual</span>
+                        </a>
+                        {uploadingInstagramVideo && (
+                          <span className="field-hint">Enviando vídeo...</span>
+                        )}
+                      </div>
+                      {instagramVideoMessage && (
+                        <div
+                          className={`save-message-alert ${instagramVideoError ? "alert-error" : "alert-success"}`}
+                          role="status"
+                        >
+                          {instagramVideoMessage}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {adminTab === "avisos" && (
                     <div className="admin-fields-stack">
                       <div className="form-group-admin">
@@ -916,7 +1011,8 @@ export default function AdminPanel({
                 </div>
 
                 {/* Footer Save & Restore Actions */}
-                <div className="admin-card-actions">
+                {adminTab !== "instagram" && (
+                  <div className="admin-card-actions">
                   <button
                     className="btn-admin-save"
                     type="button"
@@ -933,9 +1029,10 @@ export default function AdminPanel({
                     <RotateCcw size={18} />
                     <span>Restaurar Padrão</span>
                   </button>
-                </div>
+                  </div>
+                )}
 
-                {saveMessage && (
+                {adminTab !== "instagram" && saveMessage && (
                   <div
                     className={`save-message-alert ${saveStatus === "success" ? "alert-success" : "alert-error"}`}
                   >

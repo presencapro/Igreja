@@ -103,6 +103,9 @@ function AdminRoute() {
              resetEditor={ctx.resetEditor}
              saveStatus={ctx.saveStatus}
              saveMessage={ctx.saveMessage}
+             instagramVideoUrl={ctx.instagramVideoUrl}
+             instagramVideoDownloadUrl={ctx.instagramVideoDownloadUrl}
+             uploadInstagramVideo={ctx.uploadInstagramVideo}
           />
        </main>
        <Footer siteData={ctx.siteData} />

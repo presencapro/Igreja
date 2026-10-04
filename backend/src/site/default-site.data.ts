@@ -47,6 +47,7 @@ export const defaultSiteData = {
     "Acompanhe as celebrações e comunicados pela página oficial.",
     "Horários de missas podem sofrer ajustes em datas especiais.",
   ],
+  instagramVideoUrl: "",
   specialEvents: [
     { startMonth: 0, startDay: 22, endMonth: 0, endDay: 25, title: 'Festa em honra a São Sebastião "Soldado de Cristo, defensor da unidade"', mapLink: "" },
     { startMonth: 2, startDay: 19, endMonth: 2, endDay: 19, title: "Solenidade em honra a São José", location: "Comunidade São José do Caboclo", mapLink: "" },

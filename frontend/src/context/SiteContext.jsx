@@ -96,6 +96,7 @@ export function SiteProvider({ children }) {
   const [siteLoading, setSiteLoading] = useState(true);
   const [saveStatus, setSaveStatus] = useState("");
   const [saveMessage, setSaveMessage] = useState("");
+  const [instagramVideoVersion, setInstagramVideoVersion] = useState(0);
 
   const [accessToken, setAccessToken] = useState(() => localStorage.getItem(AUTH_TOKEN_KEY));
   const [user, setUser] = useState(null);
@@ -327,6 +328,27 @@ export function SiteProvider({ children }) {
     localStorage.removeItem(AUTH_TOKEN_KEY);
   }
 
+  async function uploadInstagramVideo(file) {
+    const formData = new FormData();
+    formData.append("video", file);
+
+    const response = await fetch(`${BACKEND_URL}/site/instagram-video`, {
+      method: "POST",
+      headers: getAuthHeaders(),
+      credentials: "include",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      throw new Error(err.message ?? "Não foi possível enviar o vídeo.");
+    }
+
+    const { instagramVideoUrl } = await response.json();
+    setSiteData((current) => ({ ...current, instagramVideoUrl }));
+    setInstagramVideoVersion((version) => version + 1);
+  }
+
   async function saveEditor() {
     const updated = buildSiteDataFromEditor(editor, siteData);
 
@@ -385,6 +407,12 @@ export function SiteProvider({ children }) {
     siteLoading,
     saveStatus,
     saveMessage,
+    instagramVideoUrl:
+      siteData.instagramVideoUrl || "/instagram-reel.mp4?v=20261004",
+    instagramVideoDownloadUrl: siteData.instagramVideoUrl
+      ? `${BACKEND_URL}/site/instagram-video/download?v=${instagramVideoVersion}`
+      : "/instagram-reel.mp4?v=20261004",
+    uploadInstagramVideo,
     showAdmin,
     setShowAdmin,
     adminTab,

@@ -20,6 +20,8 @@ function getInstagramReelUrl(url) {
 export default function Instagram({ siteData }) {
   const instagramHandle = getInstagramHandle(siteData.links.instagramProfile);
   const instagramReelUrl = getInstagramReelUrl(siteData.links.instagramPost);
+  const videoUrl =
+    siteData.instagramVideoUrl || "/instagram-reel.mp4?v=20261004";
   
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(2336);
@@ -78,14 +80,13 @@ export default function Instagram({ siteData }) {
           >
             <video
               className="insta-embed-frame"
-              src="/instagram-reel.mp4"
+              src={videoUrl}
               controls
               playsInline
               preload="metadata"
             >
               Seu navegador não suporta a reprodução deste vídeo.
             </video>
-            <div className="overlay"></div>
           </div>
 
           <a 
@@ -102,7 +103,7 @@ export default function Instagram({ siteData }) {
               <button 
                 className="insta-post-action-btn" 
                 onClick={handleLike}
-                style={{ color: liked ? "#ff3040" : "inherit" }}
+                style={{ color: liked ? "#ff3040" : "#f5f5f5" }}
                 aria-label="Curtir"
               >
                 <Heart size={24} fill={liked ? "#ff3040" : "none"} />
@@ -129,7 +130,7 @@ export default function Instagram({ siteData }) {
             <button 
               className="insta-post-action-btn bookmark" 
               onClick={handleBookmark}
-              style={{ color: bookmarked ? "#ffb000" : "inherit" }}
+              style={{ color: bookmarked ? "#ffb000" : "#f5f5f5" }}
               aria-label="Salvar"
             >
               <Bookmark size={24} fill={bookmarked ? "#ffb000" : "none"} />
@@ -168,4 +169,3 @@ export default function Instagram({ siteData }) {
     </section>
   );
 }
-

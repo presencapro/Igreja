@@ -1070,8 +1070,8 @@ h2 {
 }
 
 .insta-post-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #000;
+  border: 1px solid #363636;
   border-radius: 8px;
   overflow: hidden;
   max-width: 380px;
@@ -1084,8 +1084,8 @@ h2 {
   align-items: center;
   justify-content: space-between;
   padding: 12px 14px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  border-bottom: 1px solid #262626;
+  background: #000;
 }
 
 .insta-post-profile {
@@ -1134,7 +1134,7 @@ h2 {
 .insta-post-meta strong {
   font-size: 0.85rem;
   font-weight: 600;
-  color: var(--text);
+  color: #f5f5f5;
   line-height: 1.2;
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -1142,7 +1142,7 @@ h2 {
 
 .insta-post-meta span {
   font-size: 0.75rem;
-  color: var(--muted);
+  color: #a8a8a8;
 }
 
 .insta-post-avatar {
@@ -1150,7 +1150,7 @@ h2 {
   height: 38px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--border);
+  border: 2px solid #dc2743;
 }
 
 .insta-post-header-btn {
@@ -1199,19 +1199,6 @@ h2 {
   background: #000;
 }
 
-.insta-embed-wrap .overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.insta-embed-wrap:hover .overlay {
-  opacity: 0.5;
-}
-
-
 .insta-embed-frame {
   background-color: #000;
   border-radius: 0;
@@ -1220,6 +1207,7 @@ h2 {
   width: 100%;
   min-width: 0;
   max-width: 100%;
+  aspect-ratio: 16 / 9;
   height: auto;
   margin: 0 auto;
   object-fit: contain;
@@ -1233,8 +1221,8 @@ h2 {
   font-size: 0.9rem;
   text-decoration: none;
   padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
+  border-bottom: 1px solid #262626;
+  background: #000;
 }
 
 .insta-post-more-link:hover {
@@ -1246,7 +1234,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 12px 14px 8px;
-  background: var(--surface);
+  background: #000;
 }
 
 .insta-post-actions-left {
@@ -1259,7 +1247,7 @@ h2 {
   border: none;
   padding: 0;
   cursor: pointer;
-  color: var(--text);
+  color: #f5f5f5;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1286,22 +1274,49 @@ h2 {
 .insta-post-likes {
   font-size: 0.88rem;
   font-weight: 700;
-  color: var(--text);
+  color: #f5f5f5;
   text-align: left;
   padding: 0 14px 6px;
-  background: var(--surface);
+  background: #000;
 }
 
 .insta-post-footer {
   padding: 0 14px 14px;
-  background: var(--surface);
+  background: #000;
 }
 
 .insta-post-caption {
   margin: 0;
   font-size: 0.9rem;
-  color: var(--text);
+  color: #f5f5f5;
   text-align: left;
+}
+
+.insta-post-footer .insta-post-caption,
+.insta-post-caption strong {
+  color: #f5f5f5;
+}
+
+.instagram-video-admin-preview {
+  width: min(100%, 480px);
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+.instagram-video-admin-preview video {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
+.instagram-video-admin-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 

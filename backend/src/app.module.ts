@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
+import { KeepAliveModule } from './keep-alive/keep-alive.module';
 import { PastoraisModule } from './pastorais/pastorais.module';
 import { SiteModule } from './site/site.module';
 
@@ -12,6 +13,7 @@ import { SiteModule } from './site/site.module';
     AuthModule,
     SiteModule,
     PastoraisModule,
+    KeepAliveModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,0 +1,6 @@
+name = "igreja-supabase-keep-alive"
+main = "cloudflare/worker.js"
+compatibility_date = "2026-10-04"
+
+[triggers]
+crons = ["0 0,5,10,15,20 * * *"]
