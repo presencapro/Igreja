@@ -407,11 +407,10 @@ export function SiteProvider({ children }) {
     siteLoading,
     saveStatus,
     saveMessage,
-    instagramVideoUrl:
-      siteData.instagramVideoUrl || "/instagram-reel.mp4?v=20261004",
+    instagramVideoUrl: siteData.instagramVideoUrl || "/instagram-reel.mp4",
     instagramVideoDownloadUrl: siteData.instagramVideoUrl
       ? `${BACKEND_URL}/site/instagram-video/download?v=${instagramVideoVersion}`
-      : "/instagram-reel.mp4?v=20261004",
+      : "/instagram-reel.mp4",
     uploadInstagramVideo,
     showAdmin,
     setShowAdmin,

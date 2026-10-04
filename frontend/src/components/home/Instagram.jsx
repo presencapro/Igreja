@@ -20,8 +20,7 @@ function getInstagramReelUrl(url) {
 export default function Instagram({ siteData }) {
   const instagramHandle = getInstagramHandle(siteData.links.instagramProfile);
   const instagramReelUrl = getInstagramReelUrl(siteData.links.instagramPost);
-  const videoUrl =
-    siteData.instagramVideoUrl || "/instagram-reel.mp4?v=20261004";
+  const videoUrl = siteData.instagramVideoUrl || "/instagram-reel.mp4";
   
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(2336);
