@@ -20,6 +20,7 @@ import Mapa from "./components/home/Mapa";
 import Instagram from "./components/home/Instagram";
 import Destaques from "./components/home/Destaques";
 import PixSection from "./components/home/PixSection";
+import LiturgiaDiaria from "./components/home/LiturgiaDiaria";
 
 import AdminPanel from "./components/admin/AdminPanel";
 import SEOMeta from "./components/layout/SEOMeta";
@@ -123,6 +124,16 @@ function App() {
         <Route path="/secretaria" element={<PublicSite />} />
         <Route path="/mapa" element={<PublicSite />} />
         <Route path="/instagram" element={<PublicSite />} />
+        <Route
+          path="/liturgia"
+          element={
+            <PublicPageWrapper>
+              <div className="container" style={{ margin: "2rem auto" }}>
+                <LiturgiaDiaria />
+              </div>
+            </PublicPageWrapper>
+          }
+        />
         <Route path="/acesso-secretaria" element={<AdminRoute />} />
         <Route path="/pastorais" element={<PublicPageWrapper><Pastorais /></PublicPageWrapper>} />
         <Route path="/pastorais/acesso" element={<PublicPageWrapper><PastoralAccess /></PublicPageWrapper>} />
