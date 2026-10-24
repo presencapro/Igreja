@@ -1,0 +1,531 @@
+/* src/components/home/SantoDoDia.css */
+
+/* Card Principal da Seção */
+.santo-section-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  border-radius: 12px;
+  padding: clamp(1rem, 3vw, 2rem);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Cabeçalho da Seção */
+.santo-header {
+  border-bottom: 1px solid var(--border, #d7dfe6);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.santo-header h2 {
+  font-size: clamp(1.3rem, 3vw, 1.85rem);
+  color: var(--primary, #0b2545);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.santo-subtitle {
+  font-size: clamp(0.85rem, 1.8vw, 0.98rem);
+  color: var(--muted, #5e6b7a);
+  line-height: 1.5;
+}
+
+/* Container do Santo */
+.santo-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+/* Card do Santo */
+.santo-card-item {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  border-radius: 12px;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Layout Superior: Imagem + Título e Resumo */
+.santo-card-header-layout {
+  display: grid;
+  grid-template-columns: minmax(180px, 260px) 1fr;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: start;
+}
+
+/* Wrapper e Imagem do Santo */
+.santo-img-wrapper {
+  width: 100%;
+  height: 260px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.santo-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.santo-card-img:hover {
+  transform: scale(1.02);
+}
+
+/* Informações do Santo */
+.santo-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.santo-badge-tag {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  background: var(--accent-soft, #f2e2a8);
+  color: #5c470a;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.santo-title-main {
+  font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+  color: var(--primary, #0b2545);
+  line-height: 1.3;
+  margin: 0;
+  word-break: break-word;
+}
+
+.santo-summary-text {
+  font-size: clamp(0.92rem, 1.6vw, 1rem);
+  line-height: 1.7;
+  color: var(--text, #171d24);
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+/* Caixa de Reflexão */
+.santo-reflection-card {
+  background: var(--bg, #f5f7f9);
+  border-left: 4px solid var(--primary, #0b2545);
+  border-radius: 8px;
+  padding: clamp(0.9rem, 2vw, 1.25rem);
+  box-sizing: border-box;
+}
+
+.santo-reflection-card h4 {
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  color: var(--primary, #0b2545);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.santo-reflection-card p {
+  font-size: clamp(0.9rem, 1.5vw, 0.98rem);
+  line-height: 1.65;
+  color: var(--text, #171d24);
+  margin: 0;
+}
+
+/* Caixa de Oração Devocional */
+.santo-prayer-card {
+  background: #fdfbf5;
+  border: 1px solid #ebd89e;
+  border-left: 4px solid var(--accent, #d4af37);
+  border-radius: 8px;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  box-sizing: border-box;
+}
+
+body[data-theme="dark"] .santo-prayer-card {
+  background: #191c1f;
+  border-color: #4b3e1c;
+}
+
+.santo-prayer-card h4 {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: #8c6d1f;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  line-height: 1.35;
+}
+
+body[data-theme="dark"] .santo-prayer-card h4 {
+  color: #e5c365;
+}
+
+.santo-prayer-card p {
+  font-size: clamp(0.92rem, 1.6vw, 1.02rem);
+  line-height: 1.8;
+  font-style: italic;
+  color: var(--text, #171d24);
+  margin: 0;
+  word-break: break-word;
+}
+
+/* Rodapé do Card com Ação */
+.santo-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.25rem;
+}
+
+/* Crédito da fonte (Fonte Divina) */
+.santo-source-credit {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--muted, #5e6b7a);
+  text-align: right;
+}
+
+.santo-source-credit a {
+  color: var(--primary, #0b2545);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.santo-source-credit a:hover {
+  color: var(--primary-dark, #07172b);
+}
+
+body[data-theme="dark"] .santo-source-credit a {
+  color: var(--text, #e8e8e8);
+}
+
+/* Botão secundário (compartilhar) */
+.santo-btn-secondary {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  color: var(--text, #171d24);
+  padding: 0.6rem 1.2rem;
+  min-height: 42px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+}
+
+.santo-btn-secondary:hover {
+  background: var(--accent-soft, #f2e2a8);
+  border-color: var(--accent, #d4af37);
+}
+
+.santo-btn-secondary:active {
+  transform: scale(0.98);
+}
+
+body[data-theme="dark"] .santo-btn-secondary {
+  background: transparent;
+  color: var(--text, #e8e8e8);
+}
+
+/* Texto informativo durante o carregamento */
+.santo-loading-text {
+  text-align: center;
+  color: var(--muted, #5e6b7a);
+  font-size: 0.92rem;
+  margin: 0.25rem 0 0;
+}
+
+.santo-btn-action {
+  background: var(--primary, #0b2545);
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  min-height: 42px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.santo-btn-action:hover {
+  background: var(--primary-dark, #07172b);
+}
+
+.santo-btn-action:active {
+  transform: scale(0.98);
+}
+
+/* Modal Responsivo */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.75rem, 3vw, 1.5rem);
+  z-index: 10000;
+}
+
+.modal-dialog {
+  background: var(--surface, #ffffff);
+  color: var(--text, #171d24);
+  border: 1px solid var(--border, #d7dfe6);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: clamp(1.2rem, 3vw, 2.25rem);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+  position: relative;
+  box-sizing: border-box;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: var(--bg, #f5f7f9);
+  border: 1px solid var(--border, #d7dfe6);
+  color: var(--text, #171d24);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.santo-modal-img-wrapper {
+  width: 100%;
+  height: clamp(180px, 35vw, 300px);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
+  background: #e2e8f0;
+}
+
+.santo-modal-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 8px;
+  display: block;
+}
+
+.modal-santo-title {
+  font-size: clamp(1.2rem, 2.8vw, 1.5rem);
+  color: var(--primary, #0b2545);
+  margin-bottom: 1.25rem;
+  padding-right: 2.5rem;
+  line-height: 1.3;
+}
+
+.modal-body-section {
+  margin-bottom: 1.25rem;
+}
+
+.modal-body-section h4 {
+  font-size: 1.05rem;
+  color: var(--primary, #0b2545);
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.modal-body-section p {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--text, #171d24);
+  white-space: pre-line;
+}
+
+.modal-prayer-box {
+  background: #fdfbf5;
+  border-left: 4px solid var(--accent, #d4af37);
+  padding: 1rem 1.25rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+}
+
+.modal-prayer-box h4 {
+  font-size: 1.05rem;
+  color: #8c6d1f;
+  margin-bottom: 0.4rem;
+}
+
+.modal-prayer-box p {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  font-style: italic;
+  color: var(--text, #171d24);
+}
+
+/* ======================================================== */
+/* MEDIA QUERIES RESPONSIVAS PARA TABLETS E SMARTPHONES     */
+/* ======================================================== */
+
+/* Telas Médias e Pequenas (Tablets e Celulares <= 768px) */
+@media (max-width: 768px) {
+  .santo-card-header-layout {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .santo-img-wrapper {
+    height: clamp(220px, 50vw, 320px);
+    max-width: 100%;
+  }
+
+  .santo-card-footer {
+    justify-content: stretch;
+  }
+
+  .santo-btn-action {
+    width: 100%;
+  }
+}
+
+/* Celulares Estreitos (Smartphones <= 480px) */
+@media (max-width: 480px) {
+  .santo-section-card {
+    padding: 1rem 0.85rem;
+    border-radius: 10px;
+  }
+
+  .santo-card-item {
+    padding: 1rem 0.85rem;
+  }
+
+  .santo-img-wrapper {
+    height: 220px;
+  }
+
+  .santo-reflection-card,
+  .santo-prayer-card {
+    padding: 0.9rem;
+  }
+
+  .santo-skeleton-badge {
+    width: 110px;
+  }
+}
+
+/* ======================================================== */
+/* SKELETON (estado de carregamento)                        */
+/* ======================================================== */
+
+.santo-skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e6eaee;
+  border-radius: 8px;
+  display: block;
+}
+
+.santo-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  animation: santo-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+body[data-theme="dark"] .santo-skeleton {
+  background: #22262b;
+}
+
+body[data-theme="dark"] .santo-skeleton::after {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+}
+
+.santo-skeleton-img {
+  height: 100%;
+  min-height: 220px;
+  border-radius: 10px;
+}
+
+.santo-skeleton-badge {
+  height: 22px;
+  width: 140px;
+  border-radius: 20px;
+}
+
+.santo-skeleton-title {
+  height: 28px;
+  width: 70%;
+  border-radius: 6px;
+}
+
+.santo-skeleton-line {
+  height: 14px;
+  width: 100%;
+  border-radius: 6px;
+}
+
+.santo-skeleton-line-short {
+  width: 82%;
+}
+
+@keyframes santo-skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}

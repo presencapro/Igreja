@@ -1,0 +1,123 @@
+/* Instagram.module.css - estilos premium para o componente Instagram */
+
+/* Card principal */
+.instagram-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  color: #f5f5f5;
+  transition: background 0.3s ease;
+}
+
+.instagram-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.insta-post-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.insta-post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.insta-post-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.insta-post-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+
+.insta-post-meta strong {
+  font-size: 1.125rem;
+  color: #fff;
+}
+
+.insta-post-meta span {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.insta-embed-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.insta-embed-frame {
+  width: 100%;
+  max-height: 500px;
+  border-radius: 12px;
+  background: #000;
+}
+
+.insta-post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.5rem;
+}
+
+.insta-post-action-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: transform 0.2s;
+}
+
+.insta-post-action-btn:hover {
+  transform: scale(1.1);
+}
+
+.insta-post-likes {
+  font-weight: 500;
+  color: #fff;
+}
+
+.insta-post-caption {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #e0e0e0;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff6a00, #ff8c00);
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #ff8c00, #ff6a00);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

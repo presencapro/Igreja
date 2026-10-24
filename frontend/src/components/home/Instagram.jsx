@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Heart, MessageCircle, Send, Bookmark } from "lucide-react";
+import "./Instagram.module.css";
 
 function getInstagramHandle(url) {
   if (!url) return "@paroquia";
@@ -14,14 +15,14 @@ function getInstagramHandle(url) {
 }
 
 function getInstagramReelUrl(url) {
-  return url || "https://www.instagram.com/reel/DaAkIeRBR7g/";
+  return url || "https://www.instagram.com/reel/Ddryqm7SYSc/";
 }
 
 export default function Instagram({ siteData }) {
   const instagramHandle = getInstagramHandle(siteData.links.instagramProfile);
   const instagramReelUrl = getInstagramReelUrl(siteData.links.instagramPost);
   const videoUrl = siteData.instagramVideoUrl || "/instagram-reel.mp4";
-  
+
   const [liked, setLiked] = useState(false);
   const [likesCount, setLikesCount] = useState(2336);
   const [bookmarked, setBookmarked] = useState(false);
@@ -47,7 +48,7 @@ export default function Instagram({ siteData }) {
         Acompanhe publicações, avisos e conteúdos da comunidade no perfil
         oficial.
       </p>
-      
+
       <section className="destaque-instagram">
         <div className="insta-post-card">
           <div className="insta-post-header">
@@ -72,9 +73,9 @@ export default function Instagram({ siteData }) {
             </a>
           </div>
 
-          <div 
-            className="insta-embed-wrap" 
-            onDoubleClick={handleLike} 
+          <div
+            className="insta-embed-wrap"
+            onDoubleClick={handleLike}
             style={{ cursor: "pointer" }}
           >
             <video
@@ -88,7 +89,7 @@ export default function Instagram({ siteData }) {
             </video>
           </div>
 
-          <a 
+          <a
             className="insta-post-more-link"
             href={instagramReelUrl}
             target="_blank"
@@ -99,16 +100,16 @@ export default function Instagram({ siteData }) {
 
           <div className="insta-post-actions">
             <div className="insta-post-actions-left">
-              <button 
-                className="insta-post-action-btn" 
+              <button
+                className="insta-post-action-btn"
                 onClick={handleLike}
                 style={{ color: liked ? "#ff3040" : "#f5f5f5" }}
                 aria-label="Curtir"
               >
                 <Heart size={24} fill={liked ? "#ff3040" : "none"} />
               </button>
-              <a 
-                className="insta-post-action-btn comment" 
+              <a
+                className="insta-post-action-btn comment"
                 href={instagramReelUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -116,8 +117,8 @@ export default function Instagram({ siteData }) {
               >
                 <MessageCircle size={24} />
               </a>
-              <a 
-                className="insta-post-action-btn share" 
+              <a
+                className="insta-post-action-btn share"
                 href={instagramReelUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -126,8 +127,8 @@ export default function Instagram({ siteData }) {
                 <Send size={24} />
               </a>
             </div>
-            <button 
-              className="insta-post-action-btn bookmark" 
+            <button
+              className="insta-post-action-btn bookmark"
               onClick={handleBookmark}
               style={{ color: bookmarked ? "#ffb000" : "#f5f5f5" }}
               aria-label="Salvar"

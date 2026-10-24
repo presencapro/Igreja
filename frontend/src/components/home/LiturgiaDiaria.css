@@ -1,0 +1,380 @@
+/* src/components/home/LiturgiaDiaria.css */
+
+.liturgia-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  border-radius: 12px;
+  padding: clamp(1rem, 3vw, 2rem);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  margin-bottom: 2.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.liturgia-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border, #d7dfe6);
+  padding-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.liturgia-title-group {
+  min-width: 0;
+  flex: 1 1 260px;
+}
+
+.liturgia-title-group h2 {
+  font-size: clamp(1.3rem, 3vw, 1.85rem);
+  color: var(--primary, #0b2545);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.25;
+}
+
+.liturgia-celebracao {
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: var(--text, #171d24);
+  margin-top: 0.25rem;
+  word-break: break-word;
+}
+
+.liturgia-date-display {
+  font-size: clamp(0.82rem, 1.8vw, 0.92rem);
+  color: var(--muted, #5e6b7a);
+  text-transform: capitalize;
+  margin-top: 0.2rem;
+}
+
+.liturgia-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.cor-liturgica-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: 1px solid currentColor;
+}
+
+.cor-Verde, .cor-verde { background: #e8f5e9; color: #2e7d32; border-color: #a5d6a7; }
+.cor-Branco, .cor-branco { background: #f5f5f5; color: #424242; border-color: #e0e0e0; }
+.cor-Vermelho, .cor-vermelho { background: #ffebee; color: #c62828; border-color: #ef9a9a; }
+.cor-Roxo, .cor-roxo { background: #f3e5f5; color: #6a1b9a; border-color: #ce93d8; }
+.cor-Rosa, .cor-rosa { background: #fce4ec; color: #ad1457; border-color: #f48fb1; }
+
+/* Barra de Navegação de Datas */
+.liturgia-nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background: var(--bg, #f5f7f9);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.date-btn {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  color: var(--text, #171d24);
+  padding: 0.5rem 0.85rem;
+  min-height: 40px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.date-btn:hover {
+  background: var(--accent-soft, #f2e2a8);
+  border-color: var(--accent, #d4af37);
+}
+
+.date-btn:active {
+  transform: scale(0.98);
+}
+
+.date-input {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  color: var(--text, #171d24);
+  padding: 0.5rem 0.75rem;
+  min-height: 40px;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+/* Cards das Leituras */
+.reading-card {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  border-left: 4px solid var(--accent, #d4af37);
+  border-radius: 8px;
+  padding: clamp(1rem, 2.5vw, 1.4rem);
+  margin-bottom: 1.25rem;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.reading-card.evangelho-card {
+  border-left: 4px solid var(--primary, #0b2545);
+}
+
+.reading-card h3 {
+  color: var(--primary, #0b2545);
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+
+.reading-ref {
+  font-size: clamp(0.8rem, 1.5vw, 0.88rem);
+  color: var(--muted, #5e6b7a);
+  font-weight: 500;
+}
+
+.reading-title {
+  font-size: clamp(0.9rem, 1.6vw, 0.98rem);
+  font-style: italic;
+  color: var(--text, #171d24);
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+
+.reading-refrao {
+  font-size: clamp(0.92rem, 1.7vw, 1.02rem);
+  font-weight: 600;
+  color: var(--primary, #0b2545);
+  background: var(--bg, #f5f7f9);
+  padding: 0.65rem 0.9rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  word-break: break-word;
+}
+
+.reading-text {
+  font-size: clamp(0.94rem, 1.6vw, 1.02rem);
+  line-height: 1.75;
+  color: var(--text, #171d24);
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+/* Seção de Orações */
+.prayers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.prayer-box {
+  background: var(--bg, #f5f7f9);
+  padding: clamp(0.9rem, 2vw, 1.2rem);
+  border-radius: 6px;
+  border-left: 3px solid var(--accent, #d4af37);
+  box-sizing: border-box;
+}
+
+.prayer-box h4 {
+  font-size: clamp(0.9rem, 1.6vw, 0.98rem);
+  color: var(--primary, #0b2545);
+  margin-bottom: 0.4rem;
+  line-height: 1.3;
+}
+
+.prayer-box p {
+  font-size: clamp(0.88rem, 1.5vw, 0.94rem);
+  line-height: 1.6;
+  color: var(--text, #171d24);
+  margin: 0;
+}
+
+.state-container {
+  padding: 2.5rem 1rem;
+  text-align: center;
+}
+
+.state-container.error {
+  background: #ffebee;
+  border-radius: 8px;
+  border: 1px solid #ef9a9a;
+  color: #c62828;
+}
+
+.state-container.loading {
+  color: var(--muted, #5e6b7a);
+  font-style: italic;
+}
+
+/* ======================================================== */
+/* SKELETON (estado de carregamento)                        */
+/* ======================================================== */
+
+.liturgia-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.liturgia-loading-text {
+  text-align: center;
+  color: var(--muted, #5e6b7a);
+  font-size: 0.92rem;
+  margin: 0.25rem 0 0.75rem;
+}
+
+.liturgia-skeleton-block {
+  background: #e6eaee;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.liturgia-skeleton-block::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.55) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+  animation: liturgia-skeleton-shimmer 1.4s ease-in-out infinite;
+}
+
+body[data-theme="dark"] .liturgia-skeleton-block {
+  background: #22262b;
+}
+
+body[data-theme="dark"] .liturgia-skeleton-block::after {
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 80%
+  );
+}
+
+.liturgia-skeleton-h1 {
+  height: 30px;
+  width: 55%;
+  margin: 0 auto;
+}
+
+.liturgia-skeleton-card {
+  height: 150px;
+}
+
+.liturgia-skeleton-short {
+  height: 100px;
+  width: 88%;
+}
+
+@keyframes liturgia-skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Rótulo do seletor de data */
+.date-picker-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.date-picker-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted, #5e6b7a);
+  padding-left: 0.15rem;
+}
+
+/* ======================================================== */
+/* MEDIA QUERIES RESPONSIVAS PARA TABLETS E SMARTPHONES     */
+/* ======================================================== */
+
+/* Telas Médias e Pequenas (Tablets e Celulares <= 640px) */
+@media (max-width: 640px) {
+  .liturgia-nav-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem;
+  }
+
+  .date-controls {
+    width: 100%;
+    display: flex;
+  }
+
+  .date-btn {
+    flex: 1;
+    min-height: 42px;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.82rem;
+  }
+
+  .date-input {
+    width: 100%;
+    min-height: 42px;
+    text-align: center;
+  }
+
+  .reading-card h3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+}
+
+/* Celulares Estreitos (Smartphones <= 480px) */
+@media (max-width: 480px) {
+  .liturgia-card {
+    padding: 1rem 0.85rem;
+    border-radius: 10px;
+  }
+
+  .reading-card {
+    padding: 0.9rem 0.75rem;
+  }
+}

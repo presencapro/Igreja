@@ -1,0 +1,33 @@
+/* src/components/home/SaintImage.css */
+/* Shimmer suave enquanto a imagem do santo carrega */
+
+.saint-image-loading {
+  background: linear-gradient(
+    100deg,
+    #e6eaee 30%,
+    #f2f5f7 50%,
+    #e6eaee 70%
+  );
+  background-size: 200% 100%;
+  animation: saint-shimmer 1.4s ease-in-out infinite;
+}
+
+.saint-image-loaded {
+  background: transparent;
+}
+
+@keyframes saint-shimmer {
+  0% { background-position: 120% 0; }
+  100% { background-position: -80% 0; }
+}
+
+/* Modo escuro: tons coerentes com o tema */
+body[data-theme="dark"] .saint-image-loading {
+  background: linear-gradient(
+    100deg,
+    #22262b 30%,
+    #2d3238 50%,
+    #22262b 70%
+  );
+  background-size: 200% 100%;
+}

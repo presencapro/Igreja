@@ -1,0 +1,26 @@
+.liturgia-section {
+  background: var(--bg-primary, #fdfdfd);
+  color: var(--text-primary, #333);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.date-nav button,
+.date-nav input {
+  margin: 0 0.25rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+}
+.loading {
+  text-align: center;
+  font-style: italic;
+}
+.error-msg {
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 1rem;
+  border-radius: 4px;
+}

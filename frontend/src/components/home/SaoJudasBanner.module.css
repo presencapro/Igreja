@@ -1,0 +1,456 @@
+/* ===== SÃO JUDAS TADEU BANNER — CORES EXTRAÍDAS DO CARTAZ OFICIAL ===== */
+/* Verde Floresta (#124225) + Bordô/Vinho Sagrado (#7c121e) + Dourado Real (#c59b46) + Pergaminho Creme (#faf5ea) */
+
+.bannerContainer {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  color: #2b1d14;
+  background:
+    radial-gradient(ellipse at 15% 15%, rgba(244, 234, 210, 0.85) 0%, transparent 60%),
+    radial-gradient(ellipse at 85% 85%, rgba(235, 218, 185, 0.7) 0%, transparent 60%),
+    linear-gradient(165deg, #fdfaf2 0%, #f7efdc 45%, #ecdebe 100%);
+  border-top: 4px solid #c59b46;
+  border-bottom: 4px solid #124225;
+  box-shadow: inset 0 0 70px rgba(124, 18, 30, 0.05);
+}
+
+/* Textura suave de pergaminho */
+.bannerContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(197, 155, 70, 0.12) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Moldura ornamental nas bordas */
+.bannerContainer::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1.5px solid rgba(197, 155, 70, 0.35);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem clamp(1rem, 4vw, 2.5rem) 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ===== BADGE SUPERIOR ===== */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #124225 0%, #0a2917 100%);
+  color: #f7eed8;
+  padding: 0.45rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 14px rgba(18, 66, 37, 0.3);
+  border: 1px solid rgba(197, 155, 70, 0.7);
+}
+
+/* ===== CABEÇALHO DO EVENTO ===== */
+.headerGroup {
+  text-align: center;
+  max-width: 820px;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.communityTag {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #124225;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.triduoLabel {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #124225;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
+}
+
+.mainTitleBig {
+  font-family: 'Cinzel', 'Georgia', 'Playfair Display', serif;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 900;
+  color: #7c121e; /* Vinho sagrado das vestes de São Judas */
+  line-height: 1.08;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+/* Cápsula de Data Verde Floresta idêntica à arte */
+.dateBadgeCapsule {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #124225;
+  color: #ffffff;
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+  font-weight: 700;
+  padding: 0.55rem clamp(1.2rem, 3vw, 2.2rem);
+  border-radius: 999px;
+  border: 2px solid #c59b46;
+  box-shadow: 0 6px 18px rgba(18, 66, 37, 0.25);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.02em;
+}
+
+.divider {
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #c59b46, transparent);
+  border: none;
+  margin: 0.5rem auto 1.5rem;
+}
+
+/* ===== TEMA DO TRÍDUO ===== */
+.themeCard {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(197, 155, 70, 0.4);
+  border-left: 5px solid #7c121e;
+  border-radius: 8px;
+  padding: 1.25rem 1.75rem;
+  max-width: 760px;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 16px rgba(124, 18, 30, 0.06);
+}
+
+.themeLabel {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #124225;
+  margin-bottom: 0.4rem;
+}
+
+.themeText {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 700;
+  font-style: italic;
+  color: #7c121e;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ===== GRID DE DESTAQUES NATIVO (SEM IMAGEM) ===== */
+.highlightsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+  max-width: 900px;
+  width: 100%;
+  margin-bottom: 2.25rem;
+}
+
+.highlightItem {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(197, 155, 70, 0.35);
+  border-left: 4px solid #124225;
+  border-radius: 8px;
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  box-shadow: 0 4px 12px rgba(18, 66, 37, 0.05);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.highlightItem:hover {
+  transform: translateY(-2px);
+  border-left-color: #7c121e;
+  box-shadow: 0 6px 16px rgba(124, 18, 30, 0.08);
+}
+
+.highlightIcon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.highlightText strong {
+  display: block;
+  color: #124225;
+  font-size: 1.02rem;
+  margin-bottom: 0.25rem;
+  font-family: 'Georgia', serif;
+}
+
+.highlightText span {
+  font-size: 0.92rem;
+  color: #4a382c;
+  line-height: 1.5;
+  display: block;
+}
+
+/* ===== BOTÃO TOGGLE PROGRAMAÇÃO ===== */
+.toggleBtn {
+  background: linear-gradient(135deg, #124225 0%, #0a2917 100%);
+  color: #ffffff;
+  border: 2px solid #c59b46;
+  padding: 0.85rem 2rem;
+  border-radius: 999px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  box-shadow: 0 6px 20px rgba(18, 66, 37, 0.35);
+  transition: all 0.25s ease;
+  margin-bottom: 1.5rem;
+}
+
+.toggleBtn:hover {
+  background: linear-gradient(135deg, #7c121e 0%, #5c0f16 100%);
+  border-color: #e6be67;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(124, 18, 30, 0.4);
+}
+
+/* ===== SEÇÃO DA PROGRAMAÇÃO COMPLETA ===== */
+.scheduleSection {
+  width: 100%;
+  max-width: 820px;
+  animation: fadeIn 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scheduleTitle {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #124225;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Tabs dos Dias */
+.daysContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 600px) {
+  .daysContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.dayTab {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(197, 155, 70, 0.4);
+  border-radius: 8px;
+  padding: 0.75rem 0.5rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+}
+
+.dayTab:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #124225;
+}
+
+.activeDayTab {
+  background: #124225 !important;
+  border-color: #c59b46 !important;
+  box-shadow: 0 4px 12px rgba(18, 66, 37, 0.3);
+}
+
+.activeDayTab .tabDate,
+.activeDayTab .tabWeek {
+  color: #ffffff !important;
+}
+
+.tabDate {
+  font-family: 'Georgia', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #7c121e;
+}
+
+.tabWeek {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #124225;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Card do Dia Selecionado */
+.dayCard {
+  background: #ffffff;
+  border: 1px solid rgba(197, 155, 70, 0.4);
+  border-top: 4px solid #7c121e;
+  border-radius: 10px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(124, 18, 30, 0.08);
+  margin-bottom: 1.5rem;
+}
+
+.dayHeader {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #7c121e;
+  border-bottom: 1px solid rgba(197, 155, 70, 0.3);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.eventsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.eventRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  background: #fbf8ef;
+}
+
+.eventTimeBadge {
+  background: #124225;
+  color: #ffffff;
+  font-family: 'Georgia', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.specialBadge {
+  background: #7c121e;
+  color: #ffffff;
+  font-family: 'Georgia', serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.eventDetailText {
+  font-size: 0.98rem;
+  color: #2b1d14;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Card de Comidas e Atrações */
+.socialCard {
+  background: #fdfaf2;
+  border: 1px dashed #c59b46;
+  border-radius: 8px;
+  padding: 1.25rem;
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+.socialTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #124225;
+  margin-bottom: 0.35rem;
+}
+
+.socialText {
+  font-size: 0.95rem;
+  color: #4a382c;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Rodapé do Evento */
+.footerInfo {
+  text-align: center;
+  border-top: 1px solid rgba(197, 155, 70, 0.3);
+  padding-top: 1.25rem;
+  margin-top: 1rem;
+}
+
+.clergyNames {
+  font-family: 'Georgia', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #124225;
+  margin-bottom: 0.25rem;
+}
+
+.dioceseText {
+  font-size: 0.85rem;
+  color: #7a5e4b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* WhatsApp CTA */
+.whatsappCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #25d366;
+  color: #ffffff;
+  padding: 0.75rem 1.6rem;
+  border-radius: 999px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+  transition: all 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.whatsappCta:hover {
+  background: #1ebc59;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+}
