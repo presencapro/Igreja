@@ -240,6 +240,12 @@ export default function SantoDoDia({
         </div>
       )}
 
+      {!loading && !error && santos.length === 0 && (
+        <div className="state-container empty-state">
+          <p>Nenhuma memória ou comemoração de santo registrada para esta data.</p>
+        </div>
+      )}
+
       {modalOpen && selectedSanto && (
         <div className="modal-overlay" onClick={closeModal} role="dialog" aria-modal="true">
           <div className="modal-dialog" onClick={(e) => e.stopPropagation()}>

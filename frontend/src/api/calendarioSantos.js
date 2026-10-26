@@ -160,7 +160,7 @@ export const NOMES_SANTOS = {
   "09-29": "São Miguel, São Gabriel e São Rafael Arcanjos",
   "09-30": "São Jerônimo",
 
-  // OUTUBRO (21-25 e 28 ficam com detalhes completos em CALENDARIO_SANTOS)
+  // OUTUBRO
   "10-01": "Santa Teresinha do Menino Jesus",
   "10-02": "Santos Anjos da Guarda",
   "10-04": "São Francisco de Assis",
@@ -172,6 +172,17 @@ export const NOMES_SANTOS = {
   "10-16": "Santa Edwiges e Santa Margarida Maria Alacoque",
   "10-17": "Santo Inácio de Antioquia",
   "10-18": "São Lucas Evangelista",
+  "10-21": "Santa Úrsula e Companheiras Mártires",
+  "10-22": "São João Paulo II",
+  "10-23": "São João de Capistrano",
+  "10-24": "Santo Antônio Maria Claret",
+  "10-25": "Santo Antônio de Sant'Anna Galvão (Frei Galvão)",
+  "10-26": "Santo Evaristo, Papa e Mártir",
+  "10-27": "São Gonçalo de Lagos",
+  "10-28": "São Simão e São Judas Tadeu, Apóstolos",
+  "10-29": "São Narciso, o bispo de Jerusalém",
+  "10-30": "São Frumêncio",
+  "10-31": "Santo Afonso Rodrigues",
 
   // NOVEMBRO
   "11-01": "Todos os Santos",

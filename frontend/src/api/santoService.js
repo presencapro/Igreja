@@ -10,13 +10,18 @@ import { preloadImageUrl } from "../utils/imageValidation.js";
 
 export const DEFAULT_SANTO_IMAGE = "/images/santo-default.jpg";
 
+const isClientLocalhost =
+  typeof window !== "undefined" &&
+  (window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1");
+
 const BACKEND_URL =
   typeof import.meta !== "undefined" && import.meta.env?.VITE_BACKEND_URL
     ? import.meta.env.VITE_BACKEND_URL
-    : "http://localhost:3000";
+    : isClientLocalhost
+    ? "http://localhost:3000"
+    : "";
 
-/**
- * FONTE PRINCIPAL: Canção Nova Santo do Dia
 function decodeHtmlEntities(str) {
   if (!str) return "";
   return str
@@ -232,9 +237,9 @@ async function fetchFonteDivina(date) {
 
     const endpoints = [
       `/api-ftdv/santos?date=${encodeURIComponent(targetDateStr)}`,
-      `${BACKEND_URL}/site/santo-do-dia?date=${dia}/${mes}`,
+      BACKEND_URL ? `${BACKEND_URL}/site/santo-do-dia?date=${dia}/${mes}` : null,
       `https://www.ftdv.app/santos?date=${encodeURIComponent(targetDateStr)}`
-    ];
+    ].filter(Boolean);
 
     let html = null;
     for (const url of endpoints) {
@@ -491,17 +496,52 @@ const CALENDARIO_SANTOS = {
   },
   "10-25": {
     nome: "Santo Antônio de Sant'Anna Galvão (Frei Galvão)",
-    imagemPadrao: "",
+    imagemPadrao: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Frei_Galv%C3%A3o.jpg",
     historia: "Primeiro santo nascido no Brasil, nascido em Guaratinguetá-SP em 1739. Foi franciscano exemplar, homem de profunda paz e caridade incansável para com os doentes, aflitos e necessitados.",
     reflexao: "Frei Galvão fez de sua vida um hino de amor e consolação a quem sofria. Que sejamos promotores da paz e da reconciliação onde quer que estejamos.",
     oracao: "Deus de amor e Pai de misericórdia, que fizestes de Santo Antônio de Sant'Anna Galvão um instrumento de Vossa caridade e alívio para os que sofrem, concedei-nos a graça de imitar a sua bondade. Por Cristo, nosso Senhor. Amém."
   },
+  "10-26": {
+    nome: "Santo Evaristo, Papa e Mártir",
+    imagemPadrao: "https://img.cancaonova.com/cnimages/canais/uploads/sites/2/2022/10/Santo-Evaristo-Papa-e-M%C3%A1rtir-300-x-300-1.jpg",
+    historia: "Santo Evaristo, sucessor de São Clemente, foi bispo de Roma por volta do ano 100. Nascido na Grécia e de origem judaica, dedicou seu pontificado à organização pastoral da Igreja primitiva, designando sacerdotes para os títulos paroquiais de Roma e estabelecendo que os diáconos acompanhassem os bispos na pregação do Evangelho. Sofreu o martírio no reinado do imperador Trajano, sendo sepultado no Vaticano perto do túmulo do apóstolo Pedro.",
+    reflexao: "Santo Evaristo nos ensina a amar e servir à Igreja com fidelidade, zelo pastoral e coragem serena diante de qualquer tribulação.",
+    oracao: "Sucessor dos apóstolos, tu bebeste das fontes do Evangelho; conduzi os cristãos ao verdadeiro entendimento do cristianismo e à perseverança na fé em Cristo Nosso Senhor. Amém!"
+  },
+  "10-27": {
+    nome: "São Gonçalo de Lagos",
+    imagemPadrao: "https://img.cancaonova.com/cnimages/canais/uploads/sites/2/2022/10/S%C3%A3o-Gon%C3%A7alo-de-Lagos-300-x-300-1.jpg",
+    historia: "São Gonçalo nasceu em Lagos, Portugal, por volta de 1370. Religioso da Ordem de Santo Agostinho, destacou-se pela pregação comovente, caridade heróica para com os pobres e doentes, e profundo dom de catequizar os mais humildes. Faleceu em Torres Vedras em 1422, sendo venerado como modelo de mansidão e amor fraterno.",
+    reflexao: "A vida de São Gonçalo nos convida a sermos instrumentos de paz, generosidade e escuta atenta aos que mais necessitam.",
+    oracao: "Ó Deus, que concedestes a São Gonçalo de Lagos o zelo apostólico e a compaixão pelos pequeninos, dai-nos a graça de amar a todos com o coração de Cristo. Amém."
+  },
   "10-28": {
     nome: "São Simão e São Judas Tadeu, Apóstolos",
-    imagemPadrao: "",
-    historia: "Dois dos doze apóstolos escolhidos pelo Senhor Jesus. São Judas Tadeu, irmão de Tiago e parente do Senhor, é invocado pela tradição católica como poderoso padroeiro das causas difíceis e desesperadas.",
+    imagemPadrao: "https://img.cancaonova.com/cnimages/canais/uploads/sites/2/2022/10/S%C3%A3o-Sim%C3%A3o-e-S%C3%A3o-Judas-Tadeu-300-x-300-1.jpg",
+    historia: "Dois dos doze apóstolos escolhidos pelo Senhor Jesus. São Judas Tadeu, irmão de Tiago e parente do Senhor, pregou com zelo na Mesopotâmia e na Pérsia, sendo invocado pela tradição católica como poderoso padroeiro das causas difíceis e desesperadas. São Simão, chamado o Zelota, anunciou o Evangelho com ardente fidelidade. Ambos selaram seu amor por Cristo com o martírio.",
     reflexao: "Os apóstolos foram os alicerces da Igreja, dando a vida pelo testemunho da Ressurreição de Jesus. Nossa fé repousa sobre a fidelidade deles.",
     oracao: "São Judas Tadeu, glorioso apóstolo e servo fiel de Jesus, rogai por nós nas nossas angústias e causas mais difíceis, para que alcancemos o socorro e a paz do Senhor. Amém."
+  },
+  "10-29": {
+    nome: "São Narciso, o bispo de Jerusalém",
+    imagemPadrao: "https://img.cancaonova.com/cnimages/canais/uploads/sites/2/2022/10/S%C3%A3o-Narciso-300-x-300-1.jpg",
+    historia: "São Narciso foi Bispo de Jerusalém no final do século II, assumindo o episcopado em idade avançada. Homem austero, de oração contínua e pureza exemplar, presidiu um concílio histórico em Cesareia que confirmou a celebração da Páscoa sempre aos domingos. Caluniado injustamente, perdoou seus detratores e retirou-se ao deserto em penitência. Mais tarde, com a verdade reestabelecida, foi acolhido triunfalmente pelo povo, governando sua diocese com sabedoria até os 116 anos de idade.",
+    reflexao: "São Narciso nos ensina que a humildade, o silêncio diante das ofensas e a confiança inabalável na Providência divina vencem toda mentira e maldade.",
+    oracao: "Pedimos ao padroeiro de Jerusalém que cuide dos cristãos e fortaleça a fé do povo de Deus, concedendo-nos a graça da paz que vem do Senhor. Amém!"
+  },
+  "10-30": {
+    nome: "São Frumêncio, Apóstolo da Etiópia",
+    imagemPadrao: "https://upload.wikimedia.org/wikipedia/commons/4/4d/Frumentius.jpg",
+    historia: "São Frumêncio foi o evangelizador e primeiro bispo do Reino de Axum (Etiópia). Consagrado por Santo Atanásio de Alexandria, converteu o rei e batizou multidões, lançando as raízes do cristianismo no continente africano.",
+    reflexao: "A coragem missionária de São Frumêncio nos lembra que o Evangelho de Cristo é destinado a todos os povos e culturas.",
+    oracao: "Senhor Deus, que enviastes São Frumêncio para iluminar os povos da Etiópia com a luz do Evangelho, concedei-nos ardor missionário para testemunhar vossa verdade. Amém."
+  },
+  "10-31": {
+    nome: "Santo Afonso Rodrigues",
+    imagemPadrao: "https://upload.wikimedia.org/wikipedia/commons/a/ab/Saint_Alphonsus_Rodriguez.jpg",
+    historia: "Irmão leigo da Companhia de Jesus, serviu por mais de trinta anos como porteiro do colégio em Maiorca. Com sua oração profunda, doçura e acolhimento exemplar, aconselhou e orientou espiritualmente grandes santos como São Pedro Claver.",
+    reflexao: "Nas tarefas mais simples do cotidiano encontramos o caminho da maior santidade quando feitas com imenso amor a Deus.",
+    oracao: "Ó Deus, que revelastes aos humildes a riqueza do vosso amor, fazei que, a exemplo de Santo Afonso Rodrigues, vos sirvamos com simplicidade e fidelidade. Amém."
   }
 };
 
@@ -533,7 +573,7 @@ function getFromCache(date) {
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     // Formato: { v, createdAt, items }. Entradas antigas são ignoradas.
-    if (parsed && parsed.v === 6 && parsed.createdAt && Array.isArray(parsed.items)) {
+    if (parsed && parsed.v === 7 && parsed.createdAt && Array.isArray(parsed.items)) {
       const isFresh = Date.now() - parsed.createdAt < CACHE_TTL_MS;
       const isValid = parsed.items.length > 0 && parsed.items[0].nome;
       if (isFresh && isValid) {
@@ -552,7 +592,7 @@ function setCache(date, data) {
     const key = formatSantoCacheKey(date);
     localStorage.setItem(
       key,
-      JSON.stringify({ v: 6, createdAt: Date.now(), items: data })
+      JSON.stringify({ v: 7, createdAt: Date.now(), items: data })
     );
   } catch (e) {}
 }
@@ -935,8 +975,11 @@ export async function getSantoDoDia(targetDate = new Date()) {
       nome: canonico.nome,
       imagem: imgCanonica,
       historia: historiaFinal,
+      resumo: historiaFinal ? (historiaFinal.length > 280 ? historiaFinal.slice(0, 280) + "..." : historiaFinal) : "",
       reflexao: canonico.reflexao,
       oracao: canonico.oracao,
+      fonte: "Calendário Litúrgico",
+      tipo: "Memória Litúrgica",
       data: dateKey
     }
   ];
