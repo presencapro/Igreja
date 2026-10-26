@@ -4,8 +4,16 @@ import { getSantoDoDia, formatCacheKey } from "../../api/santoService";
 import SaintImage from "./SaintImage";
 import "./SantoDoDia.css";
 
-export default function SantoDoDia() {
-  const [date, setDate] = useState(() => new Date());
+export default function SantoDoDia({
+  date: propDate,
+  setDate: propSetDate,
+  hideNavBar = false,
+  onOpenLiturgia = null
+}) {
+  const [internalDate, setInternalDate] = useState(() => new Date());
+  const date = propDate ?? internalDate;
+  const setDate = propSetDate ?? setInternalDate;
+
   const [santos, setSantos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -96,26 +104,41 @@ export default function SantoDoDia() {
         </p>
       </div>
 
-      <div className="liturgia-nav-bar">
-        <div className="date-controls">
-          <button className="date-btn" onClick={() => changeDate(-1)} aria-label="Dia anterior">
-            ← Dia anterior
-          </button>
-          <button className="date-btn" onClick={onToday} aria-label="Ver Santo de Hoje">
-            📅 Hoje
-          </button>
-          <button className="date-btn" onClick={() => changeDate(1)} aria-label="Dia seguinte">
-            Dia seguinte →
-          </button>
+      {!hideNavBar && (
+        <div className="liturgia-nav-bar">
+          <div className="date-controls">
+            <button className="date-btn" onClick={() => changeDate(-1)} aria-label="Dia anterior">
+              ← Dia anterior
+            </button>
+            <button className="date-btn" onClick={onToday} aria-label="Ver Santo de Hoje">
+              📅 Hoje
+            </button>
+            <button className="date-btn" onClick={() => changeDate(1)} aria-label="Dia seguinte">
+              Dia seguinte →
+            </button>
+          </div>
+          <input
+            type="date"
+            className="date-input"
+            value={formatCacheKey(date)}
+            onChange={onInputChange}
+            aria-label="Escolher data do Santo"
+          />
         </div>
-        <input
-          type="date"
-          className="date-input"
-          value={formatCacheKey(date)}
-          onChange={onInputChange}
-          aria-label="Escolher data do Santo"
-        />
-      </div>
+      )}
+
+      {onOpenLiturgia && (
+        <div
+          className="santo-switch-banner"
+          onClick={onOpenLiturgia}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && onOpenLiturgia()}
+        >
+          <span>📖 Ver leituras e o Evangelho da Liturgia Diária</span>
+          <span className="santo-switch-arrow">→</span>
+        </div>
+      )}
 
       {loading && (
         <div className="santo-grid" aria-live="polite">
@@ -160,8 +183,8 @@ export default function SantoDoDia() {
                   <div className="santo-card-info">
                     <span className="santo-badge-tag">{santo.tipo || "Memória Litúrgica"}</span>
                     <h3 className="santo-title-main">{santo.nome}</h3>
-                    {santo.historia && (
-                      <p className="santo-summary-text">{santo.historia}</p>
+                    {(santo.resumo || santo.historia) && (
+                      <p className="santo-summary-text">{santo.resumo || santo.historia}</p>
                     )}
                   </div>
                 </div>
@@ -237,7 +260,13 @@ export default function SantoDoDia() {
             {selectedSanto.historia && (
               <div className="modal-body-section">
                 <h4>📖 História</h4>
-                <p>{selectedSanto.historia}</p>
+                <div className="modal-paragraphs">
+                  {selectedSanto.historia.split("\n\n").map((paragrafo, pIdx) => (
+                    <p key={pIdx} style={{ marginBottom: "0.85rem", lineHeight: "1.65" }}>
+                      {paragrafo}
+                    </p>
+                  ))}
+                </div>
               </div>
             )}
 

@@ -1,5 +1,7 @@
-/* ===== SÃO JUDAS TADEU BANNER — CORES EXTRAÍDAS DO CARTAZ OFICIAL ===== */
-/* Verde Floresta (#124225) + Bordô/Vinho Sagrado (#7c121e) + Dourado Real (#c59b46) + Pergaminho Creme (#faf5ea) */
+/* ===== SÃO JUDAS TADEU BANNER — CORES EXTRAÍDAS DA IMAGEM OFICIAL ===== */
+/* Verde Floresta (#143d23) + Vinho Sagrado (#7a1723) + Ouro Sacro (#c59b46) + Pergaminho Creme (#faf6eb) */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
 
 .bannerContainer {
   width: 100%;
@@ -9,40 +11,39 @@
   background:
     radial-gradient(ellipse at 15% 15%, rgba(244, 234, 210, 0.85) 0%, transparent 60%),
     radial-gradient(ellipse at 85% 85%, rgba(235, 218, 185, 0.7) 0%, transparent 60%),
-    linear-gradient(165deg, #fdfaf2 0%, #f7efdc 45%, #ecdebe 100%);
+    linear-gradient(165deg, #fdfaf2 0%, #f7eedb 45%, #ecdebd 100%);
   border-top: 4px solid #c59b46;
-  border-bottom: 4px solid #124225;
-  box-shadow: inset 0 0 70px rgba(124, 18, 30, 0.05);
+  border-bottom: 4px solid #143d23;
+  box-shadow: inset 0 0 70px rgba(122, 23, 35, 0.05);
+  padding: 3.5rem 1rem 4rem;
 }
 
-/* Textura suave de pergaminho */
+/* Textura sutil de pergaminho clássico */
 .bannerContainer::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image:
-    radial-gradient(rgba(197, 155, 70, 0.12) 1.5px, transparent 1.5px);
-  background-size: 28px 28px;
-  opacity: 0.6;
+  background-image: radial-gradient(rgba(197, 155, 70, 0.12) 1.5px, transparent 1.5px);
+  background-size: 26px 26px;
+  opacity: 0.65;
   pointer-events: none;
 }
 
-/* Moldura ornamental nas bordas */
+/* Moldura fina com cantos dourados */
 .bannerContainer::after {
   content: '';
   position: absolute;
   inset: 12px;
   border: 1.5px solid rgba(197, 155, 70, 0.35);
-  border-radius: 6px;
+  border-radius: 8px;
   pointer-events: none;
 }
 
 .contentWrapper {
   position: relative;
-  z-index: 1;
-  max-width: 1100px;
+  z-index: 2;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 3.5rem clamp(1rem, 4vw, 2.5rem) 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,404 +54,685 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #124225 0%, #0a2917 100%);
+  background: linear-gradient(135deg, #143d23 0%, #0d2a17 100%);
   color: #f7eed8;
-  padding: 0.45rem 1.4rem;
+  padding: 0.5rem 1.4rem;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
-  box-shadow: 0 4px 14px rgba(18, 66, 37, 0.3);
-  border: 1px solid rgba(197, 155, 70, 0.7);
+  box-shadow: 0 4px 14px rgba(20, 61, 35, 0.28);
+  border: 1.5px solid #c59b46;
 }
 
-/* ===== CABEÇALHO DO EVENTO ===== */
+/* ===== CABEÇALHO ===== */
 .headerGroup {
   text-align: center;
-  max-width: 820px;
-  margin-bottom: 1.75rem;
+  max-width: 860px;
+  margin-bottom: 2.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .communityTag {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
-  color: #124225;
+  color: #143d23;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
 }
 
 .triduoLabel {
   font-family: 'Cinzel', 'Georgia', serif;
-  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.45rem);
   font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #124225;
+  letter-spacing: 0.16em;
+  color: #143d23;
   text-transform: uppercase;
-  margin-bottom: 0.2rem;
+  margin: 0 0 0.25rem;
 }
 
 .mainTitleBig {
-  font-family: 'Cinzel', 'Georgia', 'Playfair Display', serif;
-  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-family: 'Cinzel', 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(2.4rem, 6.5vw, 4.4rem);
   font-weight: 900;
-  color: #7c121e; /* Vinho sagrado das vestes de São Judas */
-  line-height: 1.08;
-  margin-bottom: 1rem;
+  color: #7a1723; /* Vinho das vestes do cartaz */
+  line-height: 1.05;
+  margin: 0 0 0.5rem;
   letter-spacing: -0.01em;
-  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.85);
 }
 
-/* Cápsula de Data Verde Floresta idêntica à arte */
+.goldFlourish {
+  margin: 0.25rem 0 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.flourishSvg {
+  width: 170px;
+  height: 20px;
+  opacity: 0.9;
+}
+
+/* Cápsula de data verde floresta com borda dupla dourada idêntica à arte */
 .dateBadgeCapsule {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #124225;
+  background: #143d23;
+  padding: 3px;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(20, 61, 35, 0.25);
+  margin-bottom: 1.5rem;
+  border: 1px solid #c59b46;
+}
+
+.capsuleInner {
+  display: inline-block;
+  background: #143d23;
   color: #ffffff;
   font-family: 'Georgia', serif;
-  font-size: clamp(1.05rem, 2.5vw, 1.45rem);
+  font-size: clamp(1.05rem, 2.3vw, 1.38rem);
   font-weight: 700;
-  padding: 0.55rem clamp(1.2rem, 3vw, 2.2rem);
+  padding: 0.45rem clamp(1.4rem, 3.5vw, 2.4rem);
   border-radius: 999px;
-  border: 2px solid #c59b46;
-  box-shadow: 0 6px 18px rgba(18, 66, 37, 0.25);
-  margin-bottom: 1.25rem;
+  border: 1.5px solid #d4af37;
   letter-spacing: 0.02em;
 }
 
-.divider {
-  width: 160px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #c59b46, transparent);
-  border: none;
-  margin: 0.5rem auto 1.5rem;
-}
-
-/* ===== TEMA DO TRÍDUO ===== */
+/* Card do Tema Oficial */
 .themeCard {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(197, 155, 70, 0.4);
-  border-left: 5px solid #7c121e;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(197, 155, 70, 0.5);
+  border-left: 5px solid #7a1723;
   border-radius: 8px;
-  padding: 1.25rem 1.75rem;
+  padding: 1.15rem 1.6rem;
   max-width: 760px;
   width: 100%;
   text-align: center;
-  margin-bottom: 2rem;
-  box-shadow: 0 4px 16px rgba(124, 18, 30, 0.06);
+  box-shadow: 0 4px 16px rgba(122, 23, 35, 0.06);
 }
 
 .themeLabel {
   display: block;
-  font-size: 0.82rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
+  font-style: italic;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #124225;
-  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+  color: #143d23;
+  margin-bottom: 0.35rem;
 }
 
 .themeText {
-  font-family: 'Georgia', serif;
-  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-family: 'Georgia', 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.25rem);
   font-weight: 700;
   font-style: italic;
-  color: #7c121e;
+  color: #143d23; /* Verde escuro do texto no cartaz */
   line-height: 1.45;
   margin: 0;
 }
 
-/* ===== GRID DE DESTAQUES NATIVO (SEM IMAGEM) ===== */
-.highlightsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.25rem;
-  max-width: 900px;
+/* ===== SEÇÃO DA PROGRAMAÇÃO ===== */
+.scheduleWrapper {
   width: 100%;
-  margin-bottom: 2.25rem;
+  max-width: 840px;
+  margin: 0 auto;
 }
 
-.highlightItem {
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(197, 155, 70, 0.35);
-  border-left: 4px solid #124225;
-  border-radius: 8px;
-  padding: 1.15rem 1.25rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 0.9rem;
-  box-shadow: 0 4px 12px rgba(18, 66, 37, 0.05);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+/* ===== COLUNA DO CARTAZ ===== */
+.posterColumn {
+  width: 100%;
+  position: sticky;
+  top: 90px;
 }
 
-.highlightItem:hover {
-  transform: translateY(-2px);
-  border-left-color: #7c121e;
-  box-shadow: 0 6px 16px rgba(124, 18, 30, 0.08);
-}
-
-.highlightIcon {
-  font-size: 1.6rem;
-  line-height: 1;
-}
-
-.highlightText strong {
-  display: block;
-  color: #124225;
-  font-size: 1.02rem;
-  margin-bottom: 0.25rem;
-  font-family: 'Georgia', serif;
-}
-
-.highlightText span {
-  font-size: 0.92rem;
-  color: #4a382c;
-  line-height: 1.5;
-  display: block;
-}
-
-/* ===== BOTÃO TOGGLE PROGRAMAÇÃO ===== */
-.toggleBtn {
-  background: linear-gradient(135deg, #124225 0%, #0a2917 100%);
-  color: #ffffff;
+.posterCard {
+  background: #ffffff;
   border: 2px solid #c59b46;
-  padding: 0.85rem 2rem;
-  border-radius: 999px;
-  font-size: 1rem;
-  font-weight: 700;
-  cursor: pointer;
-  letter-spacing: 0.03em;
-  box-shadow: 0 6px 20px rgba(18, 66, 37, 0.35);
-  transition: all 0.25s ease;
-  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(20, 61, 35, 0.15);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.toggleBtn:hover {
-  background: linear-gradient(135deg, #7c121e 0%, #5c0f16 100%);
-  border-color: #e6be67;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(124, 18, 30, 0.4);
+.posterCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 38px rgba(122, 23, 35, 0.2);
 }
 
-/* ===== SEÇÃO DA PROGRAMAÇÃO COMPLETA ===== */
-.scheduleSection {
-  width: 100%;
-  max-width: 820px;
-  animation: fadeIn 0.3s ease;
-  margin-bottom: 2rem;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.scheduleTitle {
-  font-family: 'Cinzel', 'Georgia', serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: #124225;
-  text-align: center;
-  margin-bottom: 1.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Tabs dos Dias */
-.daysContainer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-}
-
-@media (max-width: 600px) {
-  .daysContainer {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-.dayTab {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(197, 155, 70, 0.4);
+.posterImageWrap {
+  position: relative;
   border-radius: 8px;
-  padding: 0.75rem 0.5rem;
+  overflow: hidden;
   cursor: pointer;
+  background: #fbf8f0;
+}
+
+.posterImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.posterCard:hover .posterImg {
+  transform: scale(1.02);
+}
+
+.zoomButtonOverlay {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 61, 35, 0.92);
+  color: #f7eed8;
+  border: 1px solid #c59b46;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.zoomButtonOverlay:hover {
+  background: #7a1723;
+  border-color: #f4ecda;
+  transform: translateX(-50%) scale(1.05);
+}
+
+.posterFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.25rem 0.25rem;
+  gap: 0.5rem;
+}
+
+.posterCaption {
+  font-size: 0.78rem;
+  color: #6a5342;
+  font-weight: 600;
+}
+
+.openPosterLink {
+  background: none;
+  border: none;
+  color: #7a1723;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.openPosterLink:hover {
+  color: #143d23;
+}
+
+/* ===== COLUNA DA PROGRAMAÇÃO ===== */
+.scheduleColumn {
   display: flex;
   flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Abas de navegação */
+.tabsNav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(197, 155, 70, 0.4);
+}
+
+.tabBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 0.55rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #143d23;
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.4rem;
   transition: all 0.2s ease;
 }
 
-.dayTab:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: #124225;
+.tabBtn:hover {
+  background: rgba(20, 61, 35, 0.08);
 }
 
-.activeDayTab {
-  background: #124225 !important;
-  border-color: #c59b46 !important;
-  box-shadow: 0 4px 12px rgba(18, 66, 37, 0.3);
-}
-
-.activeDayTab .tabDate,
-.activeDayTab .tabWeek {
+.activeTabBtn {
+  background: #143d23 !important;
   color: #ffffff !important;
+  border-color: #c59b46 !important;
+  box-shadow: 0 4px 10px rgba(20, 61, 35, 0.25);
 }
 
-.tabDate {
+.tabDateBadge {
   font-family: 'Georgia', serif;
-  font-size: 1.15rem;
   font-weight: 700;
-  color: #7c121e;
 }
 
-.tabWeek {
+.tabWeekName {
   font-size: 0.8rem;
-  font-weight: 600;
-  color: #124225;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  opacity: 0.9;
 }
 
-/* Card do Dia Selecionado */
+/* Cards dos Dias */
+.daysList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
 .dayCard {
   background: #ffffff;
-  border: 1px solid rgba(197, 155, 70, 0.4);
-  border-top: 4px solid #7c121e;
   border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 8px 24px rgba(124, 18, 30, 0.08);
-  margin-bottom: 1.5rem;
+  border: 1px solid rgba(197, 155, 70, 0.4);
+  border-left: 5px solid #143d23;
+  padding: 1.35rem 1.5rem;
+  box-shadow: 0 4px 16px rgba(20, 61, 35, 0.06);
+  transition: all 0.2s ease;
 }
 
-.dayHeader {
-  font-family: 'Cinzel', 'Georgia', serif;
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: #7c121e;
-  border-bottom: 1px solid rgba(197, 155, 70, 0.3);
-  padding-bottom: 0.75rem;
+.dayCard:hover {
+  border-color: #c59b46;
+  box-shadow: 0 6px 20px rgba(20, 61, 35, 0.1);
+}
+
+.padroeiroCard {
+  border-left-color: #7a1723;
+  background: linear-gradient(170deg, #ffffff 0%, #fffcf8 100%);
+  border: 1.5px solid #c59b46;
+  border-left: 6px solid #7a1723;
+  box-shadow: 0 6px 22px rgba(122, 23, 35, 0.12);
+}
+
+.dayCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(197, 155, 70, 0.25);
+  padding-bottom: 0.65rem;
   margin-bottom: 1rem;
 }
 
-.eventsList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-}
-
-.eventRow {
+.dayTitleGroup {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 0.6rem 0.75rem;
-  border-radius: 6px;
-  background: #fbf8ef;
+  gap: 0.5rem;
 }
 
-.eventTimeBadge {
-  background: #124225;
-  color: #ffffff;
-  font-family: 'Georgia', serif;
-  font-size: 0.85rem;
+.dayIconCalendar {
+  font-size: 1.1rem;
+}
+
+.dayTitleText {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 1.15rem;
   font-weight: 700;
-  padding: 0.3rem 0.65rem;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-
-.specialBadge {
-  background: #7c121e;
-  color: #ffffff;
-  font-family: 'Georgia', serif;
-  font-size: 0.85rem;
-  font-weight: 700;
-  padding: 0.3rem 0.65rem;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-
-.eventDetailText {
-  font-size: 0.98rem;
-  color: #2b1d14;
-  font-weight: 500;
-  line-height: 1.4;
-}
-
-/* Card de Comidas e Atrações */
-.socialCard {
-  background: #fdfaf2;
-  border: 1px dashed #c59b46;
-  border-radius: 8px;
-  padding: 1.25rem;
-  text-align: center;
-  margin-bottom: 1.25rem;
-}
-
-.socialTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #124225;
-  margin-bottom: 0.35rem;
-}
-
-.socialText {
-  font-size: 0.95rem;
-  color: #4a382c;
-  line-height: 1.5;
+  color: #143d23;
   margin: 0;
 }
 
-/* Rodapé do Evento */
-.footerInfo {
-  text-align: center;
-  border-top: 1px solid rgba(197, 155, 70, 0.3);
-  padding-top: 1.25rem;
-  margin-top: 1rem;
+.padroeiroCard .dayTitleText {
+  color: #7a1723;
 }
 
-.clergyNames {
+.dayStatusBadge {
+  background: #fbf7ee;
+  border: 1px solid #c59b46;
+  color: #143d23;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.padroeiroCard .dayStatusBadge {
+  background: #7a1723;
+  color: #ffffff;
+  border-color: #c59b46;
+}
+
+/* Lista de Eventos do Dia */
+.eventsStack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.eventItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  background: #fbf8f0;
+  border: 1px solid rgba(197, 155, 70, 0.18);
+  transition: transform 0.15s ease;
+}
+
+.eventItem:hover {
+  transform: translateX(3px);
+  background: #f7f1e1;
+}
+
+.specialEventItem {
+  background: #fff8eb;
+  border: 1px solid rgba(197, 155, 70, 0.45);
+}
+
+.eventTimeCol {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 110px;
+}
+
+.eventEmoji {
+  font-size: 1.15rem;
+}
+
+.standardTimeBadge {
+  background: #143d23;
+  color: #ffffff;
+  font-family: 'Georgia', serif;
+  font-size: 0.86rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.specialTimeBadge {
+  background: #7a1723;
+  color: #ffffff;
+  font-family: 'Georgia', serif;
+  font-size: 0.84rem;
+  font-weight: 700;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(122, 23, 35, 0.25);
+}
+
+.eventTextCol {
+  flex: 1;
+}
+
+.eventTitle {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: #1b1612;
+  display: block;
+  line-height: 1.35;
+}
+
+.eventDesc {
+  font-size: 0.84rem;
+  color: #5c4738;
+  margin: 0.2rem 0 0;
+  line-height: 1.4;
+}
+
+/* Card de Aviso de Comidas Típicas */
+.foodNoticeCard {
+  background: #fcf9f2;
+  border: 1.5px dashed #c59b46;
+  border-radius: 10px;
+  padding: 1.1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.foodNoticeIcon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.foodNoticeTitle {
+  font-family: 'Georgia', serif;
+  font-size: 1.02rem;
+  font-weight: 700;
+  font-style: italic;
+  color: #143d23;
+  margin: 0 0 0.2rem;
+}
+
+.foodNoticeSub {
+  font-size: 0.86rem;
+  color: #554032;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Rodapé com Assinatura dos Padres e Diocese */
+.clergySignature {
+  text-align: center;
+  border-top: 1px solid rgba(197, 155, 70, 0.35);
+  padding-top: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.communityName {
+  font-family: 'Cinzel', 'Georgia', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #143d23;
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.04em;
+}
+
+.priestsNames {
   font-family: 'Georgia', serif;
   font-size: 0.95rem;
+  font-style: italic;
+  color: #7a1723;
   font-weight: 600;
-  color: #124225;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
-.dioceseText {
-  font-size: 0.85rem;
-  color: #7a5e4b;
+.dioceseLine {
+  font-size: 0.82rem;
+  color: #705847;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 
-/* WhatsApp CTA */
-.whatsappCta {
+/* Barra de Ações (WhatsApp + Botão Cartaz) */
+.actionsBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  align-items: center;
+}
+
+.whatsappBtn {
+  flex: 1;
+  min-width: 220px;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
   background: #25d366;
   color: #ffffff;
-  padding: 0.75rem 1.6rem;
+  padding: 0.8rem 1.5rem;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
   transition: all 0.2s ease;
-  margin-top: 0.5rem;
 }
 
-.whatsappCta:hover {
+.whatsappBtn:hover {
   background: #1ebc59;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+}
+
+.viewPosterBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #143d23;
+  color: #f7eed8;
+  border: 1.5px solid #c59b46;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(20, 61, 35, 0.25);
+  transition: all 0.2s ease;
+}
+
+.viewPosterBtn:hover {
+  background: #7a1723;
+  border-color: #f7eed8;
+  transform: translateY(-2px);
+}
+
+/* ===== MODAL DE CARTAZ EM TELA CHEIA ===== */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 15, 12, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: modalFadeIn 0.25s ease;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  background: #fdfaf3;
+  border: 2px solid #c59b46;
+  border-radius: 12px;
+  max-width: 580px;
+  width: 100%;
+  max-height: 94vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: modalScaleUp 0.25s ease;
+}
+
+@keyframes modalScaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: #143d23;
+  color: #f7eed8;
+  border-bottom: 1.5px solid #c59b46;
+}
+
+.modalTitle {
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: #f7eed8;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem;
+  line-height: 1;
+  border-radius: 4px;
+}
+
+.closeBtn:hover {
+  background: #7a1723;
+}
+
+.modalBody {
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  background: #f6eedc;
+}
+
+.modalImg {
+  max-width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  background: #ffffff;
+  border-top: 1px solid rgba(197, 155, 70, 0.35);
+}
+
+.downloadLink {
+  color: #143d23;
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.downloadLink:hover {
+  color: #7a1723;
+}
+
+.modalCloseLink {
+  background: #7a1723;
+  color: #ffffff;
+  border: none;
+  padding: 0.45rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.modalCloseLink:hover {
+  background: #5a0e16;
 }

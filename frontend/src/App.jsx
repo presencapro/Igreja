@@ -10,6 +10,7 @@ import FloatingButtons from "./components/layout/FloatingButtons";
 import StickyCard from "./components/layout/StickyCard";
 
 import Hero from "./components/home/Hero";
+import SaoJudasBanner from "./components/home/SaoJudasBanner";
 import PiedadeBanner from "./components/home/PiedadeBanner";
 import RetiroBanner from "./components/home/RetiroBanner";
 import SaoBeneditoBanner from "./components/home/SaoBeneditoBanner";
@@ -20,7 +21,7 @@ import Mapa from "./components/home/Mapa";
 import Instagram from "./components/home/Instagram";
 import Destaques from "./components/home/Destaques";
 import PixSection from "./components/home/PixSection";
-import LiturgiaDiaria from "./components/home/LiturgiaDiaria";
+import LiturgiaPage from "./pages/LiturgiaPage";
 
 import AdminPanel from "./components/admin/AdminPanel";
 import SEOMeta from "./components/layout/SEOMeta";
@@ -61,6 +62,7 @@ function PublicSite() {
       <Header siteData={siteData} theme={theme} setTheme={setTheme} />
       <StickyCard siteData={siteData} />
       <Hero siteData={siteData} />
+      <SaoJudasBanner />
       <PiedadeBanner />
       <RetiroBanner />
       <SaoBeneditoBanner />
@@ -128,9 +130,7 @@ function App() {
           path="/liturgia"
           element={
             <PublicPageWrapper>
-              <div className="container" style={{ margin: "2rem auto" }}>
-                <LiturgiaDiaria />
-              </div>
+              <LiturgiaPage />
             </PublicPageWrapper>
           }
         />

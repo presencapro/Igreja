@@ -40,7 +40,7 @@ export default function Header({ siteData, theme, setTheme }) {
             <Link to="/celebracoes" onClick={closeMenu}>Celebrações</Link>
             <Link to="/secretaria" onClick={closeMenu}>Secretaria</Link>
             <Link to="/pastorais" onClick={closeMenu}>Pastorais e Movimentos</Link>
-            <Link to="/liturgia" onClick={closeMenu}>Liturgia Diária</Link>
+            <Link to="/liturgia" onClick={closeMenu}>Liturgia e Santo do Dia</Link>
 
             {/* Nav do mobile extra - No desktop esse menuSome */}
             <div className={styles.mobileExtraLinks}>

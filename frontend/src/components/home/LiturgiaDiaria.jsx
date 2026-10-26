@@ -11,8 +11,17 @@ const formatLocalDate = (d) => {
   return `${y}-${m}-${day}`;
 };
 
-export default function LiturgiaDiaria() {
-  const [date, setDate] = useState(() => new Date());
+export default function LiturgiaDiaria({
+  date: propDate,
+  setDate: propSetDate,
+  hideNavBar = false,
+  onOpenSanto = null,
+  santoName = null
+}) {
+  const [internalDate, setInternalDate] = useState(() => new Date());
+  const date = propDate ?? internalDate;
+  const setDate = propSetDate ?? setInternalDate;
+
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -99,32 +108,55 @@ export default function LiturgiaDiaria() {
         </div>
       </div>
 
-      <div className="liturgia-nav-bar">
-        <div className="date-controls">
-          <button className="date-btn" onClick={() => changeDate(-1)} aria-label="Dia anterior">
-            ← Anterior
-          </button>
-          <button className="date-btn" onClick={onToday}>
-            Hoje
-          </button>
-          <button className="date-btn" onClick={() => changeDate(1)} aria-label="Próximo dia">
-            Próximo →
-          </button>
+      {onOpenSanto && (
+        <div
+          className="liturgia-santo-strip"
+          onClick={onOpenSanto}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && onOpenSanto()}
+        >
+          <div className="liturgia-santo-strip-left">
+            <span className="liturgia-santo-icon">✝️</span>
+            <div>
+              <span className="liturgia-santo-label">Santo do Dia:</span>
+              <strong className="liturgia-santo-name">
+                {santoName || "Conheça o Santo do Dia"}
+              </strong>
+            </div>
+          </div>
+          <span className="liturgia-santo-cta">Ver história e oração →</span>
         </div>
-        <div className="date-picker-group">
-          <label className="date-picker-label" htmlFor="liturgia-date-input">
-            📅 Escolher data
-          </label>
-          <input
-            type="date"
-            id="liturgia-date-input"
-            className="date-input"
-            value={formatLocalDate(date)}
-            onChange={onInputChange}
-            aria-label="Escolher data"
-          />
+      )}
+
+      {!hideNavBar && (
+        <div className="liturgia-nav-bar">
+          <div className="date-controls">
+            <button className="date-btn" onClick={() => changeDate(-1)} aria-label="Dia anterior">
+              ← Anterior
+            </button>
+            <button className="date-btn" onClick={onToday}>
+              Hoje
+            </button>
+            <button className="date-btn" onClick={() => changeDate(1)} aria-label="Próximo dia">
+              Próximo →
+            </button>
+          </div>
+          <div className="date-picker-group">
+            <label className="date-picker-label" htmlFor="liturgia-date-input">
+              📅 Escolher data
+            </label>
+            <input
+              type="date"
+              id="liturgia-date-input"
+              className="date-input"
+              value={formatLocalDate(date)}
+              onChange={onInputChange}
+              aria-label="Escolher data"
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {loading && (
         <div className="liturgia-skeleton" aria-live="polite">

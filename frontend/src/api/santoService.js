@@ -10,49 +10,362 @@ import { preloadImageUrl } from "../utils/imageValidation.js";
 
 export const DEFAULT_SANTO_IMAGE = "/images/santo-default.jpg";
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL ?? "http://localhost:3000";
+const BACKEND_URL =
+  typeof import.meta !== "undefined" && import.meta.env?.VITE_BACKEND_URL
+    ? import.meta.env.VITE_BACKEND_URL
+    : "http://localhost:3000";
 
 /**
- * FONTE PRINCIPAL: rota intermediária do backend (/site/santo-do-dia) que
- * consulta a Fonte Divina (https://www.ftdv.app/santos). O fetch é feito no
- * servidor para evitar CORS e já vem com cache de 24h.
- * Retorna lista normalizada ou null quando a fonte falha / não tem conteúdo.
+ * FONTE PRINCIPAL: Canção Nova Santo do Dia
+function decodeHtmlEntities(str) {
+  if (!str) return "";
+  return str
+    .replace(/&#8211;/g, "–")
+    .replace(/&#8212;/g, "—")
+    .replace(/&#8216;/g, "‘")
+    .replace(/&#8217;/g, "’")
+    .replace(/&#8220;/g, "“")
+    .replace(/&#8221;/g, "”")
+    .replace(/&#8230;/g, "…")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/**
+ * FONTE PRINCIPAL: Canção Nova Santo do Dia
+ * Consulta por data (ex.: https://santo.cancaonova.com/santo/sao-narciso-o-bispo-de-jerusalem/?sDia=29&sMes=10&sAno=2026)
+ */
+async function fetchCancaoNovaByDate(date) {
+  try {
+    const dia = date.getDate();
+    const mes = date.getMonth() + 1;
+    const ano = date.getFullYear();
+
+    const listEndpoints = [
+      `/api-cancaonova/?sDia=${dia}&sMes=${mes}&sAno=${ano}`,
+      `https://santo.cancaonova.com/?sDia=${dia}&sMes=${mes}&sAno=${ano}`
+    ];
+
+    let listHtml = "";
+    for (const url of listEndpoints) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4500);
+        const resp = await fetch(url, {
+          signal: controller.signal,
+          headers: {
+            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+          }
+        });
+        clearTimeout(timeoutId);
+        if (resp.ok) {
+          listHtml = await resp.text();
+          if (listHtml.includes("santo.cancaonova.com/santo/")) break;
+        }
+      } catch (_) {}
+    }
+
+    if (!listHtml) return null;
+
+    // Localiza os links com sDia=${dia}&
+    const allLinks = [...listHtml.matchAll(/href=["'](https:\/\/santo\.cancaonova\.com\/santo\/[^"']+)["']/g)]
+      .map((m) => m[1].replace(/&amp;/g, "&"));
+
+    const targetLink =
+      allLinks.find((u) => u.includes(`sDia=${dia}&sMes=${mes}`)) ||
+      allLinks.find((u) => u.includes(`sDia=${dia}&`));
+
+    if (!targetLink) return null;
+
+    // Busca a página completa do artigo
+    const articleEndpoints = [
+      targetLink.replace("https://santo.cancaonova.com", "/api-cancaonova"),
+      targetLink
+    ];
+
+    let articleHtml = "";
+    for (const url of articleEndpoints) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4500);
+        const resp = await fetch(url, {
+          signal: controller.signal,
+          headers: {
+            Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+          }
+        });
+        clearTimeout(timeoutId);
+        if (resp.ok) {
+          articleHtml = await resp.text();
+          if (articleHtml.includes("entry-title")) break;
+        }
+      } catch (_) {}
+    }
+
+    if (!articleHtml) return null;
+
+    // Extrai título (<h1 class="entry-title">)
+    const titleMatch =
+      articleHtml.match(/<h1[^>]*class=["'][^"']*entry-title[^"']*["'][^>]*>([\s\S]*?)<\/h1>/i) ||
+      articleHtml.match(/<title>([^<]+)<\/title>/i);
+    let nome = titleMatch
+      ? decodeHtmlEntities(titleMatch[1].replace(/<[^>]+>/g, "").replace(/–\s*Santo do Dia/i, "").trim())
+      : "Santo do Dia";
+
+    // Extrai imagem (<meta property="og:image">)
+    const ogImg = articleHtml.match(
+      /<meta\s+property=["']og:image["']\s+content=["']([^"']+)["']/i
+    );
+    const imagem =
+      ogImg &&
+      ogImg[1] &&
+      !ogImg[1].includes("compartilhamento_padrao") &&
+      !ogImg[1].endsWith(".svg")
+        ? ogImg[1]
+        : (await fetchWikiImage(cleanWikiName(nome))) || DEFAULT_SANTO_IMAGE;
+
+    // Extrai parágrafos do artigo
+    const articleMatch = articleHtml.match(/<article[\s\S]*?<\/article>/i);
+    const rawPs = articleMatch
+      ? [...articleMatch[0].matchAll(/<p[^>]*>([\s\S]*?)<\/p>/gi)].map((m) => m[1])
+      : [];
+
+    let cleanedPs = [];
+    let oracao = "";
+    let isPrayerSection = false;
+
+    for (const rawP of rawPs) {
+      if (/<img/i.test(rawP) && !/>[^<]{20,}/.test(rawP)) continue;
+      const text = decodeHtmlEntities(rawP.replace(/<[^>]+>/g, "").trim());
+      if (!text) continue;
+      const lower = text.toLowerCase();
+
+      // Detecta cabeçalho de oração
+      if (
+        lower === "minha oração" ||
+        lower === "oração" ||
+        lower.startsWith("oração a") ||
+        lower.startsWith("oração ao")
+      ) {
+        isPrayerSection = true;
+        continue;
+      }
+
+      // Detecta seção de créditos ou fontes da Canção Nova (fim do artigo)
+      if (
+        lower.startsWith("fonte:") ||
+        lower.startsWith("– produção") ||
+        lower.startsWith("– pesquisa") ||
+        lower.includes("produção e edição:") ||
+        lower.includes("pesquisa e redação:") ||
+        lower.includes("comunidade canção nova")
+      ) {
+        break; // Ignora o bloco final de créditos da redação
+      }
+
+      if (isPrayerSection) {
+        if (!oracao) {
+          oracao = text.replace(/^[“"']+|[”"']+$/g, "").trim();
+        }
+        isPrayerSection = false;
+        continue;
+      }
+
+      // Oração entre aspas que termina com Amém
+      if (text.startsWith("“") && text.includes("Amém")) {
+        if (!oracao) oracao = text.replace(/^[“"']+|[”"']+$/g, "").trim();
+        continue;
+      }
+
+      cleanedPs.push(text);
+    }
+
+    // Identifica o primeiro parágrafo de narrativa para resumo na prévia do card
+    let resumo = "";
+    for (const p of cleanedPs) {
+      if (p.length > 40) {
+        resumo = p;
+        break;
+      }
+    }
+    if (!resumo && cleanedPs.length > 0) resumo = cleanedPs[0];
+
+    const historia = cleanedPs.join("\n\n");
+
+    return [
+      {
+        nome,
+        imagem,
+        historia: historia || `Memória litúrgica de ${nome}.`,
+        resumo,
+        reflexao:
+          "A santidade consiste em fazer a vontade de Deus em todas as circunstâncias com amor e fidelidade.",
+        oracao:
+          oracao ||
+          `Ó Deus Todo-Poderoso, pela intercessão de ${nome}, concedei-nos a fidelidade à vossa vontade e a perseverança no amor a Cristo. Amém.`,
+        fonte: "Canção Nova",
+        url: targetLink,
+        tipo: "Memória Litúrgica",
+        data: formatCacheKey(date)
+      }
+    ];
+  } catch (_) {
+    return null;
+  }
+}
+
+/**
+ * FONTE COMPLEMENTAR: Fonte Divina (https://www.ftdv.app/santos?date=DD/MM)
+ * Extrai a lista de santos da data solicitada e os dados completos de biografia e imagem.
  */
 async function fetchFonteDivina(date) {
   try {
     const dia = String(date.getDate()).padStart(2, "0");
     const mes = String(date.getMonth() + 1).padStart(2, "0");
+    const targetDateStr = `${dia}/${mes}`;
 
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 8000);
-    const resp = await fetch(
+    const endpoints = [
+      `/api-ftdv/santos?date=${encodeURIComponent(targetDateStr)}`,
       `${BACKEND_URL}/site/santo-do-dia?date=${dia}/${mes}`,
-      { signal: controller.signal }
-    );
-    clearTimeout(timeoutId);
+      `https://www.ftdv.app/santos?date=${encodeURIComponent(targetDateStr)}`
+    ];
 
-    if (!resp.ok) return null;
-    const json = await resp.json();
-    if (!json?.success || !Array.isArray(json.saints) || json.saints.length === 0) {
-      return null;
+    let html = null;
+    for (const url of endpoints) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 4000);
+        const resp = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (resp.ok) {
+          const contentType = resp.headers.get("content-type") || "";
+          if (contentType.includes("application/json")) {
+            const json = await resp.json();
+            if (json?.success && Array.isArray(json.saints) && json.saints.length > 0) {
+              return json.saints.map((s) => ({
+                nome: s.name,
+                imagem: s.image || DEFAULT_SANTO_IMAGE,
+                historia: s.description || "",
+                reflexao: s.reflexao || "A vida dos santos nos inspira no seguimento de Cristo.",
+                oracao: s.oracao || "Rogai por nós, santos de Deus.",
+                url: s.url || "https://www.ftdv.app/santos",
+                fonte: "Fonte Divina",
+                tipo: "Memória Litúrgica",
+                data: formatCacheKey(date)
+              }));
+            }
+          }
+          const text = await resp.text();
+          if (text.includes("saints") && text.includes("__next_f")) {
+            html = text;
+            break;
+          }
+        }
+      } catch (_) {}
     }
 
-    return json.saints
-      .filter((santo) => santo && santo.name)
-      .map((santo) => ({
-        nome: String(santo.name).trim(),
-        imagem:
-          santo.image && /^https?:\/\//i.test(String(santo.image))
-            ? String(santo.image)
-            : null,
-        historia: (santo.description || "").trim(),
-        reflexao: (santo.reflexao || "").trim(),
-        oracao: (santo.oracao || "").trim(),
-        url: santo.url || null,
-        fonte: "Fonte Divina",
-        tipo: "",
-        data: formatCacheKey(date)
-      }));
+    if (!html) return null;
+
+    // Extrai payload RSC do Next.js
+    const nextFMatches = [...html.matchAll(/self\.__next_f\.push\(\[1,"([\s\S]*?)"\]\)/g)];
+    let combined = "";
+    for (const m of nextFMatches) {
+      combined += m[1];
+    }
+    const unescaped = combined.replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+
+    const saintsIdx = unescaped.indexOf('"saints":');
+    if (saintsIdx === -1) return null;
+
+    const start = unescaped.indexOf("[", saintsIdx);
+    let depth = 0;
+    let end = start;
+    for (let i = start; i < unescaped.length; i++) {
+      if (unescaped[i] === "[") depth++;
+      else if (unescaped[i] === "]") {
+        depth--;
+        if (depth === 0) {
+          end = i + 1;
+          break;
+        }
+      }
+    }
+
+    const allSaints = JSON.parse(unescaped.slice(start, end));
+    const matched = allSaints.filter((s) => s && s.date === targetDateStr);
+    if (!matched.length) return null;
+
+    // Busca detalhes e biografia de cada santo da data
+    const list = await Promise.all(
+      matched.map(async (s) => {
+        let bio = "";
+        if (s.filename) {
+          try {
+            const detailEndpoints = [
+              `/api-ftdv/santos/${s.filename}`,
+              `https://www.ftdv.app/santos/${s.filename}`
+            ];
+            for (const du of detailEndpoints) {
+              try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 3500);
+                const dr = await fetch(du, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                if (dr.ok) {
+                  const detailHtml = await dr.text();
+                  const detailChunks = [
+                    ...detailHtml.matchAll(/self\.__next_f\.push\(\[1,"([\s\S]*?)"\]\)/g)
+                  ];
+                  for (const m of detailChunks) {
+                    const chunk = m[1];
+                    if (chunk.includes("https://prod.fontedivina.com/images/sanctus/")) {
+                      const textStart = chunk.indexOf("![Imagem]");
+                      if (textStart !== -1) {
+                        let clean = chunk.slice(textStart);
+                        clean = clean.replace(/^!\[[^\]]*\]\([^)]+\)/, "").trim();
+                        clean = clean.replace(/\\n/g, "\n").replace(/\\"/g, '"');
+                        bio = clean;
+                        break;
+                      }
+                    }
+                  }
+                  if (bio) break;
+                }
+              } catch (_) {}
+            }
+          } catch (_) {}
+        }
+
+        const imgUrl = s.thumb_url
+          ? `https://prod.fontedivina.com/images/sanctus/${s.thumb_url}`
+          : DEFAULT_SANTO_IMAGE;
+
+        const outros = matched.filter((other) => other.id !== s.id).map((other) => other.name);
+        const reflexao = outros.length > 0
+          ? `Outros santos celebrados hoje pela Igreja: ${outros.join(", ")}.`
+          : "A vida e o testemunho dos santos nos inspiram no seguimento do Evangelho de Jesus Cristo.";
+
+        return {
+          nome: s.name,
+          imagem: imgUrl,
+          historia: bio || s.subtitle || `Memória de ${s.name}, celebrado pela Igreja no dia ${targetDateStr}.`,
+          reflexao,
+          oracao: `Ó Deus Todo-Poderoso, que nos destes a vida e o exemplo de santidade de ${s.name}, concedei-nos a fidelidade à vossa vontade e a perseverança no amor a Cristo. Amém.`,
+          fonte: "Fonte Divina",
+          url: `https://www.ftdv.app/santos/${s.filename || ""}`,
+          tipo: "Memória Litúrgica",
+          data: formatCacheKey(date)
+        };
+      })
+    );
+
+    return list.filter(Boolean);
   } catch (_) {
     return null;
   }
@@ -129,7 +442,17 @@ const TIPOS_LITURGICOS_PT = {
 };
 
 /** Formata data para a chave de cache "YYYY-MM-DD" */
-export function formatCacheKey(date) {
+export function formatCacheKey(targetDate) {
+  const date =
+    targetDate instanceof Date
+      ? targetDate
+      : typeof targetDate === "string" && targetDate.includes("/")
+      ? new Date(
+          new Date().getFullYear(),
+          parseInt(targetDate.split("/")[1], 10) - 1,
+          parseInt(targetDate.split("/")[0], 10)
+        )
+      : new Date(targetDate);
   const y = date.getFullYear();
   const m = String(date.getMonth() + 1).padStart(2, "0");
   const d = String(date.getDate()).padStart(2, "0");
@@ -186,7 +509,17 @@ const CALENDARIO_SANTOS = {
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 
 /** Chave de cache local no formato exigido: santo_DD-MM (ex.: santo_27-10) */
-function formatSantoCacheKey(date) {
+function formatSantoCacheKey(targetDate) {
+  const date =
+    targetDate instanceof Date
+      ? targetDate
+      : typeof targetDate === "string" && targetDate.includes("/")
+      ? new Date(
+          new Date().getFullYear(),
+          parseInt(targetDate.split("/")[1], 10) - 1,
+          parseInt(targetDate.split("/")[0], 10)
+        )
+      : new Date(targetDate);
   const d = String(date.getDate()).padStart(2, "0");
   const m = String(date.getMonth() + 1).padStart(2, "0");
   return `santo_${d}-${m}`;
@@ -200,7 +533,7 @@ function getFromCache(date) {
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     // Formato: { v, createdAt, items }. Entradas antigas são ignoradas.
-    if (parsed && parsed.v === 3 && parsed.createdAt && Array.isArray(parsed.items)) {
+    if (parsed && parsed.v === 6 && parsed.createdAt && Array.isArray(parsed.items)) {
       const isFresh = Date.now() - parsed.createdAt < CACHE_TTL_MS;
       const isValid = parsed.items.length > 0 && parsed.items[0].nome;
       if (isFresh && isValid) {
@@ -219,7 +552,7 @@ function setCache(date, data) {
     const key = formatSantoCacheKey(date);
     localStorage.setItem(
       key,
-      JSON.stringify({ v: 3, createdAt: Date.now(), items: data })
+      JSON.stringify({ v: 6, createdAt: Date.now(), items: data })
     );
   } catch (e) {}
 }
@@ -245,13 +578,94 @@ async function fetchTodayCancaonovaImage() {
 
 /** Normaliza o nome do santo para busca na Wikipedia */
 function cleanWikiName(nome) {
-  return nome
+  if (!nome) return "";
+  const primaryPart = nome.split(/[,–-]/)[0].trim();
+  return primaryPart
     .replace(/ e companheiras mártires/gi, "")
     .replace(/, Papa/gi, "")
     .replace(/, Bispo/gi, "")
     .replace(/, Doutor da Igreja/gi, "")
     .replace(/, Mártir/gi, "")
     .trim();
+}
+
+/**
+ * Busca o Santo do Dia na API Liturgia Diária / Canção Nova
+ * Suporta proxy Vite/Vercel (/api-santo/santo-do-dia) e endpoint direto
+ */
+async function fetchVercelSantoApi(date) {
+  try {
+    const endpoints = [
+      "/api-santo/santo-do-dia",
+      "https://api-liturgia-diaria.vercel.app/santo-do-dia"
+    ];
+    let json = null;
+    for (const url of endpoints) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        const resp = await fetch(url, { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (resp.ok) {
+          json = await resp.json();
+          if (json?.today?.title) break;
+        }
+      } catch (_) {}
+    }
+
+    if (!json?.today?.title) return null;
+
+    const apiDia = parseInt(json.today.day ?? json.today.dia, 10);
+    if (Number.isFinite(apiDia) && apiDia !== date.getDate()) {
+      return null;
+    }
+
+    const nomeCompleto = String(json.today.title).trim();
+    const fullText = (json.today.full_text || "").trim();
+
+    // Extrai oração do texto oficial caso exista seção específica
+    let oracaoExtraida = "";
+    const matchOracao = fullText.match(
+      /(?:Minha oração|Oração a[o\s]|Oração)\s*[:\n]+([\s\S]+?)(?:\n\s*Fonte:|\n\s*– Produção|\n\s*Fonte|$)/i
+    );
+    if (matchOracao && matchOracao[1]) {
+      oracaoExtraida = matchOracao[1].trim();
+    }
+
+    const outros = Array.isArray(json.today.outros_santos)
+      ? json.today.outros_santos.filter((s) => s && s.trim().length > 0)
+      : [];
+
+    const reflexao =
+      outros.length > 0
+        ? `Outros santos celebrados hoje: ${outros.join(", ")}.`
+        : "A vida dos santos é para nós luz e inspiração no seguimento do Evangelho de Cristo.";
+
+    // Busca imagem na Wikipedia com nome limpo (ex.: Papa Evaristo) ou Canção Nova
+    const cleanName = cleanWikiName(nomeCompleto);
+    const imagem =
+      (await fetchWikiImage(cleanName)) ||
+      (await fetchWikiImage(nomeCompleto)) ||
+      (await fetchTodayCancaonovaImage()) ||
+      DEFAULT_SANTO_IMAGE;
+
+    return [
+      {
+        nome: nomeCompleto,
+        imagem,
+        historia: fullText,
+        reflexao,
+        oracao:
+          oracaoExtraida ||
+          "Ó Deus Todo-Poderoso, pela intercessão dos vossos santos, concedei-nos a fidelidade à vossa vontade e a perseverança na fé. Amém.",
+        fonte: "Canção Nova",
+        tipo: "Memória Litúrgica",
+        data: formatCacheKey(date)
+      }
+    ];
+  } catch (_) {
+    return null;
+  }
 }
 
 /** Termos de páginas irrelevantes (cidades, batalhas, bandeiras, partidos etc.) */
@@ -351,15 +765,30 @@ export async function getSantoDoDia(targetDate = new Date()) {
     return cached;
   }
 
-  // 2. FONTE PRINCIPAL: Fonte Divina via backend (/site/santo-do-dia).
-  //    Se indisponível ou sem conteúdo, segue para as fontes de fallback.
+  // 2. FONTE PRINCIPAL: Canção Nova Santo do Dia (?sDia=DD&sMes=MM&sAno=AAAA)
+  const cancaoNova = await fetchCancaoNovaByDate(date);
+  if (cancaoNova && cancaoNova.length > 0) {
+    setCache(date, cancaoNova);
+    return cancaoNova;
+  }
+
+  // 3. FONTE SECUNDÁRIA: Fonte Divina (https://www.ftdv.app/santos?date=DD/MM)
   const fonteDivina = await fetchFonteDivina(date);
   if (fonteDivina && fonteDivina.length > 0) {
     setCache(date, fonteDivina);
     return fonteDivina;
   }
 
-  // 3. Fonte externa: Catholic Readings API (santo + imagem em celebration.image)
+  // 4. Fallback: Canção Nova via API Liturgia Diária (quando a data for hoje)
+  if (isToday) {
+    const vercelData = await fetchVercelSantoApi(date);
+    if (vercelData && vercelData.length > 0) {
+      setCache(date, vercelData);
+      return vercelData;
+    }
+  }
+
+  // 4. Fonte externa: Catholic Readings API (santo + imagem em celebration.image)
   const catholic = await fetchCatholicReadingsCelebration(date);
 
   if (catholic) {

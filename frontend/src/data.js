@@ -74,7 +74,7 @@ export const parishData = {
     { startMonth: 8, startDay: 30, endMonth: 8, endDay: 30, title: "Festa de São Benedito — Abertura (30/09 a 03/10)", location: "Comunidade São Benedito", mapLink: "" },
     { startMonth: 9, startDay: 1, endMonth: 9, endDay: 3, title: "Festa em honra a São Benedito", location: "Comunidade São Benedito", mapLink: "" },
     { startMonth: 9, startDay: 9, endMonth: 9, endDay: 12, title: "Festa em honra a Nossa Senhora Aparecida", location: "Comunidade do Canabrava", mapLink: "" },
-    { startMonth: 9, startDay: 25, endMonth: 9, endDay: 28, title: "Festa em honra a São Judas Tadeu", location: "Comunidade São Judas", mapLink: "" },
+    { startMonth: 9, startDay: 25, endMonth: 9, endDay: 28, title: 'Tríduo em Honra a São Judas Tadeu — "São Judas: fazei-nos propagadores da Palavra de Deus!"', location: "Comunidade São Judas Tadeu", mapLink: "" },
     { startMonth: 10, startDay: 19, endMonth: 10, endDay: 22, title: "Festa em honra a Jesus das Santas Chagas", location: "Comunidade Jesus das Santas Chagas - CRISTO REI, DIA DO LEIGO.", mapLink: "" },
   ],
 

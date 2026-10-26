@@ -1,0 +1,199 @@
+/* src/pages/LiturgiaPage.css */
+
+.liturgia-page-container {
+  max-width: 960px;
+  margin: 1.5rem auto 3rem auto;
+  padding: 0 clamp(0.75rem, 3vw, 1.5rem);
+}
+
+/* Barra Superior de Abas e Controle de Data Unificado */
+.liturgia-unified-header {
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #d7dfe6);
+  border-radius: 14px;
+  padding: 1.25rem clamp(1rem, 3vw, 1.75rem);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  margin-bottom: 1.75rem;
+}
+
+.liturgia-tabs-bar {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border, #d7dfe6);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.liturgia-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted, #5e6b7a);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.liturgia-tab-btn:hover {
+  color: var(--primary, #0b2545);
+  background: rgba(11, 37, 69, 0.04);
+}
+
+.liturgia-tab-btn.active {
+  color: #ffffff;
+  background: var(--primary, #0b2545);
+  box-shadow: 0 4px 10px rgba(11, 37, 69, 0.2);
+}
+
+body[data-theme="dark"] .liturgia-unified-header {
+  background: var(--surface, #1e293b);
+  border-color: var(--border, #334155);
+}
+
+body[data-theme="dark"] .liturgia-tab-btn {
+  color: #94a3b8;
+}
+
+body[data-theme="dark"] .liturgia-tab-btn:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+body[data-theme="dark"] .liturgia-tab-btn.active {
+  color: #0b2545;
+  background: #38bdf8;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.3);
+}
+
+/* Controle de Data Unificado */
+.liturgia-unified-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.liturgia-unified-nav .date-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.liturgia-unified-nav .date-btn {
+  background: var(--surface, #ffffff);
+  color: var(--primary, #0b2545);
+  border: 1px solid var(--border, #d7dfe6);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.liturgia-unified-nav .date-btn:hover {
+  background: var(--primary, #0b2545);
+  color: #ffffff;
+  border-color: var(--primary, #0b2545);
+}
+
+body[data-theme="dark"] .liturgia-unified-nav .date-btn {
+  background: #0f172a;
+  color: #cbd5e1;
+  border-color: #334155;
+}
+
+body[data-theme="dark"] .liturgia-unified-nav .date-btn:hover {
+  background: #38bdf8;
+  color: #0f172a;
+  border-color: #38bdf8;
+}
+
+.liturgia-unified-nav .date-picker-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.liturgia-unified-nav .date-picker-label {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text, #171d24);
+}
+
+.liturgia-unified-nav .date-input {
+  border: 1px solid var(--border, #d7dfe6);
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  font-size: 0.9rem;
+  color: var(--text, #171d24);
+  background: var(--surface, #ffffff);
+  cursor: pointer;
+}
+
+body[data-theme="dark"] .liturgia-unified-nav .date-input {
+  background: #0f172a;
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+/* Área de conteúdo */
+.liturgia-content-area {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .liturgia-tabs-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem;
+  }
+
+  .liturgia-tab-btn {
+    justify-content: center;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.88rem;
+  }
+
+  .liturgia-unified-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .liturgia-unified-nav .date-controls {
+    justify-content: stretch;
+  }
+
+  .liturgia-unified-nav .date-controls .date-btn {
+    flex: 1;
+    text-align: center;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.82rem;
+  }
+
+  .liturgia-unified-nav .date-picker-group {
+    justify-content: space-between;
+  }
+
+  .liturgia-unified-nav .date-input {
+    flex: 1;
+  }
+}
